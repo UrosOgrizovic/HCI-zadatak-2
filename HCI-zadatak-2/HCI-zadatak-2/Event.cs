@@ -22,6 +22,7 @@ namespace HCI_zadatak_2
 		public DateTime Date { get; set; }
 		public List<Tag> Tags { get; set; }
 		public bool IsActive { get; set; } // if false, event will not be displayed
-		
+		public int OffsetX { get; set; }
+		public int OffsetY { get; set; }
 	}
 }
