@@ -14,12 +14,12 @@
 		
 		<!--left side-->
 		<Grid Grid.Column="0">
-			<Label Content="BLAAAAAAAAAAAAAAAA" HorizontalAlignment="Left" Margin="80,169,0,0" VerticalAlignment="Top"/>
+			<Label Content="BLAAAAAAAAAAAAAAAA" HorizontalAlignment="Stretch" Margin="46,92,34.6,77" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
 		</Grid>
 		
 		<!--right side-->
 		<Grid Grid.Column="1">
-			<Image x:Name="cityMap" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="496"/>
+			<Image x:Name="cityMap" Margin="45,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto"/>
 		</Grid>
 
 
