@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace HCI_zadatak_2
 {
-    enum PriceCategory {FREE, LOW, MID, HIGH}
+    public enum PriceCategory {FREE, LOW, MID, HIGH}
 }

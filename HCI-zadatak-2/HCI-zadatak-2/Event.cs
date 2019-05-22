@@ -1,28 +1,279 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HCI_zadatak_2
 {
-    class Event
-    {
-		public string Id { get; set; }
-		public string Name { get; set; }
-		public string Description { get; set; }
-		public EventType Type { get; set; }
-		public AlcoholServingCategory Alcohol { get; set; }
-		public byte[] Icon { get; set; } 
-		public bool IsForHandicapped { get; set; }
-		public bool IsSmokingAllowed { get; set; }
-		public bool IsOutdoors { get; set; }
-		public PriceCategory PriceCategory { get; set; }
-		public int ExpectedAudience { get; set; } // perhaps create enum for expected audience instead?
-		public DateTime Date { get; set; }
-		public List<Tag> Tags { get; set; }
-		public bool IsActive { get; set; } // if false, event will not be displayed
-		public int OffsetX { get; set; }
-		public int OffsetY { get; set; }
+    public class Event : INotifyPropertyChanged
+	{
+		public event PropertyChangedEventHandler PropertyChanged;
+		protected virtual void OnPropertyChanged(string name)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+		}
+
+		private string _id;
+		private string _name;
+		private string _description;
+		private EventType _type;
+		private AlcoholServingCategory _alcohol;
+		private byte[] _icon;
+		private bool _isForHandicapped;
+		private bool _isSmokingAllowed;
+		private bool _isOutdoors;
+		private PriceCategory _priceCategory;
+		private int _expectedAudience;
+		private DateTime _date;
+		private List<Tag> _tags;
+		private bool _isActive;
+		private int _offsetX;
+		private int _offsetY;
+		
+		public string Id
+		{
+			get
+			{
+				return _id;
+			}
+			set
+			{
+				if (value != _id)
+				{
+					_id = value;
+					OnPropertyChanged("Id");
+				}
+			}
+		}
+		public string Name
+		{
+			get
+			{
+				return _name;
+			}
+			set
+			{
+				if (value != _name)
+				{
+					_name = value;
+					OnPropertyChanged("Name");
+				}
+			}
+		}
+		public string Description
+		{
+			get
+			{
+				return _description;
+			}
+			set
+			{
+				if (value != _description)
+				{
+					_description = value;
+					OnPropertyChanged("Description");
+				}
+			}
+		}
+		public EventType Type
+		{
+			get
+			{
+				return _type;
+			}
+			set
+			{
+				if (value != _type)
+				{
+					_type = value;
+					OnPropertyChanged("Type");
+				}
+			}
+		}
+		public AlcoholServingCategory Alcohol
+		{
+			get
+			{
+				return _alcohol;
+			}
+			set
+			{
+				if (value != _alcohol)
+				{
+					_alcohol = value;
+					OnPropertyChanged("Alcohol");
+				}
+			}
+		}
+		public byte[] Icon
+		{
+			get
+			{
+				return _icon;
+			}
+			set
+			{
+				if (value != _icon)
+				{
+					_icon = value;
+					OnPropertyChanged("Icon");
+				}
+			}
+		}
+		public bool IsForHandicapped
+		{
+			get
+			{
+				return _isForHandicapped;
+			}
+			set
+			{
+				if (value != _isForHandicapped)
+				{
+					_isForHandicapped = value;
+					OnPropertyChanged("IsForHandicapped");
+				}
+			}
+		}
+		public bool IsSmokingAllowed
+		{
+			get
+			{
+				return _isSmokingAllowed;
+			}
+			set
+			{
+				if (value != _isSmokingAllowed)
+				{
+					_isSmokingAllowed = value;
+					OnPropertyChanged("IsSmokingAllowed");
+				}
+			}
+		}
+		public bool IsOutdoors
+		{
+			get
+			{
+				return _isOutdoors;
+			}
+			set
+			{
+				if (value != _isOutdoors)
+				{
+					_isOutdoors = value;
+					OnPropertyChanged("IsOutdoors");
+				}
+			}
+		}
+		public PriceCategory PriceCategory
+		{
+			get
+			{
+				return _priceCategory;
+			}
+			set
+			{
+				if (value != _priceCategory)
+				{
+					_priceCategory = value;
+					OnPropertyChanged("PriceCategory");
+				}
+			}
+		}
+		// perhaps create enum for expected audience instead?
+		public int ExpectedAudience
+		{
+			get
+			{
+				return _expectedAudience;
+			}
+			set
+			{
+				if (value != _expectedAudience)
+				{
+					_expectedAudience = value;
+					OnPropertyChanged("ExpectedAudience");
+				}
+			}
+		}
+		public DateTime Date
+		{
+			get
+			{
+				return _date;
+			}
+			set
+			{
+				if (value != _date)
+				{
+					_date = value;
+					OnPropertyChanged("Date");
+				}
+			}
+		}
+		public List<Tag> Tags
+		{
+			get
+			{
+				return _tags;
+			}
+			set
+			{
+				if (value != _tags)
+				{
+					_tags = value;
+					OnPropertyChanged("Tags");
+				}
+			}
+		}
+		// if false, event will not be displayed
+		public bool IsActive
+		{
+			get
+			{
+				return _isActive;
+			}
+			set
+			{
+				if (value != _isActive)
+				{
+					_isActive = value;
+					OnPropertyChanged("IsActive");
+				}
+			}
+		}
+		public int OffsetX
+		{
+			get
+			{
+				return _offsetX;
+			}
+			set
+			{
+				if (value != _offsetX)
+				{
+					_offsetX = value;
+					OnPropertyChanged("OffsetX");
+				}
+			}
+		}
+
+		public int OffsetY
+		{
+			get
+			{
+				return _offsetY;
+			}
+			set
+			{
+				if (value != _offsetY)
+				{
+					_offsetY = value;
+					OnPropertyChanged("OffsetY");
+				}
+			}
+		}
 	}
 }

@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace HCI_zadatak_2
 {
-    enum AlcoholServingCategory {NONE, BRING, BUY}
+    public enum AlcoholServingCategory {NONE, BRING, BUY}
 }
