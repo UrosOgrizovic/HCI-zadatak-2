@@ -53,8 +53,13 @@ namespace HCI_zadatak_2
 		public MainWindow()
 		{
 			InitializeComponent();
-			cityMap.Source = new BitmapImage(new Uri("/images/MapNS.png", UriKind.Relative));
-			DataContext = this;
+            List<int> items = new List<int>();
+            cityMap.Source = new BitmapImage(new Uri("/images/MapNS.png", UriKind.Relative));
+            //icon.Source = new BitmapImage(new Uri("/images/icon.svg", UriKind.Relative));
+
+           
+
+            DataContext = this;
 			List<Event> e = new List<Event>();
 			List<EventType> let = new List<EventType>();
 			List<Tag> lt = new List<Tag>();
@@ -71,7 +76,7 @@ namespace HCI_zadatak_2
 			DateTime dt2 = new DateTime(2019, 10, 5, 20, 0, 0);
 			DateTime dt3 = new DateTime(2019, 11, 11, 19, 0, 0);
 
-			e.Add(new Event {Id = "E1", Name = "Crazy Aerosmith concert", Description = "A concert by the legends of rock. Steven Tyler is living proof that one can still rock out at the tender age of 71!", Type = let[1], Alcohol = AlcoholServingCategory.BUY, Icon = null, IsForHandicapped = false, IsSmokingAllowed = true, IsOutdoors = true, PriceCategory = PriceCategory.MID, ExpectedAudience = 10000, Date = dt2, Tags = lt.GetRange(1, 1), IsActive = true, OffsetX = 200, OffsetY = 150 });
+			e.Add(new Event {Id = "E1", Name = "Crazy Aerosmith concert", Description = "A concert by the legends of rock. Steven Tyler is living proof that one can still rock out at the tender age of 71!", Type = let[1], Alcohol = AlcoholServingCategory.BUY, Icon = null, IsForHandicapped = false, IsSmokingAllowed = true, IsOutdoors = true, PriceCategory = PriceCategory.MID, ExpectedAudience = 10000, Date = dt2, Tags = lt.GetRange(1, 1), IsActive = true, OffsetX = 10, OffsetY = 10});
 
 			e.Add(new Event {Id = "E2",  Name = "Football game U19", Description = "Everyone who's under the age of 19 is invited to this exhibition game! Great fun is guaranteed!", Type = let[0], Alcohol = AlcoholServingCategory.NONE, Icon = null, IsForHandicapped = false, IsSmokingAllowed = false, IsOutdoors = true, PriceCategory = PriceCategory.FREE, ExpectedAudience = 20, Date = dt1, Tags = lt.GetRange(0,1), IsActive = true, OffsetX = 100, OffsetY = 200 });
 
@@ -82,8 +87,18 @@ namespace HCI_zadatak_2
 			Tags = new ObservableCollection<Tag>(lt);
 
 
+            Image icon = new Image
+            {
+                Width = 30,
+                Height = 30,
+                Name = "marker",
+                Source = new BitmapImage(new Uri(@"/images/marker.png", UriKind.Relative))
+            };
+            canvas.Children.Add(icon);
+            Canvas.SetTop(icon, 100);
+            Canvas.SetLeft(icon, 100);
 
-			View = CollectionViewSource.GetDefaultView(Events);
+            View = CollectionViewSource.GetDefaultView(Events);
 
 		}
 

@@ -6,95 +6,139 @@
         xmlns:local="clr-namespace:HCI_zadatak_2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="0.35*"></ColumnDefinition>
-			<ColumnDefinition Width="0.65*"></ColumnDefinition>
-		</Grid.ColumnDefinitions>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.35*"></ColumnDefinition>
+            <ColumnDefinition Width="0.65*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-		<!--left side-->
-		<Grid Grid.Column="0">
-			<TextBox HorizontalAlignment="Left" Height="0" Margin="144,118,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="104"/>
-			<TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
-				<TabItem Header="Events">
-					<TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
-						<TabItem Header="View">
-							<DataGrid x:Name="eventsView" ItemsSource="{Binding Path=Events}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
-								<DataGrid.Columns>
-									<DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name}"></DataGridTextColumn>
-									<DataGridTextColumn Header="Date" Width="SizeToCells" Binding="{Binding Date}"></DataGridTextColumn>
-									<DataGridTextColumn Header="Outdoors" Width="SizeToCells" Binding="{Binding IsOutdoors}"></DataGridTextColumn>
-									<DataGridTextColumn Header="Price" Width="SizeToCells" Binding="{Binding PriceCategory}"></DataGridTextColumn>
-								</DataGrid.Columns>
-							</DataGrid>
-						</TabItem>
-						<TabItem Header="Add">
+        <!--left side-->
+        
+        <Grid Grid.Column="0" Margin="0,0,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.9*"></RowDefinition>
+                <RowDefinition Height="0.1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox HorizontalAlignment="Left" Height="0" Margin="144,118,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="104"/>
+            <TabControl Grid.Row="0" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
+                <TabItem Header="Events">
+                    <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
+                        <TabItem Header="View">
+                            <DataGrid x:Name="eventsView" ItemsSource="{Binding Path=Events}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Date" Width="SizeToCells" Binding="{Binding Date}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Outdoors" Width="SizeToCells" Binding="{Binding IsOutdoors}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Price" Width="SizeToCells" Binding="{Binding PriceCategory}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                        <TabItem Header="Add">
 
-						</TabItem>
-						<TabItem Header="Edit">
+                        </TabItem>
+                        <TabItem Header="Edit">
 
-						</TabItem>
-						<TabItem Header="Delete">
+                        </TabItem>
+                        <TabItem Header="Delete">
 
-						</TabItem>
-					</TabControl>
+                        </TabItem>
+                    </TabControl>
 
-				</TabItem>
-				<TabItem Header="Tags">
-					<TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
-						<TabItem Header="View">
-							<DataGrid x:Name="tagsView" ItemsSource="{Binding Path=Tags}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
-								<DataGrid.Columns>
-									<DataGridTextColumn Header="Color" Width="SizeToCells" Binding="{Binding Color}"></DataGridTextColumn>
-									<DataGridTextColumn Header="Description" Width="SizeToCells" Binding="{Binding Description}"></DataGridTextColumn>
-								</DataGrid.Columns>
-							</DataGrid>
-						</TabItem>
-						<TabItem Header="Add">
+                </TabItem>
+                <TabItem Header="Tags">
+                    <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
+                        <TabItem Header="View">
+                            <DataGrid x:Name="tagsView" ItemsSource="{Binding Path=Tags}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Color" Width="SizeToCells" Binding="{Binding Color}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Description" Width="SizeToCells" Binding="{Binding Description}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                        <TabItem Header="Add">
 
-						</TabItem>
-						<TabItem Header="Edit">
+                        </TabItem>
+                        <TabItem Header="Edit">
 
-						</TabItem>
-						<TabItem Header="Delete">
+                        </TabItem>
+                        <TabItem Header="Delete">
 
-						</TabItem>
-					</TabControl>
-				</TabItem>
-				<TabItem Header="Types">
-					<TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
-						<TabItem Header="View">
-							<DataGrid x:Name="eventTypesView" ItemsSource="{Binding Path=EventTypes}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
-								<DataGrid.Columns>
-									<DataGridTextColumn Header="Type" Width="SizeToCells" Binding="{Binding Type}"></DataGridTextColumn>
-									<DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name}"></DataGridTextColumn>
-								</DataGrid.Columns>
-							</DataGrid>
-						</TabItem>
-						<TabItem Header="Add">
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
+                <TabItem Header="Types">
+                    <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
+                        <TabItem Header="View">
+                            <DataGrid x:Name="eventTypesView" ItemsSource="{Binding Path=EventTypes}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Type" Width="SizeToCells" Binding="{Binding Type}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                        <TabItem Header="Add">
 
-						</TabItem>
-						<TabItem Header="Edit">
+                        </TabItem>
+                        <TabItem Header="Edit">
 
-						</TabItem>
-						<TabItem Header="Delete">
+                        </TabItem>
+                        <TabItem Header="Delete">
 
-						</TabItem>
-					</TabControl>
-				</TabItem>
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
 
-			</TabControl>
-		</Grid>
+            </TabControl>
 
-		<!--right side-->
-		<Grid Grid.Column="1">
-			<Image x:Name="cityMap" Margin="45,65,104,10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-			<TextBox HorizontalAlignment="Left" Height="31" Margin="386,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-			<Label Content="Search" HorizontalAlignment="Left" Margin="334,10,0,0" VerticalAlignment="Top" Height="31" Width="47"/>
-		</Grid>
+                <Button Margin="10,5,5,5" Grid.Column="0">Add</Button>
+                <Button Margin="0,5,0,5" Grid.Column="1">Edit</Button>
+                <Button Margin="5,5,10,5" Grid.Column="2">Remove</Button>
+                
+            </Grid>
+            
+        </Grid>
 
+        <!--right side-->
+        <Grid Grid.Column="1">
+  
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition Height="0.9*"></RowDefinition>
+            </Grid.RowDefinitions>
 
+            <Grid Grid.Row="0" Margin="0,10,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-	</Grid>
+                <TextBox Grid.Column="0" Margin="0,3,0,3"></TextBox>
+                <Button Grid.Column="1" Margin="3,3,0,3">Search</Button>
+                <Button Grid.Column="2" Margin="3,3,0,3">Filter</Button>
+                
+            </Grid>
+
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Canvas x:Name="canvas" 
+                    Width="{Binding ActualWidth, ElementName = cityMap}" Height="{Binding ActualHeight, ElementName = cityMap}">
+                    <Canvas.Background>
+                        <VisualBrush>
+                            <VisualBrush.Visual>
+                                <Image x:Name="cityMap"></Image>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Canvas.Background>
+                </Canvas>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
 </Window>
