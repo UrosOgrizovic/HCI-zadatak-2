@@ -14,7 +14,7 @@ namespace HCI_zadatak_2
 
 		private string _type;
 		private string _name;
-		private byte[] _icon;
+		private string _icon;
 		private string _description;
 		
 		public string Type
@@ -49,7 +49,7 @@ namespace HCI_zadatak_2
 			}
 		}
 
-		public byte[] Icon
+		public string Icon
 		{
 			get
 			{

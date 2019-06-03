@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_zadatak_2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" MinHeight="450" MinWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.35*"></ColumnDefinition>
@@ -20,7 +20,7 @@
                 <RowDefinition Height="0.1*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBox HorizontalAlignment="Left" Height="0" Margin="144,118,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="104"/>
-            <TabControl Grid.Row="0" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
+            <TabControl x:Name="tabControl" Grid.Row="0" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
                 <TabItem Header="Events">
                     <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
                         <TabItem Header="View">
@@ -71,8 +71,8 @@
                         <TabItem Header="View">
                             <DataGrid x:Name="eventTypesView" ItemsSource="{Binding Path=EventTypes}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Type" Width="SizeToCells" Binding="{Binding Type}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Type" Width="SizeToCells" Binding="{Binding Type, Mode=TwoWay}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name, Mode=TwoWay}"></DataGridTextColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </TabItem>
@@ -97,9 +97,9 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Button Margin="10,5,5,5" Grid.Column="0">Add</Button>
+                <Button Margin="10,5,5,5" Grid.Column="0" Click="Button_Click">Add</Button>
                 <Button Margin="0,5,0,5" Grid.Column="1">Edit</Button>
-                <Button Margin="5,5,10,5" Grid.Column="2">Remove</Button>
+                <Button x:Name="deleteBtn" Margin="5,5,10,5" Grid.Column="2" Click="DeleteBtn_Click">Remove</Button>
                 
             </Grid>
             

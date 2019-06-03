@@ -17,7 +17,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 
-
 namespace HCI_zadatak_2
 {
 	/// <summary>
@@ -33,6 +32,7 @@ namespace HCI_zadatak_2
 		}
 
 		private ICollectionView _View;
+
 		public ICollectionView View
 		{
 			get
@@ -46,21 +46,21 @@ namespace HCI_zadatak_2
 			}
 		}
 
+        public ApplicationContext appContext = new ApplicationContext();
+
 		public ObservableCollection<Event> Events { get; set; }
-		public ObservableCollection<EventType> EventTypes { get; set; }
-		public ObservableCollection<Tag> Tags { get; set; }
+
+        public ObservableCollection<EventType> EventTypes { get; set; }
+
+        public ObservableCollection<Tag> Tags { get; set; }
 
 		public MainWindow()
 		{
 			InitializeComponent();
-            List<int> items = new List<int>();
-            cityMap.Source = new BitmapImage(new Uri("/images/MapNS.png", UriKind.Relative));
-            //icon.Source = new BitmapImage(new Uri("/images/icon.svg", UriKind.Relative));
-
-           
-
+       
             DataContext = this;
-			List<Event> e = new List<Event>();
+
+            List<Event> e = new List<Event>();
 			List<EventType> let = new List<EventType>();
 			List<Tag> lt = new List<Tag>();
 
@@ -86,21 +86,50 @@ namespace HCI_zadatak_2
 			EventTypes = new ObservableCollection<EventType>(let);
 			Tags = new ObservableCollection<Tag>(lt);
 
+            cityMap.Source = new BitmapImage(new Uri(@"/images/MapNS.png", UriKind.Relative));
 
-            Image icon = new Image
-            {
-                Width = 30,
-                Height = 30,
-                Name = "marker",
-                Source = new BitmapImage(new Uri(@"/images/marker.png", UriKind.Relative))
-            };
-            canvas.Children.Add(icon);
-            Canvas.SetTop(icon, 100);
-            Canvas.SetLeft(icon, 100);
-
-            View = CollectionViewSource.GetDefaultView(Events);
-
+            View = CollectionViewSource.GetDefaultView(this.appContext.Events);
 		}
 
-	}
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem t = (TabItem) tabControl.SelectedItem;
+            if (t.Header.Equals("Events"))
+            {
+                popups.AddEvent m = new popups.AddEvent();
+                m.ShowDialog();
+            }
+            else if (t.Header.Equals("Types"))
+            {
+                popups.AddEventType m = new popups.AddEventType(this);
+                m.ShowDialog();
+            } 
+            else
+            {
+                popups.AddTag m = new popups.AddTag();
+                m.ShowDialog();
+            }
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Selected item will be removed. Please confirm.", "Confirmation", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                TabItem t = (TabItem)tabControl.SelectedItem;
+                if (t.Header.Equals("Events"))
+                {
+                    Events.RemoveAt(eventsView.SelectedIndex);
+                }
+                else if (t.Header.Equals("Types"))
+                {
+                    EventTypes.RemoveAt(eventTypesView.SelectedIndex);
+                }
+                else
+                {
+                    Tags.RemoveAt(tagsView.SelectedIndex);
+                }
+            }
+        }
+    }
 }
