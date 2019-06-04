@@ -69,7 +69,8 @@
                 <TabItem Header="Types">
                     <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
                         <TabItem Header="View">
-                            <DataGrid x:Name="eventTypesView" ItemsSource="{Binding Path=EventTypes}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
+                            <DataGrid x:Name="eventTypesView" ItemsSource="{Binding Path=EventTypes}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" PreviewMouseLeftButtonDown="EventTypesView_PreviewMouseLeftButtonDown" MouseMove="EventTypesView_MouseMove" 
+                                      >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Type" Width="SizeToCells" Binding="{Binding Type, Mode=TwoWay}"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name, Mode=TwoWay}"></DataGridTextColumn>
@@ -129,11 +130,12 @@
 
             <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <Canvas x:Name="canvas" 
-                    Width="{Binding ActualWidth, ElementName = cityMap}" Height="{Binding ActualHeight, ElementName = cityMap}">
+                    Width="{Binding ActualWidth, ElementName = cityMap}" Height="{Binding ActualHeight, ElementName = cityMap}"
+                        DragEnter="Canvas_DragEnter" Drop="Canvas_Drop" AllowDrop="True">
                     <Canvas.Background>
                         <VisualBrush>
                             <VisualBrush.Visual>
-                                <Image x:Name="cityMap"></Image>
+                                <Image x:Name="cityMap" ></Image>
                             </VisualBrush.Visual>
                         </VisualBrush>
                     </Canvas.Background>

@@ -46,8 +46,6 @@ namespace HCI_zadatak_2
 			}
 		}
 
-        public ApplicationContext appContext = new ApplicationContext();
-
 		public ObservableCollection<Event> Events { get; set; }
 
         public ObservableCollection<EventType> EventTypes { get; set; }
@@ -88,7 +86,7 @@ namespace HCI_zadatak_2
 
             cityMap.Source = new BitmapImage(new Uri(@"/images/MapNS.png", UriKind.Relative));
 
-            View = CollectionViewSource.GetDefaultView(this.appContext.Events);
+            View = CollectionViewSource.GetDefaultView(Events);
 		}
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -130,6 +128,68 @@ namespace HCI_zadatak_2
                     Tags.RemoveAt(tagsView.SelectedIndex);
                 }
             }
+        }
+
+        public Point startPoint = new Point();
+
+        private void EventTypesView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            startPoint = e.GetPosition(null);
+        }
+
+        private void EventTypesView_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point mousePos = e.GetPosition(null);
+            Vector diff = startPoint - mousePos;
+
+            if (e.LeftButton == MouseButtonState.Pressed &&
+                (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+            {
+                // Get the dragged ListViewItem
+                DataGrid dg = sender as DataGrid;
+                DataGridRow row = FindAncestor<DataGridRow>((DependencyObject)e.OriginalSource);
+
+                // Find the data behind the ListViewItem
+                EventType et = (EventType)row.DataContext;
+
+                // Initialize the drag & drop operation
+                DataObject dragData = new DataObject("myFormat", et);
+                DragDrop.DoDragDrop(row, dragData, DragDropEffects.Move);
+            }
+        }
+
+        private static T FindAncestor<T>(DependencyObject current) where T : DependencyObject
+        {
+            do
+            {
+                if (current is T)
+                {
+                    return (T)current;
+                }
+                current = VisualTreeHelper.GetParent(current);
+            }
+            while (current != null);
+            return null;
+        }
+
+        private void Canvas_DragEnter(object sender, DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent("myFormat") || sender == e.Source)
+            {
+                e.Effects = DragDropEffects.None;
+            } 
+        }
+
+        private void Canvas_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent("myFormat"))
+            {
+                //Student student = e.Data.GetData("myFormat") as Student;
+                //Studenti.Remove(student);
+                //Studenti2.Add(student);
+                MessageBox.Show("drag and drop success!");
+            } 
         }
     }
 }
