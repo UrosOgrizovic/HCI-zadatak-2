@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_zadatak_2"
+        xmlns:Controls="clr-namespace:HCI_zadatak_2.userControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" MinHeight="450" MinWidth="800">
     <Grid>
@@ -17,14 +18,14 @@
         <Grid Grid.Column="0" Margin="0,0,0,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.9*"></RowDefinition>
-                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition MaxHeight="45" Height="0.1*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBox HorizontalAlignment="Left" Height="0" Margin="144,118,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="104"/>
             <TabControl x:Name="tabControl" Grid.Row="0" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
                 <TabItem Header="Events">
                     <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
                         <TabItem Header="View">
-                            <DataGrid x:Name="eventsView" ItemsSource="{Binding Path=Events}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
+                            <DataGrid x:Name="eventsView" ItemsSource="{Binding Path=appContext.Events}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name}"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Date" Width="SizeToCells" Binding="{Binding Date}"></DataGridTextColumn>
@@ -39,38 +40,34 @@
                         <TabItem Header="Edit">
 
                         </TabItem>
-                        <TabItem Header="Delete">
-
-                        </TabItem>
+                        
                     </TabControl>
 
                 </TabItem>
                 <TabItem Header="Tags">
                     <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
                         <TabItem Header="View">
-                            <DataGrid x:Name="tagsView" ItemsSource="{Binding Path=Tags}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
+                            <DataGrid x:Name="tagsView" ItemsSource="{Binding Path=appContext.Tags}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
                                 <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Id" Width="SizeToCells" Binding="{Binding Id}"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Color" Width="SizeToCells" Binding="{Binding Color}"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Description" Width="SizeToCells" Binding="{Binding Description}"></DataGridTextColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </TabItem>
                         <TabItem Header="Add">
-
+                            
                         </TabItem>
                         <TabItem Header="Edit">
 
                         </TabItem>
-                        <TabItem Header="Delete">
-
-                        </TabItem>
+                        
                     </TabControl>
                 </TabItem>
                 <TabItem Header="Types">
                     <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
                         <TabItem Header="View">
-                            <DataGrid x:Name="eventTypesView" ItemsSource="{Binding Path=EventTypes}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" PreviewMouseLeftButtonDown="EventTypesView_PreviewMouseLeftButtonDown" MouseMove="EventTypesView_MouseMove" 
-                                      >
+                            <DataGrid x:Name="eventTypesView" SelectionMode="Single" ItemsSource="{Binding Path=appContext.EventTypes}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" PreviewMouseLeftButtonDown="EventTypesView_PreviewMouseLeftButtonDown" MouseMove="EventTypesView_MouseMove">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Type" Width="SizeToCells" Binding="{Binding Type, Mode=TwoWay}"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name, Mode=TwoWay}"></DataGridTextColumn>
@@ -78,17 +75,14 @@
                             </DataGrid>
                         </TabItem>
                         <TabItem Header="Add">
-
+                            <Controls:AddEventType></Controls:AddEventType>
                         </TabItem>
                         <TabItem Header="Edit">
 
                         </TabItem>
-                        <TabItem Header="Delete">
 
-                        </TabItem>
                     </TabControl>
                 </TabItem>
-
             </TabControl>
 
             <Grid Grid.Row="1">
@@ -97,10 +91,8 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-
-                <Button Margin="10,5,5,5" Grid.Column="0" Click="Button_Click">Add</Button>
-                <Button Margin="0,5,0,5" Grid.Column="1">Edit</Button>
-                <Button x:Name="deleteBtn" Margin="5,5,10,5" Grid.Column="2" Click="DeleteBtn_Click">Remove</Button>
+               
+                <Button x:Name="deleteBtn" Margin="5,5,10,5" Grid.ColumnSpan="3" MaxWidth="100" Click="DeleteBtn_Click">Remove</Button>
                 
             </Grid>
             
@@ -110,7 +102,7 @@
         <Grid Grid.Column="1">
   
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition MaxHeight="45" Height="0.1*"></RowDefinition>
                 <RowDefinition Height="0.9*"></RowDefinition>
             </Grid.RowDefinitions>
 
@@ -119,12 +111,14 @@
                     <ColumnDefinition Width="0.3*"></ColumnDefinition>
                     <ColumnDefinition Width="0.1*"></ColumnDefinition>
                     <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.4*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <TextBox Grid.Column="0" Margin="0,3,0,3"></TextBox>
-                <Button Grid.Column="1" Margin="3,3,0,3">Search</Button>
+                <TextBox x:Name="searchTxt" Grid.Column="0" Margin="0,3,0,3" ></TextBox>
+                <Button x:Name="searchBtn" Grid.Column="1" Margin="3,3,0,3" Click="SearchBtn_Click" IsDefault="{Binding ElementName=searchTxt, Path=IsKeyboardFocused}">Search</Button>
                 <Button Grid.Column="2" Margin="3,3,0,3">Filter</Button>
+                <Button Grid.Column="3" Margin="3,3,0,3">Reset</Button>
                 
             </Grid>
 

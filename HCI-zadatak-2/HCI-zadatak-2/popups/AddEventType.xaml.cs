@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 
 namespace HCI_zadatak_2.popups
@@ -58,7 +57,7 @@ namespace HCI_zadatak_2.popups
                 t.Name = name;
                 t.Icon = iconPath;
                 t.Description = desc;
-                this.parent.EventTypes.Add(t);
+                this.parent.appContext.EventTypes.Add(t);
                 //this.parent.saveTypes();
                 this.Close();
 

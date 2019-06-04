@@ -47,5 +47,66 @@ namespace HCI_zadatak_2
             Tags = new ObservableCollection<Tag>(lt);
         }
 
+
+        public ObservableCollection<Event> Search(String query)
+        {
+            int score = 0;
+
+            List<Tag> tags = new List<Tag>();
+
+            List<int> scores = new List<int>();
+            List<Event> events = new List<Event>();
+            query = query.ToLower();
+            foreach (Event e in Events) {
+                score = 0;
+                if (e.Name.ToLower().Contains(query))
+                    score += 10;
+                if (e.Date.ToString().Contains(query))
+                    score += 3;
+                if (e.Type.Name.ToLower().Contains(query))
+                    score += 5;
+                tags = e.Tags;
+
+                foreach (Tag t in tags)
+                {
+                    if (t.Id.ToLower().Contains(query))
+                        score += 2;
+                }
+
+                scores.Add(score);
+                events.Add(e);
+                
+            }
+
+            SortEvents(scores, events);
+            return new ObservableCollection<Event>(events);
+        }
+
+        private void SortEvents(List<int> scores, List<Event> events)
+        {
+            for (int i = 0; i < scores.Count; i++)
+            {
+                for (int j = 0; j < scores.Count - 1; j++)
+                {
+                    if (scores.ElementAt(i) > scores.ElementAt(j))
+                    {
+                        var temp = scores[i];
+                        scores[i] = scores[j];
+                        scores[j] = temp;
+
+                        var tempEvent = events[i];
+                        events[i] = events[j];
+                        events[j] = tempEvent;
+                    }
+                }
+            }
+        }
+
+        //todo add filter class as param
+        public ObservableCollection<Event> Filter(ObservableCollection<Event> events)
+        {
+            return null;
+        }
+
     }
 }
