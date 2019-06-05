@@ -24,21 +24,14 @@
             <TabControl x:Name="tabControl" Grid.Row="0" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
                 <TabItem Header="Events">
                     <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
-                        <TabItem Header="View">
-							<DataGrid x:Name="eventsView" SelectionMode="Single" ItemsSource="{Binding Path=appContext.Events}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Date" Width="SizeToCells" Binding="{Binding Date}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Outdoors" Width="SizeToCells" Binding="{Binding IsOutdoors}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Price" Width="SizeToCells" Binding="{Binding PriceCategory}"></DataGridTextColumn>
-                                </DataGrid.Columns>
-                            </DataGrid>
+						<TabItem Header="View">
+							<Controls:ViewEvents x:Name="controlEventsView"></Controls:ViewEvents>
                         </TabItem>
                         <TabItem Header="Add">
 							<Controls:AddEvent></Controls:AddEvent>
                         </TabItem>
                         <TabItem Header="Edit">
-
+							<Controls:EditEvent></Controls:EditEvent>
                         </TabItem>
                         
                     </TabControl>
@@ -46,39 +39,28 @@
                 </TabItem>
                 <TabItem Header="Tags">
                     <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
-                        <TabItem Header="View">
-							<DataGrid x:Name="tagsView" SelectionMode="Single" ItemsSource="{Binding Path=appContext.Tags}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Id" Width="SizeToCells" Binding="{Binding Id}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Color" Width="SizeToCells" Binding="{Binding Color}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Description" Width="SizeToCells" Binding="{Binding Description}"></DataGridTextColumn>
-                                </DataGrid.Columns>
-                            </DataGrid>
+						<TabItem Header="View">
+							<Controls:ViewTags x:Name="controlTagsView"></Controls:ViewTags>
                         </TabItem>
                         <TabItem Header="Add">
-                            
+							<Controls:AddTag></Controls:AddTag>
                         </TabItem>
                         <TabItem Header="Edit">
-
+							<Controls:EditTag></Controls:EditTag>
                         </TabItem>
                         
                     </TabControl>
                 </TabItem>
                 <TabItem Header="Types">
                     <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
-                        <TabItem Header="View">
-                            <DataGrid x:Name="eventTypesView" SelectionMode="Single" ItemsSource="{Binding Path=appContext.EventTypes}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" PreviewMouseLeftButtonDown="EventTypesView_PreviewMouseLeftButtonDown" MouseMove="EventTypesView_MouseMove">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Type" Width="SizeToCells" Binding="{Binding Type, Mode=TwoWay}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name, Mode=TwoWay}"></DataGridTextColumn>
-                                </DataGrid.Columns>
-                            </DataGrid>
+						<TabItem Header="View">
+							<Controls:ViewEventTypes x:Name="controlEventTypesView"></Controls:ViewEventTypes>
                         </TabItem>
                         <TabItem Header="Add">
                             <Controls:AddEventType></Controls:AddEventType>
                         </TabItem>
                         <TabItem Header="Edit">
-
+							<Controls:EditEventType></Controls:EditEventType>
                         </TabItem>
 
                     </TabControl>

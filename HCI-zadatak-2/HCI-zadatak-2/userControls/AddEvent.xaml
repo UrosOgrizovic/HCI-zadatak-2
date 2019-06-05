@@ -4,17 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HCI_zadatak_2.userControls"
+			 xmlns:Controls="clr-namespace:HCI_zadatak_2.userControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 	<Grid Margin="5,5,5,5">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="Auto"></ColumnDefinition>
 			<ColumnDefinition Width="Auto"></ColumnDefinition>
-			<ColumnDefinition Width="Auto"></ColumnDefinition>
 		</Grid.ColumnDefinitions>
 
-		<!-- one row for each attribute apart from active, offsetX and offsetY. Active will be set to true, whereas
-		the latter two will be set via drag & drop -->
+		<!-- Active will be set to true, whereas offsetX and offsetY will be set via drag & drop -->
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"></RowDefinition>
 			<RowDefinition Height="Auto"></RowDefinition>
@@ -44,16 +43,10 @@
 		<TextBox x:Name="EventDescriptionTextBox" Width ="180" Grid.Column="1" Grid.Row="2" Margin="5,5,5,5"></TextBox>
 		
 		<Label Grid.Column="0" Grid.Row="3" Margin="5,5,5,5">Event type (select one):</Label>
-		<DataGrid x:Name="eventTypesView" SelectionMode="Single" ItemsSource="{Binding Path=appContext.EventTypes}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" Grid.Row="3" Grid.Column="1" Margin="5,5,5,5">
-			<DataGrid.Columns>
-				<DataGridTextColumn Header="Type" Width="SizeToCells" Binding="{Binding Type, Mode=TwoWay}"></DataGridTextColumn>
-				<DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name, Mode=TwoWay}"></DataGridTextColumn>
-			</DataGrid.Columns>
-		</DataGrid>
-		
-		
+		<Controls:ViewEventTypes x:Name="controlEventTypesView" Grid.Row="3" Grid.Column="1"></Controls:ViewEventTypes>
+				
 		<Label Grid.Column="0" Grid.Row="5" Margin="5,5,5,5">Alcohol serving category:</Label>
-		<ComboBox Margin="5,5,5,5" Grid.Column="1" Grid.Row="5">
+		<ComboBox x:Name="EventAlcoholServingCategory" Margin="5,5,5,5" Grid.Column="1" Grid.Row="5">
 			<ComboBoxItem IsSelected="True">None</ComboBoxItem>
 			<ComboBoxItem>Bring</ComboBoxItem>
 			<ComboBoxItem>Buy</ComboBoxItem>
@@ -63,25 +56,25 @@
 		<Button x:Name="eventIconBrowseBtn" HorizontalAlignment="Right" Grid.Row="6" Grid.Column="1"  Margin="5,5,5,5" Height="30" Width="100">Choose icon</Button>
 		
 		<Label Grid.Column="0" Grid.Row="7" Margin="5,5,5,5">Suitable for handicapped:</Label>
-		<ComboBox Margin="5,5,5,5" Grid.Column="1" Grid.Row="7">
+		<ComboBox x:Name="EventIsSutiableForHandicapped" Margin="5,5,5,5" Grid.Column="1" Grid.Row="7">
 			<ComboBoxItem IsSelected="True">True</ComboBoxItem>
 			<ComboBoxItem>False</ComboBoxItem>
 		</ComboBox>
 		
 		<Label Grid.Column="0" Grid.Row="8" Margin="5,5,5,5">Smoking allowed:</Label>
-		<ComboBox Margin="5,5,5,5" Grid.Column="1" Grid.Row="8">
+		<ComboBox x:Name="EventIsSmokingAllowed" Margin="5,5,5,5" Grid.Column="1" Grid.Row="8">
 			<ComboBoxItem IsSelected="True">True</ComboBoxItem>
 			<ComboBoxItem>False</ComboBoxItem>
 		</ComboBox>
 		
 		<Label Grid.Column="0" Grid.Row="9" Margin="5,5,5,5">Outdoors:</Label>
-		<ComboBox Margin="5,5,5,5" Grid.Column="1" Grid.Row="9">
+		<ComboBox x:Name="EventIsOutdoors" Margin="5,5,5,5" Grid.Column="1" Grid.Row="9">
 			<ComboBoxItem IsSelected="True">True</ComboBoxItem>
 			<ComboBoxItem>False</ComboBoxItem>
 		</ComboBox>
 		
 		<Label Grid.Column="0" Grid.Row="10" Margin="5,5,5,5">Price category:</Label>
-		<ComboBox Margin="5,5,5,5" Grid.Column="1" Grid.Row="10">
+		<ComboBox x:Name="EventPriceCategory" Margin="5,5,5,5" Grid.Column="1" Grid.Row="10">
 			<ComboBoxItem IsSelected="True">Free</ComboBoxItem>
 			<ComboBoxItem>Low</ComboBoxItem>
 			<ComboBoxItem>Mid</ComboBoxItem>
@@ -95,13 +88,7 @@
 		<DatePicker Margin="5,5,5,5" x:Name="EventDate" Grid.Column="1" Grid.Row="12" SelectedDateChanged="DP_SelectedDateChanged"/>
 		
 		<Label Grid.Column="0" Grid.Row="13" Margin="5,5,5,5">Tags (select one or more):</Label>
-		<DataGrid Margin="5,5,5,5" Grid.Column="1" Grid.Row="13" x:Name="tagsView" ItemsSource="{Binding Path=appContext.Tags}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
-			<DataGrid.Columns>
-				<DataGridTextColumn Header="Id" Width="SizeToCells" Binding="{Binding Id}"></DataGridTextColumn>
-				<DataGridTextColumn Header="Color" Width="SizeToCells" Binding="{Binding Color}"></DataGridTextColumn>
-				<DataGridTextColumn Header="Description" Width="SizeToCells" Binding="{Binding Description}"></DataGridTextColumn>
-			</DataGrid.Columns>
-		</DataGrid>
+		<Controls:ViewTags x:Name="controlTagsView" Grid.Column="1" Grid.Row="13"></Controls:ViewTags>
 				
 		<Button x:Name="createEventBtn" HorizontalAlignment="Right" Grid.Row="15" Grid.ColumnSpan="2" Margin="5,50,5,5" Width="100" Height="30">Create event</Button>
 		

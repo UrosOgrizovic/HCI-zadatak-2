@@ -86,26 +86,32 @@ namespace HCI_zadatak_2
                 TabItem t = (TabItem)tabControl.SelectedItem;
                 if (t.Header.Equals("Events"))
                 {
-                    appContext.Events.RemoveAt(eventsView.SelectedIndex);
-                }
-                else if (t.Header.Equals("Types"))
+					//appContext.Events.RemoveAt(eventsView.SelectedIndex);
+					appContext.Events.RemoveAt(controlEventsView.eventsView.SelectedIndex);
+					
+				}
+				else if (t.Header.Equals("Types"))
                 {
-                    appContext.EventTypes.RemoveAt(eventTypesView.SelectedIndex);
-                }
+					//appContext.EventTypes.RemoveAt(eventTypesView.SelectedIndex);
+					appContext.EventTypes.RemoveAt(controlEventTypesView.eventTypesView.SelectedIndex);
+				}
                 else
                 {
-                    appContext.Tags.RemoveAt(tagsView.SelectedIndex);
-                }
+					//appContext.Tags.RemoveAt(tagsView.SelectedIndex);
+					appContext.Tags.RemoveAt(controlTagsView.tagsView.SelectedIndex);
+				}
             }
         }
 
         public Point startPoint = new Point();
-
+		/*
         private void EventTypesView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             startPoint = e.GetPosition(null);
         }
+		*/
 
+		/*
         private void EventTypesView_MouseMove(object sender, MouseEventArgs e)
         {
             Point mousePos = e.GetPosition(null);
@@ -127,7 +133,9 @@ namespace HCI_zadatak_2
                 DragDrop.DoDragDrop(row, dragData, DragDropEffects.Move);
             }
         }
+		*/
 
+		/*
         private static T FindAncestor<T>(DependencyObject current) where T : DependencyObject
         {
             do
@@ -141,6 +149,7 @@ namespace HCI_zadatak_2
             while (current != null);
             return null;
         }
+		*/
 
         private void Canvas_DragEnter(object sender, DragEventArgs e)
         {
@@ -163,7 +172,8 @@ namespace HCI_zadatak_2
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
-            eventsView.ItemsSource = appContext.Search(searchTxt.Text);
-        }
+			//eventsView.ItemsSource = appContext.Search(searchTxt.Text);
+			controlEventsView.eventsView.ItemsSource = appContext.Search(searchTxt.Text);
+		}
     }
 }

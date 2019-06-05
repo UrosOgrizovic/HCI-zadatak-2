@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="HCI_zadatak_2.userControls.ViewEvents"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HCI_zadatak_2.userControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+		<DataGrid x:Name="eventsView" SelectionMode="Single" ItemsSource="{Binding Path=appContext.Events}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" >
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name}"></DataGridTextColumn>
+				<DataGridTextColumn Header="Date" Width="SizeToCells" Binding="{Binding Date}"></DataGridTextColumn>
+				<DataGridTextColumn Header="Outdoors" Width="SizeToCells" Binding="{Binding IsOutdoors}"></DataGridTextColumn>
+				<DataGridTextColumn Header="Price" Width="SizeToCells" Binding="{Binding PriceCategory}"></DataGridTextColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</UserControl>

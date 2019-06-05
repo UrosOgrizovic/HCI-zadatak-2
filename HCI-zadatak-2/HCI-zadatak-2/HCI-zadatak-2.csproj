@@ -78,6 +78,27 @@
     <Compile Include="userControls\AddEventType.xaml.cs">
       <DependentUpon>AddEventType.xaml</DependentUpon>
     </Compile>
+    <Compile Include="userControls\AddTag.xaml.cs">
+      <DependentUpon>AddTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="userControls\EditEvent.xaml.cs">
+      <DependentUpon>EditEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="userControls\EditEventType.xaml.cs">
+      <DependentUpon>EditEventType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="userControls\EditTag.xaml.cs">
+      <DependentUpon>EditTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="userControls\ViewEvents.xaml.cs">
+      <DependentUpon>ViewEvents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="userControls\ViewEventTypes.xaml.cs">
+      <DependentUpon>ViewEventTypes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="userControls\ViewTags.xaml.cs">
+      <DependentUpon>ViewTags.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -110,6 +131,34 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="userControls\AddEventType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\AddTag.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\EditEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\EditEventType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\EditTag.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\ViewEvents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\ViewEventTypes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\ViewTags.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
