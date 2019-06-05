@@ -72,6 +72,9 @@
       <DependentUpon>AddTag.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tag.cs" />
+    <Compile Include="userControls\AddEvent.xaml.cs">
+      <DependentUpon>AddEvent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="userControls\AddEventType.xaml.cs">
       <DependentUpon>AddEventType.xaml</DependentUpon>
     </Compile>
@@ -102,6 +105,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="userControls\AddEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="userControls\AddEventType.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,6 +133,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="userControls\AddEventType.resx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

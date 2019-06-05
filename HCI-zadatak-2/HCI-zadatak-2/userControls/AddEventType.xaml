@@ -21,7 +21,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" Grid.Row="0" Margin="5,5,5,5">Id:</Label>
+            <Label Grid.Column="0" Grid.Row="0" Margin="5,5,5,5">Type:</Label>
             <TextBox x:Name="HRMarkTextBox" Width ="180" Grid.Column="1" Grid.Row="0" Margin="5,5,5,5"></TextBox>
 
             <Label Grid.Column="0" Grid.Row="1" Margin="5,5,5,5">Name:</Label>

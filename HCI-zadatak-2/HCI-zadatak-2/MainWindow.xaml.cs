@@ -26,11 +26,7 @@ namespace HCI_zadatak_2
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 
-        public ApplicationContext appContext
-        {
-            get;
-            set;
-        }
+        public ApplicationContext appContext { get; set; }
 
 
 		protected void OnPropertyChanged(string info)
