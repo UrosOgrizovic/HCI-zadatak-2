@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Threading;
 using System.ComponentModel;
+using Microsoft.Win32;
+using HCI_zadatak_2.images;
 
 namespace HCI_zadatak_2.popups
 {
@@ -48,7 +50,48 @@ namespace HCI_zadatak_2.popups
 
         private void CreateEventBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(parent.appContext.Tags.Count+"");
+            this.e.Id = EventIdTextBox.Text;
+            this.e.Name = EventNameTextBox.Text;
+            this.e.Description = EventDescriptionTextBox.Text;
+            this.e.Alcohol = (AlcoholServingCategory) Enum.Parse(typeof(AlcoholServingCategory), EventAlcoholServingCategory.SelectedValue.ToString(), true);
+            this.e.IsSmokingAllowed = EventIsSmokingAllowed.SelectedItem.ToString().Equals("True") ? true : false;
+            this.e.IsOutdoors = EventIsOutdoors.SelectedItem.ToString().Equals("True") ? true : false;
+            this.e.PriceCategory = (PriceCategory) Enum.Parse(typeof(PriceCategory),EventPriceCategory.SelectedValue.ToString(), true);
+            this.e.ExpectedAudience =  Int32.Parse(EventExpectedAudienceTextBox.Text);
+            this.e.Date = (DateTime) EventDate.SelectedDate;
+            if (this.e.IconPath == null)
+                this.e.IconPath = this.e.Type.Icon;
+
+
+            this.parent.appContext.Events.Add(this.e);
+
+            AppImage icon = new AppImage
+            {
+                Width = 30,
+                Height = 30,
+                Name = "marker",
+                Source = new BitmapImage(new Uri(this.e.IconPath, UriKind.Absolute))
+            };
+            icon.Event = this.e;
+
+            this.parent.canvas.Children.Add(icon);
+            Canvas.SetTop(icon, this.e.OffsetY);
+            Canvas.SetLeft(icon, this.e.OffsetX);
+
+            this.Close();
+        }
+
+        private void EventIconBrowseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Select picture";
+            ofd.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+                        "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+                        "Portable Network Graphic (*.png)|*.png";
+            if (ofd.ShowDialog() == true)
+            {
+                this.e.IconPath = ofd.FileName;
+            }
         }
     }
 }

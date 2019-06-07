@@ -1,4 +1,5 @@
-﻿using HCI_zadatak_2.popups;
+﻿using HCI_zadatak_2.images;
+using HCI_zadatak_2.popups;
 using HCI_zadatak_2.userControls;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,12 @@ namespace HCI_zadatak_2
 				OnPropertyChanged("View");
 			}
 		}
+
+
+        private AppImage draggedImage;
+        private Point mousePosition;
+
+
 
 		public MainWindow()
 		{
@@ -139,5 +146,55 @@ namespace HCI_zadatak_2
         { 
 			controlEventsView.eventsView.ItemsSource = appContext.Search(searchTxt.Text);
 		}
+
+        private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var image = e.Source as AppImage;
+
+            if (image != null && image.Name != "cityMap" && canvas.CaptureMouse())
+            {
+                
+                mousePosition = e.GetPosition(canvas);
+                Mouse.OverrideCursor = Cursors.Hand;
+                draggedImage = image;
+                Panel.SetZIndex(draggedImage, 1); // in case of multiple images
+            }
+        }
+
+        private void CanvasMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Arrow;
+            if (draggedImage != null)
+            {
+                canvas.ReleaseMouseCapture();
+                Point p = Mouse.GetPosition(canvas);
+                draggedImage.Event.OffsetX = p.X;
+                draggedImage.Event.OffsetY = p.Y;
+                Panel.SetZIndex(draggedImage, 0);
+                draggedImage = null;
+            }
+        }
+
+        private void CanvasMouseMove(object sender, MouseEventArgs e)
+        {
+            if (draggedImage != null)
+            {
+                var position = e.GetPosition(canvas);
+                var offset = position - mousePosition;
+                mousePosition = position;
+                Canvas.SetLeft(draggedImage, Canvas.GetLeft(draggedImage) + offset.X);
+                Canvas.SetTop(draggedImage, Canvas.GetTop(draggedImage) + offset.Y);
+            }
+        }
+
+        private void Canvas_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left && e.ClickCount == 2)
+            {
+                AddEvent ad = new AddEvent(this, null);
+                AppImage img = e.Source as AppImage;
+                MessageBox.Show(img.Event.Type.Type.ToString());
+            }
+        }
     }
 }

@@ -24,9 +24,9 @@ namespace HCI_zadatak_2
             List<EventType> let = new List<EventType>();
             List<Tag> lt = new List<Tag>();
 
-            let.Add(new EventType { Type = "Sports", Name = "Football game", Icon = null, Description = "Event type that can be used for any football game." });
-            let.Add(new EventType { Type = "Music", Name = "Concert", Icon = null, Description = "Event type that can be used for any concert" });
-            let.Add(new EventType { Type = "Art", Name = "Exhibition", Icon = null, Description = "Event type that can be used for any art exhibition." });
+            let.Add(new EventType { Type = "Sports", Name = "Football game", Icon = @"C:\Users\YNWA\hci_projekat\HCI-zadatak-2\HCI-zadatak-2\HCI-zadatak-2\images\marker.png", Description = "Event type that can be used for any football game." });
+            let.Add(new EventType { Type = "Music", Name = "Concert", Icon = @"C:\Users\YNWA\hci_projekat\HCI-zadatak-2\HCI-zadatak-2\HCI-zadatak-2\images\marker.png", Description = "Event type that can be used for any concert" });
+            let.Add(new EventType { Type = "Art", Name = "Exhibition", Icon = @"C:\Users\YNWA\hci_projekat\HCI-zadatak-2\HCI-zadatak-2\HCI-zadatak-2\images\marker.png", Description = "Event type that can be used for any art exhibition." });
 
             lt.Add(new Tag { Id = "T1", Color = "Red", Description = "Involves physical activity", IsActive = true });
             lt.Add(new Tag { Id = "T2", Color = "Blue", Description = "Involves music", IsActive = true });

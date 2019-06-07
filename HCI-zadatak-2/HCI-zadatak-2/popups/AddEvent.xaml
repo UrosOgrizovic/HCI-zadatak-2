@@ -59,14 +59,14 @@
         -->
 
         <Label Grid.Column="0" Grid.Row="5" Margin="5,5,5,5">Alcohol serving category:</Label>
-        <ComboBox x:Name="EventAlcoholServingCategory" Margin="5,5,5,5" Grid.Column="1" Grid.Row="5">
+        <ComboBox x:Name="EventAlcoholServingCategory" Margin="5,5,5,5" Grid.Column="1" Grid.Row="5" SelectedValuePath="Content">
             <ComboBoxItem IsSelected="True">None</ComboBoxItem>
             <ComboBoxItem>Bring</ComboBoxItem>
             <ComboBoxItem>Buy</ComboBoxItem>
         </ComboBox>
 
         <Label Grid.Column="0" Grid.Row="6" Margin="5,5,5,5">Icon:</Label>
-        <Button x:Name="eventIconBrowseBtn" HorizontalAlignment="Right" Grid.Row="6" Grid.Column="1"  Margin="5,5,5,5" Height="30" Width="100">Choose icon</Button>
+        <Button x:Name="eventIconBrowseBtn" HorizontalAlignment="Right" Grid.Row="6" Grid.Column="1"  Margin="5,5,5,5" Height="30" Width="100" Click="EventIconBrowseBtn_Click">Choose icon</Button>
 
         <Label Grid.Column="0" Grid.Row="7" Margin="5,5,5,5">Suitable for handicapped:</Label>
         <ComboBox x:Name="EventIsSutiableForHandicapped" Margin="5,5,5,5" Grid.Column="1" Grid.Row="7">
@@ -75,19 +75,19 @@
         </ComboBox>
 
         <Label Grid.Column="0" Grid.Row="8" Margin="5,5,5,5">Smoking allowed:</Label>
-        <ComboBox x:Name="EventIsSmokingAllowed" Margin="5,5,5,5" Grid.Column="1" Grid.Row="8">
+            <ComboBox x:Name="EventIsSmokingAllowed" SelectedValuePath="Content" Margin="5,5,5,5" Grid.Column="1" Grid.Row="8">
             <ComboBoxItem IsSelected="True">True</ComboBoxItem>
             <ComboBoxItem>False</ComboBoxItem>
         </ComboBox>
 
         <Label Grid.Column="0" Grid.Row="9" Margin="5,5,5,5">Outdoors:</Label>
-        <ComboBox x:Name="EventIsOutdoors" Margin="5,5,5,5" Grid.Column="1" Grid.Row="9">
+            <ComboBox x:Name="EventIsOutdoors" SelectedValuePath="Content" Margin="5,5,5,5" Grid.Column="1" Grid.Row="9">
             <ComboBoxItem IsSelected="True">True</ComboBoxItem>
             <ComboBoxItem>False</ComboBoxItem>
         </ComboBox>
 
         <Label Grid.Column="0" Grid.Row="10" Margin="5,5,5,5">Price category:</Label>
-        <ComboBox x:Name="EventPriceCategory" Margin="5,5,5,5" Grid.Column="1" Grid.Row="10">
+            <ComboBox x:Name="EventPriceCategory" SelectedValuePath="Content" Margin="5,5,5,5" Grid.Column="1" Grid.Row="10">
             <ComboBoxItem IsSelected="True">Free</ComboBoxItem>
             <ComboBoxItem>Low</ComboBoxItem>
             <ComboBoxItem>Mid</ComboBoxItem>

@@ -30,6 +30,26 @@ namespace HCI_zadatak_2
 		private bool _isActive;
 		private double _offsetX;
 		private double _offsetY;
+        private string _iconPath;
+
+
+        public string IconPath
+        {
+            get
+            {
+                return _iconPath;
+            }
+            set
+            {
+                if (value != _iconPath)
+                {
+                    _iconPath = value;
+                    OnPropertyChanged("IconPath");
+                }
+            }
+        }
+
+
 		
 		public string Id
 		{
