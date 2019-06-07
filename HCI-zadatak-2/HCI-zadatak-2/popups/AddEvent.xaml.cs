@@ -11,17 +11,44 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
+using System.ComponentModel;
 
 namespace HCI_zadatak_2.popups
 {
     /// <summary>
     /// Interaction logic for AddEvent.xaml
     /// </summary>
-    public partial class AddEvent : Window
+    public partial class AddEvent : Window, INotifyPropertyChanged
     {
-        public AddEvent()
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string info)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
+        }
+
+        MainWindow _parent;
+        public MainWindow parent
+        {
+            get { return _parent; }
+            set { _parent = value; OnPropertyChanged("parent"); }
+        }
+
+        public Event e { get; set; }
+
+        public AddEvent(MainWindow parent, Event e)
         {
             InitializeComponent();
+            DataContext = this;
+            this.parent = parent;
+            this.e = e;
+        }
+
+        private void CreateEventBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(parent.appContext.Tags.Count+"");
         }
     }
 }

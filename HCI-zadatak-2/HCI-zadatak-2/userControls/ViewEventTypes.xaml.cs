@@ -37,21 +37,24 @@ namespace HCI_zadatak_2.userControls
 			Point mousePos = e.GetPosition(null);
 			Vector diff = startPoint - mousePos;
 
-			if (e.LeftButton == MouseButtonState.Pressed &&
-				(Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
-				Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
-			{
-				// Get the dragged ListViewItem
-				DataGrid dg = sender as DataGrid;
-				DataGridRow row = FindAncestor<DataGridRow>((DependencyObject)e.OriginalSource);
+            if (e.LeftButton == MouseButtonState.Pressed &&
+                (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+            {
+                // Get the dragged ListViewItem
+                DataGrid dg = sender as DataGrid;
+                DataGridRow row = FindAncestor<DataGridRow>((DependencyObject)e.OriginalSource);
 
-				// Find the data behind the ListViewItem
-				EventType et = (EventType)row.DataContext;
+                // Find the data behind the ListViewItem
+                if (row != null)
+                {
+                    EventType et = (EventType)row.DataContext;
 
-				// Initialize the drag & drop operation
-				DataObject dragData = new DataObject("myFormat", et);
-				DragDrop.DoDragDrop(row, dragData, DragDropEffects.Move);
-			}
+                    // Initialize the drag & drop operation
+                    DataObject dragData = new DataObject("myFormat", et);
+                    DragDrop.DoDragDrop(row, dragData, DragDropEffects.Move);
+                }
+            }
 		}
 
 		private static T FindAncestor<T>(DependencyObject current) where T : DependencyObject

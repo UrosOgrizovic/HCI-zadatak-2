@@ -28,10 +28,13 @@
 							<Controls:ViewEvents x:Name="controlEventsView"></Controls:ViewEvents>
                         </TabItem>
                         <TabItem Header="Add">
-							<Controls:AddEvent></Controls:AddEvent>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            </ScrollViewer>
                         </TabItem>
                         <TabItem Header="Edit">
-							<Controls:EditEvent></Controls:EditEvent>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                <Controls:EditEvent></Controls:EditEvent>
+                            </ScrollViewer>
                         </TabItem>
                         
                     </TabControl>
@@ -40,13 +43,19 @@
                 <TabItem Header="Tags">
                     <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
 						<TabItem Header="View">
-							<Controls:ViewTags x:Name="controlTagsView"></Controls:ViewTags>
+                                <Controls:ViewTags x:Name="controlTagsView"></Controls:ViewTags>
                         </TabItem>
+
                         <TabItem Header="Add">
-							<Controls:AddTag></Controls:AddTag>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                <Controls:AddTag></Controls:AddTag>
+                            </ScrollViewer>
+
                         </TabItem>
                         <TabItem Header="Edit">
-							<Controls:EditTag></Controls:EditTag>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                <Controls:EditTag></Controls:EditTag>
+                            </ScrollViewer>
                         </TabItem>
                         
                     </TabControl>
@@ -57,10 +66,14 @@
 							<Controls:ViewEventTypes x:Name="controlEventTypesView"></Controls:ViewEventTypes>
                         </TabItem>
                         <TabItem Header="Add">
-                            <Controls:AddEventType></Controls:AddEventType>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                <Controls:AddEventType x:Name="addEventTypeControl"></Controls:AddEventType>
+                            </ScrollViewer>
                         </TabItem>
                         <TabItem Header="Edit">
-							<Controls:EditEventType></Controls:EditEventType>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                <Controls:EditEventType></Controls:EditEventType>
+                            </ScrollViewer>
                         </TabItem>
 
                     </TabControl>

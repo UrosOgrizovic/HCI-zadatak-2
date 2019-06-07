@@ -20,7 +20,6 @@ namespace HCI_zadatak_2
 		private string _description;
 		private EventType _type;
 		private AlcoholServingCategory _alcohol;
-		private byte[] _icon;
 		private bool _isForHandicapped;
 		private bool _isSmokingAllowed;
 		private bool _isOutdoors;
@@ -29,8 +28,8 @@ namespace HCI_zadatak_2
 		private DateTime _date;
 		private List<Tag> _tags;
 		private bool _isActive;
-		private int _offsetX;
-		private int _offsetY;
+		private double _offsetX;
+		private double _offsetY;
 		
 		public string Id
 		{
@@ -107,21 +106,7 @@ namespace HCI_zadatak_2
 				}
 			}
 		}
-		public byte[] Icon
-		{
-			get
-			{
-				return _icon;
-			}
-			set
-			{
-				if (value != _icon)
-				{
-					_icon = value;
-					OnPropertyChanged("Icon");
-				}
-			}
-		}
+
 		public bool IsForHandicapped
 		{
 			get
@@ -244,7 +229,7 @@ namespace HCI_zadatak_2
 				}
 			}
 		}
-		public int OffsetX
+		public double OffsetX
 		{
 			get
 			{
@@ -260,7 +245,7 @@ namespace HCI_zadatak_2
 			}
 		}
 
-		public int OffsetY
+		public double OffsetY
 		{
 			get
 			{
