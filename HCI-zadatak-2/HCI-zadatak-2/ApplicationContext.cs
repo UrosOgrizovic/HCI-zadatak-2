@@ -1,24 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HCI_zadatak_2
 {
-    public class ApplicationContext
+    public class ApplicationContext : INotifyPropertyChanged
     {
         public ObservableCollection<Event> Events { get; set; }
         public ObservableCollection<EventType> EventTypes { get; set; }
         public ObservableCollection<Tag> Tags { get; set; }
+		public ObservableCollection<Tag> _tagsOfSelectedEvent;
+		
 
         public ApplicationContext()
         {
             TestData();
         }
 
-        public void TestData()
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected void OnPropertyChanged(string info)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
+		}
+
+		public ObservableCollection<Tag> TagsOfSelectedEvent
+		{
+			get
+			{
+				return _tagsOfSelectedEvent;
+			}
+			set
+			{
+				_tagsOfSelectedEvent = value;
+				OnPropertyChanged("TagsOfSelectedEvent");
+			}
+		}
+
+		public void TestData()
         {
             List<Event> e = new List<Event>();
             List<EventType> let = new List<EventType>();

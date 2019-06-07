@@ -19,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using AddEventType = HCI_zadatak_2.userControls.AddEventType;
+using EditEvent = HCI_zadatak_2.userControls.EditEvent;
 
 namespace HCI_zadatak_2
 {
@@ -65,7 +66,8 @@ namespace HCI_zadatak_2
             appContext = new ApplicationContext();
             cityMap.Source = new BitmapImage(new Uri(@"/images/MapNS.png", UriKind.Relative));
             AddEventType.parent = this;
-
+			EditEvent.Window = this;
+			ViewEvents.Window = this;
 
             //View = CollectionViewSource.GetDefaultView(appContext.Events);
         }
@@ -147,6 +149,7 @@ namespace HCI_zadatak_2
 			controlEventsView.eventsView.ItemsSource = appContext.Search(searchTxt.Text);
 		}
 
+
         private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var image = e.Source as AppImage;
@@ -196,5 +199,22 @@ namespace HCI_zadatak_2
                 MessageBox.Show(img.Event.Type.Type.ToString());
             }
         }
-    }
+    
+
+		private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
+		}
+
+		private void EventsTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			Event selectedEvent = (Event) controlEventsView.eventsView.SelectedItem;
+			if (selectedEvent != null)
+			{
+				appContext.TagsOfSelectedEvent = new ObservableCollection<Tag> (selectedEvent.Tags);
+			}
+			
+		}
+	}
+
 }

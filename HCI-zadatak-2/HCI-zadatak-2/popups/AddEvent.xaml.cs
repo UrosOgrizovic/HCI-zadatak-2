@@ -62,8 +62,18 @@ namespace HCI_zadatak_2.popups
             if (this.e.IconPath == null)
                 this.e.IconPath = this.e.Type.Icon;
 
+			
+			this.e.Tags = new List<Tag>();
+			System.Collections.IList items = tagsView.SelectedItems;
 
-            this.parent.appContext.Events.Add(this.e);
+			var tags = items.Cast<Tag>();
+			foreach (var t in tags)
+			{
+				this.e.Tags.Add(t);
+			}
+
+
+			this.parent.appContext.Events.Add(this.e);
 
             AppImage icon = new AppImage
             {
@@ -93,5 +103,10 @@ namespace HCI_zadatak_2.popups
                 this.e.IconPath = ofd.FileName;
             }
         }
+
+		public AddEvent()
+		{
+			InitializeComponent();
+		}
     }
 }

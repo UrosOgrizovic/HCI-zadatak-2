@@ -21,7 +21,8 @@
                 <RowDefinition MaxHeight="45" Height="0.1*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBox HorizontalAlignment="Left" Height="0" Margin="144,118,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="104"/>
-            <TabControl x:Name="tabControl" Grid.Row="0" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
+            <TabControl x:Name="tabControl" Grid.Row="0" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch"
+						SelectionChanged="EventsTabControl_SelectionChanged">
                 <TabItem Header="Events">
                     <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
 						<TabItem Header="View">
@@ -31,7 +32,7 @@
                             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                             </ScrollViewer>
                         </TabItem>
-                        <TabItem Header="Edit">
+                        <TabItem Header="Edit" x:Name="editEventsTab">
                             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                                 <Controls:EditEvent></Controls:EditEvent>
                             </ScrollViewer>
@@ -72,7 +73,7 @@
                         </TabItem>
                         <TabItem Header="Edit">
                             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                                <Controls:EditEventType></Controls:EditEventType>
+                                <Controls:EditEventType x:Name="editEventControl"></Controls:EditEventType>
                             </ScrollViewer>
                         </TabItem>
 

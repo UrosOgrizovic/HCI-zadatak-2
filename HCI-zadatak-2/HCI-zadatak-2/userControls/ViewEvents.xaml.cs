@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,12 +21,15 @@ namespace HCI_zadatak_2.userControls
     /// </summary>
     public partial class ViewEvents : UserControl
     {
+		public static MainWindow Window { get; set; }
+
         public ViewEvents()
         {
             InitializeComponent();
         }
 
-
-
-    }
+		
+		
+		
+	}
 }
