@@ -32,6 +32,7 @@ namespace HCI_zadatak_2.userControls
 			
 			InitializeComponent();
 			DataContext = this;
+			
 		}
 
 		
@@ -52,5 +53,19 @@ namespace HCI_zadatak_2.userControls
 
 		}
 
+		private void BrowseBtn_Click_1(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void EventTypesView_MouseMove(object sender, MouseEventArgs e)
+		{
+
+		}
+
+		private void EventTypesView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+
+		}
 	}
 }

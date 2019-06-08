@@ -13,9 +13,6 @@ namespace HCI_zadatak_2
         public ObservableCollection<Event> Events { get; set; }
         public ObservableCollection<EventType> EventTypes { get; set; }
         public ObservableCollection<Tag> Tags { get; set; }
-		
-		
-		
 
         public ApplicationContext()
         {
@@ -59,15 +56,43 @@ namespace HCI_zadatak_2
 			}
 		}
 
+		public Tag _selectedTag;
+		public Tag SelectedTag
+		{
+			get
+			{
+				return _selectedTag;
+			}
+			set
+			{
+				_selectedTag = value;
+				OnPropertyChanged("SelectedTag");
+			}
+		}
+
+		public EventType _selectedEventType;
+		public EventType SelectedEventType
+		{
+			get
+			{
+				return _selectedEventType;
+			}
+			set
+			{
+				_selectedEventType = value;
+				OnPropertyChanged("SelectedEventType");
+			}
+		}
+
 		public void TestData()
         {
             List<Event> e = new List<Event>();
             List<EventType> let = new List<EventType>();
             List<Tag> lt = new List<Tag>();
 
-            let.Add(new EventType { Type = "Sports", Name = "Football game", Icon = @"C:\Users\YNWA\hci_projekat\HCI-zadatak-2\HCI-zadatak-2\HCI-zadatak-2\images\marker.png", Description = "Event type that can be used for any football game." });
-            let.Add(new EventType { Type = "Music", Name = "Concert", Icon = @"C:\Users\YNWA\hci_projekat\HCI-zadatak-2\HCI-zadatak-2\HCI-zadatak-2\images\marker.png", Description = "Event type that can be used for any concert" });
-            let.Add(new EventType { Type = "Art", Name = "Exhibition", Icon = @"C:\Users\YNWA\hci_projekat\HCI-zadatak-2\HCI-zadatak-2\HCI-zadatak-2\images\marker.png", Description = "Event type that can be used for any art exhibition." });
+            let.Add(new EventType { Type = "Sports", Name = "Football game", Icon = @"\images\4.jpg", Description = "Event type that can be used for any football game." });
+            let.Add(new EventType { Type = "Music", Name = "Concert", Icon = @"\images\5.jpg", Description = "Event type that can be used for any concert" });
+            let.Add(new EventType { Type = "Art", Name = "Exhibition", Icon = @"\images\6.jpg", Description = "Event type that can be used for any art exhibition." });
 
             lt.Add(new Tag { Id = "T1", Color = "Red", Description = "Involves physical activity", IsActive = true });
             lt.Add(new Tag { Id = "T2", Color = "Blue", Description = "Involves music", IsActive = true });
@@ -77,11 +102,11 @@ namespace HCI_zadatak_2
             DateTime dt2 = new DateTime(2019, 10, 5, 20, 0, 0);
             DateTime dt3 = new DateTime(2019, 11, 11, 19, 0, 0);
 
-            e.Add(new Event { Id = "E1", Name = "Crazy Aerosmith concert", Description = "A concert by the legends of rock. Steven Tyler is living proof that one can still rock out at the tender age of 71!", Type = let[1], Alcohol = AlcoholServingCategory.BUY, IsForHandicapped = true, IsSmokingAllowed = true, IsOutdoors = true, PriceCategory = PriceCategory.MID, ExpectedAudience = 10000, Date = dt2, Tags = lt.GetRange(1, 1), IsActive = true, OffsetX = 10, OffsetY = 10, IconPath= "C:\\Users\\Lenovo\\Desktop\\1.jpg" });
+            e.Add(new Event { Id = "E1", Name = "Crazy Aerosmith concert", Description = "A concert by the legends of rock. Steven Tyler is living proof that one can still rock out at the tender age of 71!", Type = let[1], Alcohol = AlcoholServingCategory.BUY, IsForHandicapped = true, IsSmokingAllowed = true, IsOutdoors = true, PriceCategory = PriceCategory.MID, ExpectedAudience = 10000, Date = dt2, Tags = lt.GetRange(1, 1), IsActive = true, OffsetX = 10, OffsetY = 10, IconPath= @"\images\1.jpg" });
 
-            e.Add(new Event { Id = "E2", Name = "Football game U19", Description = "Everyone who's under the age of 19 is invited to this exhibition game! Great fun is guaranteed!", Type = let[0], Alcohol = AlcoholServingCategory.NONE, IsForHandicapped = false, IsSmokingAllowed = false, IsOutdoors = true, PriceCategory = PriceCategory.FREE, ExpectedAudience = 20, Date = dt1, Tags = lt.GetRange(0, 1), IsActive = true, OffsetX = 100, OffsetY = 200 });
+            e.Add(new Event { Id = "E2", Name = "Football game U19", Description = "Everyone who's under the age of 19 is invited to this exhibition game! Great fun is guaranteed!", Type = let[0], Alcohol = AlcoholServingCategory.NONE, IsForHandicapped = false, IsSmokingAllowed = false, IsOutdoors = true, PriceCategory = PriceCategory.FREE, ExpectedAudience = 20, Date = dt1, Tags = lt.GetRange(0, 1), IsActive = true, OffsetX = 100, OffsetY = 200, IconPath = @"\images\2.jpg" });
 
-            e.Add(new Event { Id = "E3", Name = "Picasso's Rose Period", Description = "A look at some of Picasso's pre-cubism works, such as 'Boy Leading a Horse'.", Type = let[2], Alcohol = AlcoholServingCategory.NONE, IsForHandicapped = true, IsSmokingAllowed = false, IsOutdoors = false, PriceCategory = PriceCategory.HIGH, ExpectedAudience = 200, Date = dt3, Tags = lt.GetRange(2, 1), IsActive = true, OffsetX = 250, OffsetY = 50 });
+            e.Add(new Event { Id = "E3", Name = "Picasso's Rose Period", Description = "A look at some of Picasso's pre-cubism works, such as 'Boy Leading a Horse'.", Type = let[2], Alcohol = AlcoholServingCategory.NONE, IsForHandicapped = true, IsSmokingAllowed = false, IsOutdoors = false, PriceCategory = PriceCategory.HIGH, ExpectedAudience = 200, Date = dt3, Tags = lt.GetRange(2, 1), IsActive = true, OffsetX = 250, OffsetY = 50, IconPath = @"\images\3.jpg" });
 
             Events = new ObservableCollection<Event>(e);
             EventTypes = new ObservableCollection<EventType>(let);

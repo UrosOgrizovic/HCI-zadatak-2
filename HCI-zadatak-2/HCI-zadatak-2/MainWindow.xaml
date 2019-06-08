@@ -20,6 +20,7 @@
                 <RowDefinition Height="0.9*"></RowDefinition>
                 <RowDefinition MaxHeight="45" Height="0.1*"></RowDefinition>
             </Grid.RowDefinitions>
+			
             <TextBox HorizontalAlignment="Left" Height="0" Margin="144,118,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="104"/>
             <TabControl x:Name="tabControl" Grid.Row="0" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch"
 						SelectionChanged="EventsTabControl_SelectionChanged">
@@ -27,12 +28,8 @@
                     <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
 						<TabItem Header="View">
 							<Controls:ViewEvents x:Name="controlEventsView"></Controls:ViewEvents>
-                        </TabItem>
-                        <TabItem Header="Add">
-                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                            </ScrollViewer>
-                        </TabItem>
-                        <TabItem Header="Edit" x:Name="editEventsTab">
+						</TabItem>
+						<TabItem Header="Edit" x:Name="editEventsTab">
                             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                                 <Controls:EditEvent></Controls:EditEvent>
                             </ScrollViewer>
@@ -42,7 +39,7 @@
 
                 </TabItem>
                 <TabItem Header="Tags">
-                    <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
+                    <TabControl x:Name="TagsTabControl" SelectionChanged="TagsTabControl_SelectionChanged" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
 						<TabItem Header="View">
                                 <Controls:ViewTags x:Name="controlTagsView"></Controls:ViewTags>
                         </TabItem>
@@ -62,7 +59,7 @@
                     </TabControl>
                 </TabItem>
                 <TabItem Header="Types">
-                    <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
+                    <TabControl x:Name="EventTypesTagControl" SelectionChanged="EventTypesTagControl_SelectionChanged" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
 						<TabItem Header="View">
 							<Controls:ViewEventTypes x:Name="controlEventTypesView"></Controls:ViewEventTypes>
                         </TabItem>
@@ -81,18 +78,24 @@
                 </TabItem>
             </TabControl>
 
-            <Grid Grid.Row="1">
+			
+
+			<Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-               
-                <Button x:Name="deleteBtn" Margin="5,5,10,5" Grid.ColumnSpan="3" MaxWidth="100" Click="DeleteBtn_Click">Remove</Button>
-                
+
+				<Button x:Name="undoBtn" Grid.Column="0" Grid.ColumnSpan="2" MaxWidth="100" Margin="5,5,10,5" Click="undoBtn_Click">Undo</Button>
+				<Button x:Name="deleteBtn" Margin="5,5,10,5" Grid.Column="2" Grid.ColumnSpan="2" MaxWidth="100" Click="DeleteBtn_Click">Remove</Button>
+				
             </Grid>
             
         </Grid>
+
+		
 
         <!--right side-->
         <Grid Grid.Column="1">

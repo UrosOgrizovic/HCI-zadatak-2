@@ -20,9 +20,22 @@ namespace HCI_zadatak_2.userControls
     /// </summary>
     public partial class EditEventType : UserControl
     {
-        public EditEventType()
+		public static MainWindow Window { get; set; }
+
+		public EditEventType()
         {
             InitializeComponent();
-        }
-    }
+			DataContext = this;
+		}
+
+		private void BrowseBtn_Click_1(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void editEventTypeBtn_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+	}
 }

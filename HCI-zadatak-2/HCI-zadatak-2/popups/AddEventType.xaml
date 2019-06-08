@@ -34,14 +34,14 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Column="0" Margin="5,5,5,5">Icon:</Label>
-            <Button x:Name="browseBtn" HorizontalAlignment="Right" Grid.Column="2"  Margin="5,5,5,5" Height="30" Width="Auto" Click="BrowseBtn_Click">Choose picture</Button>
+            <Button x:Name="browseBtn" HorizontalAlignment="Right" Grid.Column="2"  Margin="5,5,5,5" Height="30" Width="100" Click="BrowseBtn_Click">Choose picture</Button>
             <Image x:Name="previewIcon" Grid.Column="1"  Margin="5,5,5,5" Width="40" Height="40"></Image>
             
         </Grid>
 
         <Label Grid.Column="0" Grid.Row="3" Margin="5,5,5,5">Description:</Label>
-        <TextBox x:Name="DescTextBox" Grid.Column="1" Grid.Row="3" Margin="5,5,5,5"></TextBox>
+		<TextBox x:Name="DescTextBox" Grid.Column="1" Grid.Row="3" Margin="5,5,5,5" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
 
-        <Button x:Name="createEventTypeBtn" Grid.Row="4" Grid.ColumnSpan="2" Margin="5,5,5,5" Width="50" Click="CreateEventTypeBtn_Click">OK</Button>
+		<Button x:Name="createEventTypeBtn" Grid.Row="4" Grid.ColumnSpan="2" Margin="5,5,5,5" Width="100" Click="CreateEventTypeBtn_Click">Create event type</Button>
     </Grid>
 </Window>

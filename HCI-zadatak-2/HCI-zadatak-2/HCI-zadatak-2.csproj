@@ -189,6 +189,20 @@
   <ItemGroup>
     <Resource Include="images\MapNS.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="images\1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\2.jpg" />
+    <Resource Include="images\3.jpg" />
+    <Resource Include="images\4.jpg" />
+    <Resource Include="images\5.jpg" />
+    <Resource Include="images\6.jpg" />
+    <Resource Include="images\7.jpg" />
+    <Resource Include="images\marker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\icon.svg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

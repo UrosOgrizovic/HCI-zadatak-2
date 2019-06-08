@@ -67,10 +67,10 @@ namespace HCI_zadatak_2
             cityMap.Source = new BitmapImage(new Uri(@"/images/MapNS.png", UriKind.Relative));
             AddEventType.parent = this;
 			EditEvent.Window = this;
-			
-			ViewEvents.Window = this;
+			EditTag.Window = this;
+			EditEventType.Window = this;
 
-            //View = CollectionViewSource.GetDefaultView(appContext.Events);
+			ViewEvents.Window = this;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -101,18 +101,15 @@ namespace HCI_zadatak_2
                 TabItem t = (TabItem)tabControl.SelectedItem;
                 if (t.Header.Equals("Events"))
                 {
-					//appContext.Events.RemoveAt(eventsView.SelectedIndex);
 					appContext.Events.RemoveAt(controlEventsView.eventsView.SelectedIndex);
 					
 				}
 				else if (t.Header.Equals("Types"))
                 {
-					//appContext.EventTypes.RemoveAt(eventTypesView.SelectedIndex);
 					appContext.EventTypes.RemoveAt(controlEventTypesView.eventTypesView.SelectedIndex);
 				}
                 else
                 {
-					//appContext.Tags.RemoveAt(tagsView.SelectedIndex);
 					appContext.Tags.RemoveAt(controlTagsView.tagsView.SelectedIndex);
 				}
             }
@@ -216,6 +213,29 @@ namespace HCI_zadatak_2
 				appContext.SelectedEvent = selectedEvent;
 			}
 			
+		}
+
+		private void TagsTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			Tag selectedTag = (Tag)controlTagsView.tagsView.SelectedItem;
+			if (selectedTag != null)
+			{
+				appContext.SelectedTag = selectedTag;
+			}
+		}
+
+		private void EventTypesTagControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			EventType selectedEventType = (EventType)controlEventTypesView.eventTypesView.SelectedItem;
+			if (selectedEventType != null)
+			{
+				appContext.SelectedEventType = selectedEventType;
+			}
+		}
+
+		private void undoBtn_Click(object sender, RoutedEventArgs e)
+		{
+			MessageBox.Show("Undo");
 		}
 	}
 

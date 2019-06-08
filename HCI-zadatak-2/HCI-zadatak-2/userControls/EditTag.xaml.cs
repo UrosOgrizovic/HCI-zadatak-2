@@ -20,9 +20,17 @@ namespace HCI_zadatak_2.userControls
     /// </summary>
     public partial class EditTag : UserControl
     {
-        public EditTag()
+		public static MainWindow Window { get; set; }
+
+		public EditTag()
         {
             InitializeComponent();
-        }
-    }
+			DataContext = this;
+		}
+
+		private void editTagBtn_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+	}
 }

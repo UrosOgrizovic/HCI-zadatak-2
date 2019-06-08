@@ -41,9 +41,9 @@
             </Grid>
 
             <Label Grid.Column="0" Grid.Row="3" Margin="5,5,5,5">Description:</Label>
-            <TextBox x:Name="DescTextBox" Grid.Column="1" Grid.Row="3" Margin="5,5,5,5"></TextBox>
+		<TextBox x:Name="DescTextBox" Grid.Column="1" Grid.Row="3" Margin="5,5,5,5" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
 
-            <Button x:Name="createEventTypeBtn" Grid.Row="4" Grid.ColumnSpan="2" Margin="5,5,5,5" Width="50" Click="CreateEventTypeBtn_Click">OK</Button>
+            <Button x:Name="createEventTypeBtn" Grid.Row="4" Grid.ColumnSpan="2" Margin="5,20,5,5" Width="100" Click="CreateEventTypeBtn_Click" HorizontalAlignment="Right" Height="30">Create event type</Button>
         
     </Grid>
 </UserControl>
