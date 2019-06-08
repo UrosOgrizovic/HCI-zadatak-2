@@ -57,7 +57,7 @@ namespace HCI_zadatak_2
         private AppImage draggedImage;
         private Point mousePosition;
 
-
+		
 
 		public MainWindow()
 		{
@@ -67,6 +67,7 @@ namespace HCI_zadatak_2
             cityMap.Source = new BitmapImage(new Uri(@"/images/MapNS.png", UriKind.Relative));
             AddEventType.parent = this;
 			EditEvent.Window = this;
+			
 			ViewEvents.Window = this;
 
             //View = CollectionViewSource.GetDefaultView(appContext.Events);
@@ -212,6 +213,7 @@ namespace HCI_zadatak_2
 			if (selectedEvent != null)
 			{
 				appContext.TagsOfSelectedEvent = new ObservableCollection<Tag> (selectedEvent.Tags);
+				appContext.SelectedEvent = selectedEvent;
 			}
 			
 		}

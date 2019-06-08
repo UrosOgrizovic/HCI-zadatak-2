@@ -13,7 +13,8 @@ namespace HCI_zadatak_2
         public ObservableCollection<Event> Events { get; set; }
         public ObservableCollection<EventType> EventTypes { get; set; }
         public ObservableCollection<Tag> Tags { get; set; }
-		public ObservableCollection<Tag> _tagsOfSelectedEvent;
+		
+		
 		
 
         public ApplicationContext()
@@ -28,6 +29,8 @@ namespace HCI_zadatak_2
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
 		}
 
+		public ObservableCollection<Tag> _tagsOfSelectedEvent;
+
 		public ObservableCollection<Tag> TagsOfSelectedEvent
 		{
 			get
@@ -38,6 +41,21 @@ namespace HCI_zadatak_2
 			{
 				_tagsOfSelectedEvent = value;
 				OnPropertyChanged("TagsOfSelectedEvent");
+			}
+		}
+
+		public Event _selectedEvent;
+
+		public Event SelectedEvent
+		{
+			get
+			{
+				return _selectedEvent;
+			}
+			set
+			{
+				_selectedEvent = value;
+				OnPropertyChanged("SelectedEvent");
 			}
 		}
 
@@ -59,7 +77,7 @@ namespace HCI_zadatak_2
             DateTime dt2 = new DateTime(2019, 10, 5, 20, 0, 0);
             DateTime dt3 = new DateTime(2019, 11, 11, 19, 0, 0);
 
-            e.Add(new Event { Id = "E1", Name = "Crazy Aerosmith concert", Description = "A concert by the legends of rock. Steven Tyler is living proof that one can still rock out at the tender age of 71!", Type = let[1], Alcohol = AlcoholServingCategory.BUY, IsForHandicapped = false, IsSmokingAllowed = true, IsOutdoors = true, PriceCategory = PriceCategory.MID, ExpectedAudience = 10000, Date = dt2, Tags = lt.GetRange(1, 1), IsActive = true, OffsetX = 10, OffsetY = 10 });
+            e.Add(new Event { Id = "E1", Name = "Crazy Aerosmith concert", Description = "A concert by the legends of rock. Steven Tyler is living proof that one can still rock out at the tender age of 71!", Type = let[1], Alcohol = AlcoholServingCategory.BUY, IsForHandicapped = true, IsSmokingAllowed = true, IsOutdoors = true, PriceCategory = PriceCategory.MID, ExpectedAudience = 10000, Date = dt2, Tags = lt.GetRange(1, 1), IsActive = true, OffsetX = 10, OffsetY = 10, IconPath= "C:\\Users\\Lenovo\\Desktop\\1.jpg" });
 
             e.Add(new Event { Id = "E2", Name = "Football game U19", Description = "Everyone who's under the age of 19 is invited to this exhibition game! Great fun is guaranteed!", Type = let[0], Alcohol = AlcoholServingCategory.NONE, IsForHandicapped = false, IsSmokingAllowed = false, IsOutdoors = true, PriceCategory = PriceCategory.FREE, ExpectedAudience = 20, Date = dt1, Tags = lt.GetRange(0, 1), IsActive = true, OffsetX = 100, OffsetY = 200 });
 

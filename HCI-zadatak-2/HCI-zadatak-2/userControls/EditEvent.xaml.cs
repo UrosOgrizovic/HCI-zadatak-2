@@ -35,6 +35,7 @@ namespace HCI_zadatak_2.userControls
 		}
 
 		
+		
 
 		private void EditEventBtn_Click(object sender, RoutedEventArgs e)
 		{
@@ -50,5 +51,6 @@ namespace HCI_zadatak_2.userControls
 		{
 
 		}
+
 	}
 }

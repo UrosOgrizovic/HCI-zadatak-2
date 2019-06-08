@@ -187,7 +187,7 @@ namespace HCI_zadatak_2
 				}
 			}
 		}
-		// perhaps create enum for expected audience instead?
+		
 		public int ExpectedAudience
 		{
 			get
