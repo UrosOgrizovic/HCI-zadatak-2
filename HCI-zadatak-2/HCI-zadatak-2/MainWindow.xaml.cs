@@ -283,6 +283,22 @@ namespace HCI_zadatak_2
         private void TabItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
         }
-    }
+
+		private void UIElement_OnMouseWheel(object sender, MouseWheelEventArgs e)
+		{
+			var matrix = canvas.LayoutTransform.Value;
+
+			if (e.Delta > 0)
+			{
+				matrix.ScaleAt(1.5, 1.5, e.GetPosition(this).X, e.GetPosition(this).Y);
+			}
+			else
+			{
+				matrix.ScaleAt(1.0 / 1.5, 1.0 / 1.5, e.GetPosition(this).X, e.GetPosition(this).Y);
+			}
+
+			canvas.LayoutTransform = new MatrixTransform(matrix);
+		}
+	}
 
 }

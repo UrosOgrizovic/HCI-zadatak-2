@@ -126,7 +126,7 @@
                     Width="{Binding ActualWidth, ElementName = cityMap}" Height="{Binding ActualHeight, ElementName = cityMap}"
                         DragEnter="Canvas_DragEnter" Drop="Canvas_Drop" AllowDrop="True"
                         MouseLeftButtonDown="CanvasMouseLeftButtonDown"
-                    MouseLeftButtonUp="CanvasMouseLeftButtonUp" MouseMove="CanvasMouseMove" PreviewMouseLeftButtonDown="Canvas_PreviewMouseLeftButtonDown">
+                    MouseLeftButtonUp="CanvasMouseLeftButtonUp" MouseMove="CanvasMouseMove" PreviewMouseLeftButtonDown="Canvas_PreviewMouseLeftButtonDown" MouseWheel="UIElement_OnMouseWheel">
                     <Canvas.Background>
                         <VisualBrush>
                             <VisualBrush.Visual>
