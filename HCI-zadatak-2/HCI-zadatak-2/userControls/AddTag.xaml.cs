@@ -23,22 +23,23 @@ namespace HCI_zadatak_2.userControls
         public AddTag()
         {
             InitializeComponent();
+			DataContext = this;
         }
 
         public static MainWindow parent { get; set; }
 
-
+		private bool idEntered = false, descriptionEntered = false;
 
         private void CreateTagBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (verifyInputs())
+            if (VerifyInputs())
             {
                 Tag tag = new Tag();
                 tag.Id = TagIdTextBox.Text;
                 //tag.Color
                 tag.Description = TagDescriptionTextBox.Text;
                 tag.IsActive = true;
-                if (verifyTag(tag))
+                if (VerifyTag(tag))
                 {
                     parent.appContext.Tags.Add(tag);
                     MessageBox.Show("Tag is successfully added.");
@@ -50,18 +51,19 @@ namespace HCI_zadatak_2.userControls
             }
             else
             {
-                MessageBox.Show("URKE STAVI PORUKU");
-            }   
+				MessageBox.Show("All fields must be filled");
+			}   
         }
 
-
-        private bool verifyInputs()
+        private bool VerifyInputs()
         {
+			if (!idEntered || !descriptionEntered) return false;
+			else if (string.IsNullOrWhiteSpace(TagIdTextBox.Text) || string.IsNullOrWhiteSpace(TagDescriptionTextBox.Text)) return false;
             return true;
         }
 
 
-        private bool verifyTag(Tag t)
+        private bool VerifyTag(Tag t)
         {
             foreach (Tag existent in parent.appContext.Tags)
             {
@@ -71,5 +73,32 @@ namespace HCI_zadatak_2.userControls
 
             return true;
         }
-    }
+
+		private void TagIdTextBox_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (string.IsNullOrWhiteSpace(TagIdTextBox.Text))
+			{
+				idExclamIcon.Visibility = Visibility.Visible;
+				idEntered = false;
+			} else
+			{
+				idExclamIcon.Visibility = Visibility.Hidden;
+				idEntered = true;
+			}
+		}
+
+		private void TagDescriptionTextBox_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (string.IsNullOrWhiteSpace(TagDescriptionTextBox.Text))
+			{
+				descriptionExclamIcon.Visibility = Visibility.Visible;
+				descriptionEntered = false;
+			}
+			else
+			{
+				descriptionExclamIcon.Visibility = Visibility.Hidden;
+				descriptionEntered = true;
+			}
+		}
+	}
 }

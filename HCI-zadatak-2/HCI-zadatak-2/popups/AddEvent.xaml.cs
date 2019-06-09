@@ -130,7 +130,7 @@ namespace HCI_zadatak_2.popups
 		{
 			if (!idEntered || !nameEntered || !descriptionEntered || !expectedAudienceEntered || !dateEntered)
 				return false;
-			else if (EventIdTextBox.Text == "" || EventNameTextBox.Text == "" || EventDescriptionTextBox.Text == "" || EventExpectedAudienceTextBox.Text == "" || EventDate.Text == "")
+			else if (string.IsNullOrWhiteSpace(EventIdTextBox.Text) || string.IsNullOrWhiteSpace(EventNameTextBox.Text) || string.IsNullOrWhiteSpace(EventDescriptionTextBox.Text) || string.IsNullOrWhiteSpace(EventExpectedAudienceTextBox.Text) || string.IsNullOrWhiteSpace(EventDate.Text))
 				return false;
 			return true;
 		}

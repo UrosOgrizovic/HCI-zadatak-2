@@ -25,6 +25,7 @@ namespace HCI_zadatak_2.userControls
 		public static MainWindow Window { get; set; }
         string iconPath = null;
         public static AppImage icon = null;
+		private bool nameEntered = true, descriptionEntered = true;
 
         public EditEventType()
         {
@@ -59,7 +60,7 @@ namespace HCI_zadatak_2.userControls
 		private void editEventTypeBtn_Click(object sender, RoutedEventArgs e)
 		{
 
-            if (verifyInputs())
+            if (VerifyInputs())
             {
                 EventType et = Window.appContext.SelectedEventType;
                 et.Description = DescTextBox.Text;
@@ -96,13 +97,42 @@ namespace HCI_zadatak_2.userControls
             }
             else
             {
-                MessageBox.Show("URKE PORUKA!");
+                MessageBox.Show("All fields must be filled");
             }
 		}
 
-        private bool verifyInputs()
+        private bool VerifyInputs()
         {
+			if (!nameEntered || !descriptionEntered) return false;
+			else if (string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(DescTextBox.Text)) return false;
             return true;
         }
+
+		private void NameTextBox_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (string.IsNullOrWhiteSpace(NameTextBox.Text))
+			{
+				nameExclamIcon.Visibility = Visibility.Visible;
+				nameEntered = false;
+			} else
+			{
+				nameExclamIcon.Visibility = Visibility.Hidden;
+				nameEntered = true;
+			}
+		}
+
+		private void DescTextBox_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (string.IsNullOrWhiteSpace(DescTextBox.Text))
+			{
+				descriptionExclamIcon.Visibility = Visibility.Visible;
+				descriptionEntered = false;
+			}
+			else
+			{
+				descriptionExclamIcon.Visibility = Visibility.Hidden;
+				descriptionEntered = true;
+			}
+		}
 	}
 }

@@ -29,7 +29,7 @@ namespace HCI_zadatak_2.userControls
 		private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
 
 		
-		private bool idEntered = true, nameEntered = true, descriptionEntered = true, expectedAudienceEntered = true, dateEntered = true;
+		private bool nameEntered = true, descriptionEntered = true, expectedAudienceEntered = true, dateEntered = true;
 
 		public EditEvent()
         {
@@ -39,9 +39,6 @@ namespace HCI_zadatak_2.userControls
 
 		}
 
-
-		
-
 		private static bool IsTextAllowed(string text)
 		{
 			return !_regex.IsMatch(text);
@@ -50,9 +47,9 @@ namespace HCI_zadatak_2.userControls
 		// Use the DataObject.Pasting Handler 
 		private void TextBoxPasting(object sender, DataObjectPastingEventArgs e)
 		{
-			if (e.DataObject.GetDataPresent(typeof(String)))
+			if (e.DataObject.GetDataPresent(typeof(string)))
 			{
-				String text = (String)e.DataObject.GetData(typeof(String));
+				string text = (string)e.DataObject.GetData(typeof(string));
 				if (!IsTextAllowed(text))
 				{
 					e.CancelCommand();
@@ -72,16 +69,16 @@ namespace HCI_zadatak_2.userControls
 			} else
 			{
 				//TODO: save changes
-				MessageBox.Show("Changes saved successfully");
+				MessageBox.Show("Djole, odradi save: 71. linija u EditEvent.xaml.cs");
 			}
 			
 		}
 
 		private bool ValidateEditEvent()
 		{
-			if (!idEntered || !nameEntered || !descriptionEntered || !expectedAudienceEntered || !dateEntered)
+			if (!nameEntered || !descriptionEntered || !expectedAudienceEntered || !dateEntered)
 				return false;
-			else if (EventIdTextBox.Text == "" || EventNameTextBox.Text == "" || EventDescriptionTextBox.Text == "" || EventExpectedAudienceTextBox.Text == "" || EventDate.Text == "")
+			else if (string.IsNullOrWhiteSpace(EventNameTextBox.Text) || string.IsNullOrWhiteSpace(EventDescriptionTextBox.Text) || string.IsNullOrWhiteSpace(EventExpectedAudienceTextBox.Text) || string.IsNullOrWhiteSpace(EventDate.Text))
 				return false;
 			return true;
 		}
@@ -98,7 +95,7 @@ namespace HCI_zadatak_2.userControls
 
 		private void EventNameTextBox_LostFocus(object sender, RoutedEventArgs e)
 		{
-			if (EventNameTextBox.Text == "")
+			if (string.IsNullOrWhiteSpace(EventNameTextBox.Text))
 			{
 				nameExclamIcon.Visibility = Visibility.Visible;
 				nameEntered = false;
@@ -112,7 +109,7 @@ namespace HCI_zadatak_2.userControls
 
 		private void EventDescriptionTextBox_LostFocus(object sender, RoutedEventArgs e)
 		{
-			if (EventDescriptionTextBox.Text == "")
+			if (string.IsNullOrWhiteSpace(EventDescriptionTextBox.Text))
 			{
 				descriptionExclamIcon.Visibility = Visibility.Visible;
 				descriptionEntered = false;
@@ -128,7 +125,7 @@ namespace HCI_zadatak_2.userControls
 
 		private void EventExpectedAudienceTextBox_LostFocus(object sender, RoutedEventArgs e)
 		{
-			if (EventExpectedAudienceTextBox.Text == "")
+			if (string.IsNullOrWhiteSpace(EventExpectedAudienceTextBox.Text))
 			{
 				expectedAudienceExclamIcon.Visibility = Visibility.Visible;
 				expectedAudienceEntered = false;
@@ -141,7 +138,7 @@ namespace HCI_zadatak_2.userControls
 
 		private void EventDate_LostFocus(object sender, RoutedEventArgs e)
 		{
-			if (EventDate.Text == "")
+			if (string.IsNullOrWhiteSpace(EventDate.Text))
 			{
 				dateExclamIcon.Visibility = Visibility.Visible;
 				dateEntered = false;
@@ -174,19 +171,7 @@ namespace HCI_zadatak_2.userControls
 
 
 
-		private void EventIdTextBox_LostFocus(object sender, RoutedEventArgs e)
-		{
-			if (EventIdTextBox.Text == "")
-			{
-				idExclamIcon.Visibility = Visibility.Visible;
-				idEntered = false;
-			}
-			else
-			{
-				idExclamIcon.Visibility = Visibility.Hidden;
-				idEntered = true;
-			}
-		}
+		
 	
 	}
 }

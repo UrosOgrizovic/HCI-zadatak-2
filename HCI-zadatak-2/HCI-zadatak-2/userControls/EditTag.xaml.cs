@@ -18,6 +18,7 @@ namespace HCI_zadatak_2.userControls
     public partial class EditTag : UserControl
     {
 		public static MainWindow Window { get; set; }
+		private bool descriptionEntered = true;
 
 		public EditTag()
         {
@@ -27,18 +28,35 @@ namespace HCI_zadatak_2.userControls
 
 		private void editTagBtn_Click(object sender, RoutedEventArgs e)
         { 
-            if (verifyInputs())
+            if (VerifyInputs())
             {
                 Tag t = Window.appContext.SelectedTag;
                 // COLOR PICKER
                 t.Description = TagDescriptionTextBox.Text;
                 t.IsActive = true;
-            }
+            } else
+			{
+				MessageBox.Show("All fields must be filled");
+			}
 		}
 
-        private bool verifyInputs()
+        private bool VerifyInputs()
         {
+			if (!descriptionEntered || string.IsNullOrWhiteSpace(TagDescriptionTextBox.Text)) return false;
             return true;
         }
+
+		private void TagDescriptionTextBox_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (string.IsNullOrWhiteSpace(TagDescriptionTextBox.Text))
+			{
+				descriptionExclamIcon.Visibility = Visibility.Visible;
+				descriptionEntered = false;
+			} else
+			{
+				descriptionExclamIcon.Visibility = Visibility.Hidden;
+				descriptionEntered = true;
+			}
+		}
 	}
 }

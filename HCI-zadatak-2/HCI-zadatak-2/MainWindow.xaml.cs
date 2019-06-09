@@ -71,7 +71,7 @@ namespace HCI_zadatak_2
             EditEvent.Window = this;
             EditTag.Window = this;
             EditEventType.Window = this;
-
+			
 
             ViewEvents.Window = this;
             addIconsToMap();

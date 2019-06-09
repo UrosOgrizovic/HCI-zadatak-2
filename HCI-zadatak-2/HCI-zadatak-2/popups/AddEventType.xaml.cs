@@ -21,11 +21,13 @@ namespace HCI_zadatak_2.popups
     public partial class AddEventType : Window
     {
         string iconPath = null;
-        MainWindow parent;
+        MainWindow parent { get; set; }
+		private bool idEntered = false, nameEntered = false, descriptionEntered = false;
 
         public AddEventType(MainWindow parent)
         {
             InitializeComponent();
+			DataContext = this;
             this.parent = parent;
         }
 
@@ -43,36 +45,81 @@ namespace HCI_zadatak_2.popups
             }
         }
 
-        private void CreateEventTypeBtn_Click(object sender, RoutedEventArgs e)
+		private bool ValidateAddEventType()
+		{
+			if (!idEntered || !nameEntered || !descriptionEntered) return false;
+			else if (string.IsNullOrWhiteSpace(HRMarkTextBox.Text) || string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(DescTextBox.Text)) return false;
+			return true;
+		}
+
+		private void CreateEventTypeBtn_Click(object sender, RoutedEventArgs e)
         {
-            var type = HRMarkTextBox.Text;
-            var name = NameTextBox.Text;
-            var iconPath = this.iconPath;
-            var desc = DescTextBox.Text;
+			if (ValidateAddEventType())
+			{
+				var type = HRMarkTextBox.Text;
+				var name = NameTextBox.Text;
+				var iconPath = this.iconPath;
+				var desc = DescTextBox.Text;
 
-            if (EventTypeInputValidation(type, name, iconPath, desc))
-            {
-                EventType t = new EventType();
-                t.Type = type;
-                t.Name = name;
-                t.Icon = iconPath;
-                t.Description = desc;
-                this.parent.appContext.EventTypes.Add(t);
-                //this.parent.saveTypes();
-                this.Close();
 
-                MessageBox.Show("Event type is successfully created and saved.", "Notification", MessageBoxButton.OK);
-            } else
-            {
-                MessageBox.Show("Some fields are empty or consists of white spaces, please fill them.", "Notiication", MessageBoxButton.OK);
-            }
+				EventType t = new EventType();
+				t.Type = type;
+				t.Name = name;
+				t.Icon = iconPath;
+				t.Description = desc;
+				this.parent.appContext.EventTypes.Add(t);
+				//this.parent.saveTypes();
+				this.Close();
+
+				MessageBox.Show("Event type is successfully created and saved.", "Notification", MessageBoxButton.OK);
+			}
+			else
+			{
+				MessageBox.Show("All fields must be filled");
+			}
         }
 
-        private Boolean EventTypeInputValidation(String type, String name, String iconPath, String desc)
-        {
-            if (String.IsNullOrWhiteSpace(type) || String.IsNullOrWhiteSpace(type) || String.IsNullOrWhiteSpace(type) || String.IsNullOrWhiteSpace(type))
-                return false;
-            return true;
-        }
-    }
+
+		private void DescTextBox_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (string.IsNullOrWhiteSpace(DescTextBox.Text))
+			{
+				descriptionExclamIcon.Visibility = Visibility.Visible;
+				descriptionEntered = false;
+			} else
+			{
+				descriptionExclamIcon.Visibility = Visibility.Hidden;
+				descriptionEntered = true;
+			}
+			
+		}
+
+		private void NameTextBox_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (string.IsNullOrWhiteSpace(NameTextBox.Text))
+			{
+				nameExclamIcon.Visibility = Visibility.Visible;
+				nameEntered = false;
+			}
+			else
+			{
+				nameExclamIcon.Visibility = Visibility.Hidden;
+				nameEntered = true;
+			}
+		}
+
+		private void HRMarkTextBox_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (string.IsNullOrWhiteSpace(HRMarkTextBox.Text))
+			{
+				idExclamIcon.Visibility = Visibility.Visible;
+				idEntered = false;
+			}
+			else
+			{
+				idExclamIcon.Visibility = Visibility.Hidden;
+				idEntered = true;
+			}
+		}
+	}
 }
