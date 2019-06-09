@@ -29,7 +29,7 @@ namespace HCI_zadatak_2.userControls
 		private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
 
 		
-		private bool idEntered, nameEntered, descriptionEntered, expectedAudienceEntered, dateEntered;
+		private bool idEntered = true, nameEntered = true, descriptionEntered = true, expectedAudienceEntered = true, dateEntered = true;
 
 		public EditEvent()
         {
