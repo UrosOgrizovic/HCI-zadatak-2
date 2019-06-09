@@ -3,116 +3,150 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:HCI_zadatak_2.popups"
         xmlns:Controls="clr-namespace:HCI_zadatak_2.userControls"
         mc:Ignorable="d"
         Title="AddEvent" Height="600" Width="450" MinWidth="450" MinHeight="600" ResizeMode="NoResize">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-    <Grid Margin="5,5,5,5">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"></ColumnDefinition>
-            <ColumnDefinition Width="0.5*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+	<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+		<Grid Margin="5,5,5,5">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="0.3*"></ColumnDefinition>
+				<ColumnDefinition Width="0.3*"></ColumnDefinition>
+				<ColumnDefinition Width="0.3*"></ColumnDefinition>
+			</Grid.ColumnDefinitions>
 
-        <!-- Active will be set to true, whereas offsetX and offsetY will be set via drag & drop -->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-        </Grid.RowDefinitions>
+			<!-- Active will be set to true, whereas offsetX and offsetY will be set via drag & drop -->
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Margin="5,5,5,5">Id:</Label>
-        <TextBox x:Name="EventIdTextBox" Width ="180" Grid.Column="1" Grid.Row="0" Margin="5,5,5,5"></TextBox>
+			<Label Grid.Column="0" Grid.Row="0" Margin="5,5,5,5">Id:</Label>
+			<TextBox x:Name="EventIdTextBox" Width ="180" Grid.Column="1" Grid.Row="0" Margin="5,5,5,5" HorizontalAlignment="Left" LostFocus="EventIdTextBox_LostFocus"></TextBox>
+			<Image x:Name="idExclamIcon" Grid.Row="0" Grid.Column="2"  Margin="5,5,5,5" Width="40" Height="40" Source="{Binding Path=parent.appContext.ExclamPath}" HorizontalAlignment="Left" Visibility="Hidden">
+				<Image.ToolTip>
+					<ToolTip Content="Id cannot be empty" />
+				</Image.ToolTip>
+			</Image>
 
-        <Label Grid.Column="0" Grid.Row="1" Margin="5,5,5,5">Name:</Label>
-        <TextBox x:Name="EventNameTextBox" Width ="180" Grid.Column="1" Grid.Row="1" Margin="5,5,5,5"></TextBox>
+			<Label Grid.Column="0" Grid.Row="1" Margin="5,5,5,5">Name:</Label>
+			<TextBox x:Name="EventNameTextBox" Width ="180" Grid.Column="1" Grid.Row="1" Margin="5,5,5,5" LostFocus="EventNameTextBox_LostFocus" HorizontalAlignment="Left"></TextBox>
+			<Image x:Name="nameExclamIcon" Grid.Row="1" Grid.Column="2"  Margin="5,5,5,5" Width="40" Height="40" Source="{Binding Path=parent.appContext.ExclamPath}" HorizontalAlignment="Left" Visibility="Hidden">
+				<Image.ToolTip>
+					<ToolTip Content="Name cannot be empty" />
+				</Image.ToolTip>
+			</Image>
 
-        <Label Grid.Column="0" Grid.Row="2" Margin="5,5,5,5">Description:</Label>
-			<TextBox x:Name="EventDescriptionTextBox" Width ="180" Grid.Column="1" Grid.Row="2" Margin="5,5,5,5" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+			<Label Grid.Column="0" Grid.Row="2" Margin="5,5,5,5">Description:</Label>
+			<TextBox x:Name="EventDescriptionTextBox" Width ="180" Grid.Column="1" Grid.Row="2" Margin="5,5,5,5" TextWrapping="Wrap" AcceptsReturn="True" LostFocus="EventDescriptionTextBox_LostFocus" HorizontalAlignment="Left"></TextBox>
+			<Image x:Name="descriptionExclamIcon" Grid.Row="2" Grid.Column="2"  Margin="5,5,5,5" Width="40" Height="40" Source="{Binding Path=parent.appContext.ExclamPath}" HorizontalAlignment="Left" Visibility="Hidden">
+				<Image.ToolTip>
+					<ToolTip Content="Description cannot be empty" />
+				</Image.ToolTip>
+			</Image>
 
-        <Label Grid.Column="0" Grid.Row="3" Margin="5,5,5,5">Event type:</Label>
-        <Label x:Name="eventTypeName" Content="{Binding Path=e.Type.Type}"  Grid.Column="1" Grid.Row="3" Margin="5,5,5,5"></Label>
+			<Label Grid.Column="0" Grid.Row="3" Margin="5,5,5,5">Event type:</Label>
+			<Label x:Name="eventTypeName" Content="{Binding Path=e.Type.Type}"  Grid.Column="1" Grid.Row="3" Margin="5,5,5,5"></Label>
         
-        <!--`
-        <Grid Grid.Row="3" Grid.Column="1">
-            <DataGrid x:Name="eventTypesView" SelectionMode="Single" ItemsSource="{Binding Path=parent.appContext.EventTypes}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Type" Width="SizeToCells" Binding="{Binding Type, Mode=TwoWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name, Mode=TwoWay}"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
-        -->
+			<!--`
+			<Grid Grid.Row="3" Grid.Column="1">
+				<DataGrid x:Name="eventTypesView" SelectionMode="Single" ItemsSource="{Binding Path=parent.appContext.EventTypes}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Type" Width="SizeToCells" Binding="{Binding Type, Mode=TwoWay}"></DataGridTextColumn>
+						<DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name, Mode=TwoWay}"></DataGridTextColumn>
+					</DataGrid.Columns>
+				</DataGrid>
+			</Grid>
+			-->
 
-        <Label Grid.Column="0" Grid.Row="5" Margin="5,5,5,5">Alcohol serving category:</Label>
-        <ComboBox x:Name="EventAlcoholServingCategory" Margin="5,5,5,5" Grid.Column="1" Grid.Row="5" SelectedValuePath="Content">
-            <ComboBoxItem IsSelected="True">None</ComboBoxItem>
-            <ComboBoxItem>Bring</ComboBoxItem>
-            <ComboBoxItem>Buy</ComboBoxItem>
-        </ComboBox>
+			<Label Grid.Column="0" Grid.Row="5" Margin="5,5,5,5">Alcohol serving category:</Label>
+			<ComboBox x:Name="EventAlcoholServingCategory" Margin="5,5,5,5" Grid.Column="1" Grid.Row="5" SelectedValuePath="Content" Width="180" HorizontalAlignment="Left">
+				<ComboBoxItem IsSelected="True">None</ComboBoxItem>
+				<ComboBoxItem>Bring</ComboBoxItem>
+				<ComboBoxItem>Buy</ComboBoxItem>
+			</ComboBox>
 
-        <Label Grid.Column="0" Grid.Row="6" Margin="5,5,5,5">Icon:</Label>
-        <Button x:Name="eventIconBrowseBtn" HorizontalAlignment="Right" Grid.Row="6" Grid.Column="1"  Margin="5,5,5,5" Height="30" Width="100" Click="EventIconBrowseBtn_Click">Choose icon</Button>
+			<Label Grid.Column="0" Grid.Row="6" Margin="5,5,5,5">Icon:</Label>
+			<Button x:Name="eventIconBrowseBtn" HorizontalAlignment="Right" Grid.Row="6" Grid.Column="1"  Margin="5,5,5,5" Height="30" Width="100" Click="EventIconBrowseBtn_Click">Choose icon</Button>
 
-        <Label Grid.Column="0" Grid.Row="7" Margin="5,5,5,5">Suitable for handicapped:</Label>
-        <ComboBox x:Name="EventIsSutiableForHandicapped" Margin="5,5,5,5" Grid.Column="1" Grid.Row="7">
-            <ComboBoxItem IsSelected="True">True</ComboBoxItem>
-            <ComboBoxItem>False</ComboBoxItem>
-        </ComboBox>
+			<Label Grid.Column="0" Grid.Row="7" Margin="5,5,5,5">Suitable for handicapped:</Label>
+			<ComboBox x:Name="EventIsSutiableForHandicapped" Margin="5,5,5,5" Grid.Column="1" Grid.Row="7" Width="180" HorizontalAlignment="Left">
+				<ComboBoxItem IsSelected="True">True</ComboBoxItem>
+				<ComboBoxItem>False</ComboBoxItem>
+			</ComboBox>
 
-        <Label Grid.Column="0" Grid.Row="8" Margin="5,5,5,5">Smoking allowed:</Label>
-            <ComboBox x:Name="EventIsSmokingAllowed" SelectedValuePath="Content" Margin="5,5,5,5" Grid.Column="1" Grid.Row="8">
-            <ComboBoxItem IsSelected="True">True</ComboBoxItem>
-            <ComboBoxItem>False</ComboBoxItem>
-        </ComboBox>
+			<Label Grid.Column="0" Grid.Row="8" Margin="5,5,5,5">Smoking allowed:</Label>
+			<ComboBox x:Name="EventIsSmokingAllowed" SelectedValuePath="Content" Margin="5,5,5,5" Grid.Column="1" Grid.Row="8" Width="180" HorizontalAlignment="Left">
+				<ComboBoxItem IsSelected="True">True</ComboBoxItem>
+				<ComboBoxItem>False</ComboBoxItem>
+			</ComboBox>
 
-        <Label Grid.Column="0" Grid.Row="9" Margin="5,5,5,5">Outdoors:</Label>
-            <ComboBox x:Name="EventIsOutdoors" SelectedValuePath="Content" Margin="5,5,5,5" Grid.Column="1" Grid.Row="9">
-            <ComboBoxItem IsSelected="True">True</ComboBoxItem>
-            <ComboBoxItem>False</ComboBoxItem>
-        </ComboBox>
+			<Label Grid.Column="0" Grid.Row="9" Margin="5,5,5,5">Outdoors:</Label>
+			<ComboBox x:Name="EventIsOutdoors" SelectedValuePath="Content" Margin="5,5,5,5" Grid.Column="1" Grid.Row="9" Width="180" HorizontalAlignment="Left">
+				<ComboBoxItem IsSelected="True">True</ComboBoxItem>
+				<ComboBoxItem>False</ComboBoxItem>
+			</ComboBox>
 
-        <Label Grid.Column="0" Grid.Row="10" Margin="5,5,5,5">Price category:</Label>
-            <ComboBox x:Name="EventPriceCategory" SelectedValuePath="Content" Margin="5,5,5,5" Grid.Column="1" Grid.Row="10">
-            <ComboBoxItem IsSelected="True">Free</ComboBoxItem>
-            <ComboBoxItem>Low</ComboBoxItem>
-            <ComboBoxItem>Mid</ComboBoxItem>
-            <ComboBoxItem>High</ComboBoxItem>
-        </ComboBox>
+			<Label Grid.Column="0" Grid.Row="10" Margin="5,5,5,5">Price category:</Label>
+			<ComboBox x:Name="EventPriceCategory" SelectedValuePath="Content" Margin="5,5,5,5" Grid.Column="1" Grid.Row="10" Width="180" HorizontalAlignment="Left">
+				<ComboBoxItem IsSelected="True">Free</ComboBoxItem>
+				<ComboBoxItem>Low</ComboBoxItem>
+				<ComboBoxItem>Mid</ComboBoxItem>
+				<ComboBoxItem>High</ComboBoxItem>
+			</ComboBox>
 
-        <Label Grid.Column="0" Grid.Row="11" Margin="5,5,5,5">Expected audience:</Label>
-        <TextBox x:Name="EventExpectedAudienceTextBox" Width ="180" Grid.Column="1" Grid.Row="11" Margin="5,5,5,5" MaxLength="6"></TextBox>
+			<Label Grid.Column="0" Grid.Row="11" Margin="5,5,5,5">Expected audience:</Label>
+			<TextBox x:Name="EventExpectedAudienceTextBox" Width="180" Grid.Column="1" Grid.Row="11" Margin="5,5,5,5" MaxLength="6" LostFocus="EventExpectedAudienceTextBox_LostFocus" PreviewTextInput="EventExpectedAudienceTextBox_PreviewTextInput" DataObject.Pasting="TextBoxPasting" HorizontalAlignment="Left"></TextBox>
+				<Image x:Name="expectedAudienceExclamIcon" Grid.Row="11" Grid.Column="2"  Margin="5,5,5,5" Width="40" Height="40" Source="{Binding Path=parent.appContext.ExclamPath}" HorizontalAlignment="Left" Visibility="Hidden">
+				<Image.ToolTip>
+					<ToolTip Content="Expected audience cannot be empty" />
+				</Image.ToolTip>
+			</Image>
 
-        <Label Grid.Column="0" Grid.Row="12" Margin="5,5,5,5">Date:</Label>
-        <DatePicker Margin="5,5,5,5" x:Name="EventDate" Grid.Column="1" Grid.Row="12"/>
+			<Label Grid.Column="0" Grid.Row="12" Margin="5,5,5,5">Date:</Label>
+			<DatePicker Margin="5,5,5,5" x:Name="EventDate" Grid.Column="1" Grid.Row="12" DataObject.Pasting="TextBoxPasting" DisplayDateStart="{x:Static sys:DateTime.Today}" LostFocus="EventDate_LostFocus" HorizontalAlignment="Left" Width="180">
+				<DatePicker.Resources>
+					<Style TargetType="DatePickerTextBox">
+						<Setter Property="IsReadOnly" Value="True"/>
+					</Style>
+				</DatePicker.Resources>
+			</DatePicker>
+				<Image x:Name="dateExclamIcon" Grid.Row="12" Grid.Column="2"  Margin="5,5,5,5" Width="40" Height="40" Source="{Binding Path=parent.appContext.ExclamPath}" HorizontalAlignment="Left" Visibility="Hidden">
+				<Image.ToolTip>
+					<ToolTip Content="Date cannot be empty" />
+				</Image.ToolTip>
+			</Image>
 
-        <Label Grid.Column="0" Grid.Row="13" Margin="5,5,5,5">Tags (select one or more):</Label>
-        <ScrollViewer Grid.Column="1" Grid.Row="13" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <DataGrid x:Name="tagsView" SelectionMode="Extended" ItemsSource="{Binding Path=parent.appContext.Tags}" IsReadOnly="True" AutoGenerateColumns="True" IsSynchronizedWithCurrentItem="True" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Width="SizeToCells" Binding="{Binding Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Color" Width="SizeToCells" Binding="{Binding Color}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Description" Width="SizeToCells" Binding="{Binding Description}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        </ScrollViewer>
 
-        <Button x:Name="createEventBtn" HorizontalAlignment="Center" Grid.Row="15" Grid.ColumnSpan="2" Margin="5,50,5,5" Width="100" Height="30" Click="CreateEventBtn_Click">Create event</Button>
+			<Label Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="13" Margin="5,5,5,5" HorizontalAlignment="Center">Tags (select one or more):</Label>
+			<ScrollViewer Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="14" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+			<DataGrid x:Name="tagsView" SelectionMode="Extended" ItemsSource="{Binding Path=parent.appContext.Tags}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Center">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="Id" Width="SizeToCells" Binding="{Binding Id}"></DataGridTextColumn>
+					<DataGridTextColumn Header="Color" Width="SizeToCells" Binding="{Binding Color}"></DataGridTextColumn>
+					<DataGridTextColumn Header="Description" Width="SizeToCells" Binding="{Binding Description}"></DataGridTextColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+			</ScrollViewer>
 
-    </Grid>
+			<Button x:Name="createEventBtn" HorizontalAlignment="Center" Grid.Row="15" Grid.ColumnSpan="2" Margin="5,50,5,5" Width="100" Height="30" Click="CreateEventBtn_Click">Create event</Button>
+
+		</Grid>
     </ScrollViewer>
 </Window>

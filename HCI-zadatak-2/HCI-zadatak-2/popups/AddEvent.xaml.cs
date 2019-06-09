@@ -15,6 +15,7 @@ using System.Threading;
 using System.ComponentModel;
 using Microsoft.Win32;
 using HCI_zadatak_2.images;
+using System.Text.RegularExpressions;
 
 namespace HCI_zadatak_2.popups
 {
@@ -40,7 +41,11 @@ namespace HCI_zadatak_2.popups
 
         public Event e { get; set; }
 
-        public AddEvent(MainWindow parent, Event e)
+		private bool idEntered = false, nameEntered = false, descriptionEntered = false, expectedAudienceEntered = false, dateEntered = false;
+
+		private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
+
+		public AddEvent(MainWindow parent, Event e)
         {
             InitializeComponent();
             DataContext = this;
@@ -48,51 +53,138 @@ namespace HCI_zadatak_2.popups
             this.e = e;
         }
 
-        private void CreateEventBtn_Click(object sender, RoutedEventArgs e)
-        {
-            this.e.Id = EventIdTextBox.Text;
-            this.e.Name = EventNameTextBox.Text;
-            this.e.Description = EventDescriptionTextBox.Text;
-            this.e.Alcohol = (AlcoholServingCategory) Enum.Parse(typeof(AlcoholServingCategory), EventAlcoholServingCategory.SelectedValue.ToString(), true);
-            this.e.IsSmokingAllowed = EventIsSmokingAllowed.SelectedItem.ToString().Equals("True") ? true : false;
-            this.e.IsOutdoors = EventIsOutdoors.SelectedItem.ToString().Equals("True") ? true : false;
-            this.e.PriceCategory = (PriceCategory) Enum.Parse(typeof(PriceCategory),EventPriceCategory.SelectedValue.ToString(), true);
-            this.e.ExpectedAudience =  Int32.Parse(EventExpectedAudienceTextBox.Text);
-            this.e.Date = (DateTime) EventDate.SelectedDate;
-            this.e.IsActive = true;
-            if (this.e.IconPath == null)
-                this.e.IconPath = this.e.Type.Icon;
+		private static bool IsTextAllowed(string text)
+		{
+			return !_regex.IsMatch(text);
+		}
 
-			
-			this.e.Tags = new List<Tag>();
-			System.Collections.IList items = tagsView.SelectedItems;
-
-			var tags = items.Cast<Tag>();
-			foreach (var t in tags)
+		// Use the DataObject.Pasting Handler 
+		private void TextBoxPasting(object sender, DataObjectPastingEventArgs e)
+		{
+			if (e.DataObject.GetDataPresent(typeof(String)))
 			{
-				this.e.Tags.Add(t);
+				String text = (String)e.DataObject.GetData(typeof(String));
+				if (!IsTextAllowed(text))
+				{
+					e.CancelCommand();
+				}
+			}
+			else
+			{
+				e.CancelCommand();
+			}
+		}
+		
+		private void CreateEventBtn_Click(object sender, RoutedEventArgs e)
+        {
+			if (!ValidateAddEvent())
+			{
+				MessageBox.Show("All fields must be filled");
+			}
+			else
+			{
+				this.e.Id = EventIdTextBox.Text;
+				this.e.Name = EventNameTextBox.Text;
+				this.e.Description = EventDescriptionTextBox.Text;
+				this.e.Alcohol = (AlcoholServingCategory) Enum.Parse(typeof(AlcoholServingCategory), EventAlcoholServingCategory.SelectedValue.ToString(), true);
+				this.e.IsSmokingAllowed = EventIsSmokingAllowed.SelectedItem.ToString().Equals("True") ? true : false;
+				this.e.IsOutdoors = EventIsOutdoors.SelectedItem.ToString().Equals("True") ? true : false;
+				this.e.PriceCategory = (PriceCategory) Enum.Parse(typeof(PriceCategory),EventPriceCategory.SelectedValue.ToString(), true);
+				this.e.ExpectedAudience =  Int32.Parse(EventExpectedAudienceTextBox.Text);
+				this.e.Date = (DateTime) EventDate.SelectedDate;
+				if (this.e.IconPath == null)
+					this.e.IconPath = this.e.Type.Icon;
+			
+				this.e.Tags = new List<Tag>();
+				System.Collections.IList items = tagsView.SelectedItems;
+
+				var tags = items.Cast<Tag>();
+				foreach (var t in tags)
+				{
+					this.e.Tags.Add(t);
+				}
+
+
+				this.parent.appContext.Events.Add(this.e);
+
+				AppImage icon = new AppImage
+				{
+					Width = 30,
+					Height = 30,
+					Name = "marker",
+					Source = new BitmapImage(new Uri(this.e.IconPath, UriKind.RelativeOrAbsolute))
+				};
+				icon.Event = this.e;
+
+				this.parent.canvas.Children.Add(icon);
+				Canvas.SetTop(icon, this.e.OffsetY);
+				Canvas.SetLeft(icon, this.e.OffsetX);
+
+				this.Close();
+
+				MessageBox.Show("Changes saved successfully");
+			}
+		}
+
+		private bool ValidateAddEvent()
+		{
+			if (!idEntered || !nameEntered || !descriptionEntered || !expectedAudienceEntered || !dateEntered)
+				return false;
+			else if (EventIdTextBox.Text == "" || EventNameTextBox.Text == "" || EventDescriptionTextBox.Text == "" || EventExpectedAudienceTextBox.Text == "" || EventDate.Text == "")
+				return false;
+			return true;
+		}
+
+		private void EventDescriptionTextBox_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (EventDescriptionTextBox.Text == "")
+			{
+				descriptionExclamIcon.Visibility = Visibility.Visible;
+				descriptionEntered = false;
 			}
 
-			this.parent.appContext.Events.Add(this.e);
-
-            AppImage icon = new AppImage
-            {
-                Width = 30,
-                Height = 30,
-                Name = "marker",
-                Source = new BitmapImage(new Uri(this.e.IconPath, UriKind.RelativeOrAbsolute))
-            };
-            icon.Event = this.e;
-            this.e.ImageIcon = icon;
-
-            this.parent.canvas.Children.Add(icon);
-            Canvas.SetTop(icon, this.e.OffsetY);
-            Canvas.SetLeft(icon, this.e.OffsetX);
-
-            this.Close();
+			else
+			{
+				descriptionExclamIcon.Visibility = Visibility.Hidden;
+				descriptionEntered = true;
+			}
         }
 
-        private void EventIconBrowseBtn_Click(object sender, RoutedEventArgs e)
+		private void EventExpectedAudienceTextBox_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (EventExpectedAudienceTextBox.Text == "")
+			{
+				expectedAudienceExclamIcon.Visibility = Visibility.Visible;
+				expectedAudienceEntered = false;
+			}
+			else
+			{
+				expectedAudienceExclamIcon.Visibility = Visibility.Hidden;
+				expectedAudienceEntered = true;
+			}
+		}
+
+		private void EventDate_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (EventDate.Text == "")
+			{
+				dateExclamIcon.Visibility = Visibility.Visible;
+				dateEntered = false;
+			}
+			else
+			{
+				dateExclamIcon.Visibility = Visibility.Hidden;
+				dateEntered = true;
+			}
+		}
+
+		private void EventExpectedAudienceTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = _regex.IsMatch(e.Text);
+		}
+
+
+		private void EventIconBrowseBtn_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Select picture";
@@ -109,5 +201,36 @@ namespace HCI_zadatak_2.popups
 		{
 			InitializeComponent();
 		}
-    }
+
+		private void EventIdTextBox_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (EventIdTextBox.Text == "")
+			{
+				idExclamIcon.Visibility = Visibility.Visible;
+				idEntered = false;
+			}
+			else
+			{
+				idExclamIcon.Visibility = Visibility.Hidden;
+				idEntered = true;
+			}
+		}
+
+
+		private void EventNameTextBox_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (EventNameTextBox.Text == "")
+			{
+				nameExclamIcon.Visibility = Visibility.Visible;
+				nameEntered = false;
+			}
+			else
+			{
+				nameExclamIcon.Visibility = Visibility.Hidden;
+				nameEntered = true;
+			}
+		}
+
+
+	}
 }
