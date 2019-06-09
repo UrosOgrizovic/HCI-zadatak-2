@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_zadatak_2.popups"
         mc:Ignorable="d"
         Title="AddTag" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+	<Grid>
+
+	</Grid>
 </Window>

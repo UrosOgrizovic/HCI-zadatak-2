@@ -27,9 +27,10 @@ namespace HCI_zadatak_2.userControls
         {
             InitializeComponent();
         }
-
 		
-		
-		
+		private void HelpBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			HelpProvider.ShowHelp("ViewEvents");
+		}
 	}
 }

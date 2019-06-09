@@ -8,9 +8,18 @@
         xmlns:Controls="clr-namespace:HCI_zadatak_2.userControls"
         mc:Ignorable="d"
         Title="AddEvent" Height="600" Width="450" MinWidth="450" MinHeight="600" ResizeMode="NoResize">
+	<Window.Resources>
+		<Style x:Key="FocusTextBox" TargetType="Grid">
+			<Style.Triggers>
+				<DataTrigger Binding="{Binding ElementName=EventIdTextBox, Path=IsVisible}" Value="True">
+					<Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=EventIdTextBox}"/>
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+	</Window.Resources>
 
 	<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-		<Grid Margin="5,5,5,5">
+		<Grid Margin="5,5,5,5" Style="{StaticResource FocusTextBox}">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="0.3*"></ColumnDefinition>
 				<ColumnDefinition Width="0.3*"></ColumnDefinition>

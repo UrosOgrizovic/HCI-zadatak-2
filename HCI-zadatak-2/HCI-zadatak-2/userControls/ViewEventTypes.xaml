@@ -6,8 +6,13 @@
              xmlns:local="clr-namespace:HCI_zadatak_2.userControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-		<DataGrid x:Name="eventTypesView" SelectionMode="Single" ItemsSource="{Binding Path=appContext.EventTypes}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" PreviewMouseLeftButtonDown="EventTypesView_PreviewMouseLeftButtonDown" MouseMove="EventTypesView_MouseMove">
+
+	<UserControl.CommandBindings>
+		<CommandBinding Command="ApplicationCommands.Help" Executed="HelpBinding_Executed"></CommandBinding>
+	</UserControl.CommandBindings>
+
+	<Grid Margin="5,5,5,5">
+		<DataGrid x:Name="eventTypesView" SelectionMode="Single" ItemsSource="{Binding Path=appContext.EventTypes}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" PreviewMouseLeftButtonDown="EventTypesView_PreviewMouseLeftButtonDown" MouseMove="EventTypesView_MouseMove" SelectedIndex="0" Loaded="DataGrid_Loaded">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Type" Width="SizeToCells" Binding="{Binding Type, Mode=TwoWay}"></DataGridTextColumn>
 				<DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name, Mode=TwoWay}"></DataGridTextColumn>

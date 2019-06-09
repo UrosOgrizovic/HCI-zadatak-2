@@ -6,7 +6,16 @@
         xmlns:local="clr-namespace:HCI_zadatak_2.popups"
         mc:Ignorable="d"
         Title="AddEventType" Height="250" Width="360" MaxWidth="360" MinWidth="360" MinHeight="250" MaxHeight="250">
-    <Grid Margin="5,5,5,5">
+	<Window.Resources>
+		<Style x:Key="FocusTextBox" TargetType="Grid">
+			<Style.Triggers>
+				<DataTrigger Binding="{Binding ElementName=HRMarkTextBox, Path=IsVisible}" Value="True">
+					<Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=HRMarkTextBox}"/>
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+	</Window.Resources>
+	<Grid Margin="5,5,5,5" Style="{StaticResource FocusTextBox}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.3*"></ColumnDefinition>
 			<ColumnDefinition Width="0.3*"></ColumnDefinition>

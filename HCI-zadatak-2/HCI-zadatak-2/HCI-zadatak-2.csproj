@@ -62,6 +62,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationContext.cs" />
+    <Compile Include="HelpProvider.cs" />
+    <Compile Include="HelpView.xaml.cs">
+      <DependentUpon>HelpView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="images\AppImage.cs" />
     <Compile Include="popups\AddEvent.xaml.cs">
       <DependentUpon>AddEvent.xaml</DependentUpon>
@@ -97,6 +101,10 @@
     <Compile Include="userControls\ViewTags.xaml.cs">
       <DependentUpon>ViewTags.xaml</DependentUpon>
     </Compile>
+    <Page Include="HelpView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -203,7 +211,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\exclam.png" />
+    <Content Include="Data\Help\AddEvent.htm" />
+    <Content Include="Data\Help\AddEventType.htm" />
+    <Content Include="Data\Help\AddTag.htm" />
+    <Content Include="Data\Help\EditEvent.htm" />
+    <Content Include="Data\Help\EditEventType.htm" />
+    <Content Include="Data\Help\EditTag.htm" />
+    <Content Include="Data\Help\index.htm" />
+    <Content Include="Data\Help\Map.htm" />
+    <Content Include="Data\Help\SearchFilterReset.htm" />
+    <Content Include="Data\Help\UndoRemove.htm" />
+    <Content Include="Data\Help\ViewEvents.htm" />
+    <Content Include="Data\Help\ViewEventTypes.htm" />
+    <Content Include="Data\Help\ViewTags.htm" />
     <Content Include="images\icon.svg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
