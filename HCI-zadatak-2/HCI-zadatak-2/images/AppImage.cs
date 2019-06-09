@@ -7,8 +7,9 @@ using System.Windows.Controls;
 
 namespace HCI_zadatak_2.images
 {
-    class AppImage : Image
+    public class AppImage : Image
     {
         public Event Event { get; set; }
+        public string Path { get; set; }
     }
 }

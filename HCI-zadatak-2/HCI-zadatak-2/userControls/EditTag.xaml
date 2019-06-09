@@ -20,11 +20,11 @@
 		</Grid.RowDefinitions>
 
 		<Label Grid.Column="0" Grid.Row="0" Margin="5,5,5,5">Id:</Label>
-		<TextBox x:Name="TagIdTextBox" Width ="180" Grid.Column="1" Grid.Row="0" Margin="5,5,5,5" Text="{Binding Path=Window.appContext.SelectedTag.Id, Mode=TwoWay}"></TextBox>
+		<Label x:Name="TagIdTextBox" Width ="180" Grid.Column="1" Grid.Row="0" Margin="5,5,5,5" Content="{Binding Path=Window.appContext.SelectedTag.Id, Mode=TwoWay}"></Label>
 
 		<Label Grid.Column="0" Grid.Row="1" Margin="5,5,5,5">Color:</Label>
-		<TextBox x:Name="TagColorTextBox" Width ="180" Grid.Column="1" Grid.Row="1" Margin="5,5,5,5" Text="{Binding Path=Window.appContext.SelectedTag.Color, Mode=TwoWay}"></TextBox>
-
+		<!--<TextBox x:Name="TagColorTextBox" Width ="180" Grid.Column="1" Grid.Row="1" Margin="5,5,5,5" Text="{Binding Path=Window.appContext.SelectedTag.Color, Mode=TwoWay}"></TextBox>
+        -->
 		<Label Grid.Column="0" Grid.Row="2" Margin="5,5,5,5">Description:</Label>
 		<TextBox x:Name="TagDescriptionTextBox" Width ="180" Grid.Column="1" Grid.Row="2" Margin="5,5,5,5" Text="{Binding Path=Window.appContext.SelectedTag.Description, Mode=TwoWay}" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
 

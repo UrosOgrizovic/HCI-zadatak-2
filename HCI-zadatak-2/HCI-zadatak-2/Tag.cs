@@ -1,8 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace HCI_zadatak_2
 {
+
+    
 	public class Tag : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -12,10 +15,12 @@ namespace HCI_zadatak_2
 		}
 
 		public string _id;
-		public string _color;
+		public Color _color;
 		public string _description;
 		public bool _isActive;
-		
+	    
+        
+
 		public string Id
 		{
 			get
@@ -31,7 +36,7 @@ namespace HCI_zadatak_2
 				}
 			}
 		}
-		public string Color
+		public Color Color
 		{
 			get
 			{

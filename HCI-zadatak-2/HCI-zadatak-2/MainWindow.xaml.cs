@@ -66,9 +66,12 @@ namespace HCI_zadatak_2
             appContext = new ApplicationContext();
             cityMap.Source = new BitmapImage(new Uri(@"/images/MapNS.png", UriKind.Relative));
             AddEventType.parent = this;
+            userControls.AddTag.parent = this;
+            
 			EditEvent.Window = this;
 			EditTag.Window = this;
 			EditEventType.Window = this;
+            
 
 			ViewEvents.Window = this;
         }
@@ -101,15 +104,39 @@ namespace HCI_zadatak_2
                 TabItem t = (TabItem)tabControl.SelectedItem;
                 if (t.Header.Equals("Events"))
                 {
-					appContext.Events.RemoveAt(controlEventsView.eventsView.SelectedIndex);
+                    Event ee = appContext.SelectedEvent;
+                    canvas.Children.Remove(ee.ImageIcon);
+                    appContext.Events.RemoveAt(controlEventsView.eventsView.SelectedIndex);
 					
 				}
 				else if (t.Header.Equals("Types"))
                 {
+                    EventType type = controlEventTypesView.eventTypesView.SelectedItem as EventType;
+
+                    
+                    foreach (Event ev in appContext.Events)
+                    {
+                        if (ev.Type.Name.Equals(type.Name))
+                        {
+                            MessageBox.Show("Type is used by events!");
+                            return;
+                        }   
+                    }
 					appContext.EventTypes.RemoveAt(controlEventTypesView.eventTypesView.SelectedIndex);
 				}
                 else
                 {
+
+                    Tag tt = controlTagsView.tagsView.SelectedItem as Tag;
+                    foreach (Event ev in appContext.Events)
+                    {
+                        foreach (Tag tev in ev.Tags)
+                            if (tev.Id.Equals(tt.Id))
+                            {
+                                MessageBox.Show("Tag is used by events!");
+                                return;
+                            }
+                    }
 					appContext.Tags.RemoveAt(controlTagsView.tagsView.SelectedIndex);
 				}
             }

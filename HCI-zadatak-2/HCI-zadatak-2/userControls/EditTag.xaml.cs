@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace HCI_zadatak_2.userControls
 {
-    /// <summary>
-    /// Interaction logic for EditTag.xaml
-    /// </summary>
     public partial class EditTag : UserControl
     {
 		public static MainWindow Window { get; set; }
@@ -29,8 +26,19 @@ namespace HCI_zadatak_2.userControls
 		}
 
 		private void editTagBtn_Click(object sender, RoutedEventArgs e)
-		{
-
+        { 
+            if (verifyInputs())
+            {
+                Tag t = Window.appContext.SelectedTag;
+                // COLOR PICKER
+                t.Description = TagDescriptionTextBox.Text;
+                t.IsActive = true;
+            }
 		}
+
+        private bool verifyInputs()
+        {
+            return true;
+        }
 	}
 }

@@ -90,13 +90,16 @@ namespace HCI_zadatak_2
             List<EventType> let = new List<EventType>();
             List<Tag> lt = new List<Tag>();
 
+
+            
+
             let.Add(new EventType { Type = "Sports", Name = "Football game", Icon = @"\images\4.jpg", Description = "Event type that can be used for any football game." });
             let.Add(new EventType { Type = "Music", Name = "Concert", Icon = @"\images\5.jpg", Description = "Event type that can be used for any concert" });
             let.Add(new EventType { Type = "Art", Name = "Exhibition", Icon = @"\images\6.jpg", Description = "Event type that can be used for any art exhibition." });
 
-            lt.Add(new Tag { Id = "T1", Color = "Red", Description = "Involves physical activity", IsActive = true });
-            lt.Add(new Tag { Id = "T2", Color = "Blue", Description = "Involves music", IsActive = true });
-            lt.Add(new Tag { Id = "T3", Color = "Green", Description = "Group discount", IsActive = true });
+            lt.Add(new Tag { Id = "T1", Description = "Involves physical activity", IsActive = true });
+            lt.Add(new Tag { Id = "T2", Description = "Involves music", IsActive = true });
+            lt.Add(new Tag { Id = "T3", Description = "Group discount", IsActive = true });
 
             DateTime dt1 = new DateTime(2019, 8, 10, 16, 30, 0);
             DateTime dt2 = new DateTime(2019, 10, 5, 20, 0, 0);

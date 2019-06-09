@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_zadatak_2.images;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -31,6 +32,24 @@ namespace HCI_zadatak_2
 		private double _offsetX;
 		private double _offsetY;
         private string _iconPath;
+        private AppImage _image;
+
+
+        public AppImage ImageIcon
+        {
+            get
+            {
+                return _image;
+            }
+            set
+            {
+                if (value != _image)
+                {
+                    _image = value;
+                    OnPropertyChanged("ImageIcon");
+                }
+            }
+        }
 
 
         public string IconPath

@@ -59,6 +59,7 @@ namespace HCI_zadatak_2.popups
             this.e.PriceCategory = (PriceCategory) Enum.Parse(typeof(PriceCategory),EventPriceCategory.SelectedValue.ToString(), true);
             this.e.ExpectedAudience =  Int32.Parse(EventExpectedAudienceTextBox.Text);
             this.e.Date = (DateTime) EventDate.SelectedDate;
+            this.e.IsActive = true;
             if (this.e.IconPath == null)
                 this.e.IconPath = this.e.Type.Icon;
 
@@ -72,7 +73,6 @@ namespace HCI_zadatak_2.popups
 				this.e.Tags.Add(t);
 			}
 
-
 			this.parent.appContext.Events.Add(this.e);
 
             AppImage icon = new AppImage
@@ -80,9 +80,10 @@ namespace HCI_zadatak_2.popups
                 Width = 30,
                 Height = 30,
                 Name = "marker",
-                Source = new BitmapImage(new Uri(this.e.IconPath, UriKind.Absolute))
+                Source = new BitmapImage(new Uri(this.e.IconPath, UriKind.RelativeOrAbsolute))
             };
             icon.Event = this.e;
+            this.e.ImageIcon = icon;
 
             this.parent.canvas.Children.Add(icon);
             Canvas.SetTop(icon, this.e.OffsetY);
