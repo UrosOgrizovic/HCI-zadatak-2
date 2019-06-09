@@ -23,13 +23,14 @@ namespace HCI_zadatak_2.userControls
     public partial class EditEventType : UserControl
     {
 		public static MainWindow Window { get; set; }
-        string iconPath;
-        AppImage icon;
+        string iconPath = null;
+        public static AppImage icon = null;
 
         public EditEventType()
         {
             InitializeComponent();
 			DataContext = this;
+
             
 		}
 
@@ -62,8 +63,32 @@ namespace HCI_zadatak_2.userControls
             {
                 EventType et = Window.appContext.SelectedEventType;
                 et.Description = DescTextBox.Text;
-                et.Icon = iconPath;
-                
+                if (iconPath != null)
+                {
+                    foreach (Event ee in Window.appContext.Events)
+                    { 
+                        if (ee.ImageIcon != null && !ee.ImageIcon.Path.Equals(iconPath) && et.Icon.Equals(ee.ImageIcon.Path) && et.Name.Equals(ee.Type.Name))
+                        {
+                            AppImage img = new AppImage
+                            {
+                                Width = 30,
+                                Height = 30,
+                                Name = "marker",
+                                Source = new BitmapImage(new Uri(iconPath, UriKind.RelativeOrAbsolute)),
+                                Path = iconPath,
+                                Event = ee
+                            };
+
+                            Window.canvas.Children.Remove(ee.ImageIcon);
+                            ee.ImageIcon = img;
+                            Window.canvas.Children.Add(ee.ImageIcon);
+                            Canvas.SetTop(ee.ImageIcon, ee.OffsetY);
+                            Canvas.SetLeft(ee.ImageIcon, ee.OffsetX);
+                        }
+                    }
+
+                    et.Icon = iconPath;
+                }
                 
 
 

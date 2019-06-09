@@ -35,8 +35,8 @@
 
 			<Label Grid.Column="0" Margin="5,5,5,5">Icon:</Label>
 			<Button x:Name="browseBtn" HorizontalAlignment="Right" Grid.Column="2"  Margin="5,5,5,5" Height="30" Width="100" Click="BrowseBtn_Click_1">Choose picture</Button>
-			<Image x:Name="previewIcon" Grid.Column="1"  Margin="5,5,5,5" Width="40" Height="40" Source="{Binding Path=Window.appContext.SelectedEventType.Icon}"></Image>
-
+            <Image x:Name="previewIcon" Grid.Column="1" Margin="5,5,5,5" Width="40" Height="40"></Image>
+            <!---->
 		</Grid>
 
 		<Label Grid.Column="0" Grid.Row="3" Margin="5,5,5,5">Description:</Label>

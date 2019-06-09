@@ -68,7 +68,7 @@
                                 <Controls:AddEventType x:Name="addEventTypeControl"></Controls:AddEventType>
                             </ScrollViewer>
                         </TabItem>
-                        <TabItem Header="Edit">
+                        <TabItem Header="Edit" PreviewMouseLeftButtonDown="TabItem_PreviewMouseLeftButtonDown">
                             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                                 <Controls:EditEventType x:Name="editEventControl"></Controls:EditEventType>
                             </ScrollViewer>

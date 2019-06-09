@@ -80,7 +80,8 @@ namespace HCI_zadatak_2.popups
                 Width = 30,
                 Height = 30,
                 Name = "marker",
-                Source = new BitmapImage(new Uri(this.e.IconPath, UriKind.RelativeOrAbsolute))
+                Source = new BitmapImage(new Uri(this.e.IconPath, UriKind.RelativeOrAbsolute)),
+                Path = this.e.IconPath
             };
             icon.Event = this.e;
             this.e.ImageIcon = icon;

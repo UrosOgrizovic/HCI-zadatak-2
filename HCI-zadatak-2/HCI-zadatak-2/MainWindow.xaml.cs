@@ -23,62 +23,75 @@ using EditEvent = HCI_zadatak_2.userControls.EditEvent;
 
 namespace HCI_zadatak_2
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window, INotifyPropertyChanged
-	{
-		public event PropertyChangedEventHandler PropertyChanged;
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window, INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public ApplicationContext appContext { get; set; }
 
 
-		protected void OnPropertyChanged(string info)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
-		}
+        protected void OnPropertyChanged(string info)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
+        }
 
-		private ICollectionView _View;
+        private ICollectionView _View;
 
-		public ICollectionView View
-		{
-			get
-			{
-				return _View;
-			}
-			set
-			{
-				_View = value;
-				OnPropertyChanged("View");
-			}
-		}
+        public ICollectionView View
+        {
+            get
+            {
+                return _View;
+            }
+            set
+            {
+                _View = value;
+                OnPropertyChanged("View");
+            }
+        }
 
 
         private AppImage draggedImage;
         private Point mousePosition;
 
-		
 
-		public MainWindow()
-		{
-			InitializeComponent();
+
+        public MainWindow()
+        {
+            InitializeComponent();
             DataContext = this;
             appContext = new ApplicationContext();
             cityMap.Source = new BitmapImage(new Uri(@"/images/MapNS.png", UriKind.Relative));
             AddEventType.parent = this;
             userControls.AddTag.parent = this;
-            
-			EditEvent.Window = this;
-			EditTag.Window = this;
-			EditEventType.Window = this;
-            
 
-			ViewEvents.Window = this;
+            EditEvent.Window = this;
+            EditTag.Window = this;
+            EditEventType.Window = this;
+
+
+            ViewEvents.Window = this;
+            addIconsToMap();
         }
+
+
+        private void addIconsToMap()
+        {
+            foreach (Event e in appContext.Events)
+            {
+                canvas.Children.Add(e.ImageIcon);
+                Canvas.SetTop(e.ImageIcon, e.OffsetY);
+                Canvas.SetLeft(e.ImageIcon, e.OffsetX);
+            }
+        }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            TabItem t = (TabItem) tabControl.SelectedItem;
+            TabItem t = (TabItem)tabControl.SelectedItem;
             if (t.Header.Equals("Events"))
             {
                 popups.AddEvent m = new popups.AddEvent(this, null);
@@ -88,7 +101,7 @@ namespace HCI_zadatak_2
             {
                 popups.AddEventType m = new popups.AddEventType(this);
                 m.ShowDialog();
-            } 
+            }
             else
             {
                 popups.AddTag m = new popups.AddTag();
@@ -107,23 +120,23 @@ namespace HCI_zadatak_2
                     Event ee = appContext.SelectedEvent;
                     canvas.Children.Remove(ee.ImageIcon);
                     appContext.Events.RemoveAt(controlEventsView.eventsView.SelectedIndex);
-					
-				}
-				else if (t.Header.Equals("Types"))
+
+                }
+                else if (t.Header.Equals("Types"))
                 {
                     EventType type = controlEventTypesView.eventTypesView.SelectedItem as EventType;
 
-                    
+
                     foreach (Event ev in appContext.Events)
                     {
                         if (ev.Type.Name.Equals(type.Name))
                         {
                             MessageBox.Show("Type is used by events!");
                             return;
-                        }   
+                        }
                     }
-					appContext.EventTypes.RemoveAt(controlEventTypesView.eventTypesView.SelectedIndex);
-				}
+                    appContext.EventTypes.RemoveAt(controlEventTypesView.eventTypesView.SelectedIndex);
+                }
                 else
                 {
 
@@ -137,25 +150,25 @@ namespace HCI_zadatak_2
                                 return;
                             }
                     }
-					appContext.Tags.RemoveAt(controlTagsView.tagsView.SelectedIndex);
-				}
+                    appContext.Tags.RemoveAt(controlTagsView.tagsView.SelectedIndex);
+                }
             }
         }
 
         public Point startPoint = new Point();
-		
+
         private void Canvas_DragEnter(object sender, DragEventArgs e)
         {
             if (!e.Data.GetDataPresent("myFormat") || sender == e.Source)
             {
                 e.Effects = DragDropEffects.None;
-            } 
+            }
         }
 
         private void Canvas_Drop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent("myFormat"))
-            {        
+            {
                 Point p = e.GetPosition((IInputElement)e.Source);
 
                 Event ev = new Event();
@@ -164,15 +177,15 @@ namespace HCI_zadatak_2
                 ev.Type = e.Data.GetData("myFormat") as EventType;
 
                 AddEvent addEvent = new AddEvent(this, ev);
-               
+
                 addEvent.ShowDialog();
-            } 
+            }
         }
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
-        { 
-			controlEventsView.eventsView.ItemsSource = appContext.Search(searchTxt.Text);
-		}
+        {
+            controlEventsView.eventsView.ItemsSource = appContext.Search(searchTxt.Text);
+        }
 
 
         private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -181,7 +194,7 @@ namespace HCI_zadatak_2
 
             if (image != null && image.Name != "cityMap" && canvas.CaptureMouse())
             {
-                
+
                 mousePosition = e.GetPosition(canvas);
                 Mouse.OverrideCursor = Cursors.Hand;
                 draggedImage = image;
@@ -224,46 +237,52 @@ namespace HCI_zadatak_2
                 MessageBox.Show(img.Event.Type.Type.ToString());
             }
         }
-    
 
-		private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
 
-		}
+        private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
-		private void EventsTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			Event selectedEvent = (Event) controlEventsView.eventsView.SelectedItem;
-			if (selectedEvent != null)
-			{
-				appContext.TagsOfSelectedEvent = new ObservableCollection<Tag> (selectedEvent.Tags);
-				appContext.SelectedEvent = selectedEvent;
-			}
-			
-		}
+        }
 
-		private void TagsTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			Tag selectedTag = (Tag)controlTagsView.tagsView.SelectedItem;
-			if (selectedTag != null)
-			{
-				appContext.SelectedTag = selectedTag;
-			}
-		}
+        private void EventsTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Event selectedEvent = (Event)controlEventsView.eventsView.SelectedItem;
+            if (selectedEvent != null)
+            {
+                appContext.TagsOfSelectedEvent = new ObservableCollection<Tag>(selectedEvent.Tags);
+                appContext.SelectedEvent = selectedEvent;
+            }
 
-		private void EventTypesTagControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			EventType selectedEventType = (EventType)controlEventTypesView.eventTypesView.SelectedItem;
-			if (selectedEventType != null)
-			{
-				appContext.SelectedEventType = selectedEventType;
-			}
-		}
+        }
 
-		private void undoBtn_Click(object sender, RoutedEventArgs e)
-		{
-			MessageBox.Show("Undo");
-		}
-	}
+        private void TagsTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Tag selectedTag = (Tag)controlTagsView.tagsView.SelectedItem;
+            if (selectedTag != null)
+            {
+                appContext.SelectedTag = selectedTag;
+            }
+        }
+
+        private void EventTypesTagControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            EventType selectedEventType = (EventType)controlEventTypesView.eventTypesView.SelectedItem;
+            if (selectedEventType != null)
+            {
+                appContext.SelectedEventType = selectedEventType;
+                editEventControl.previewIcon.Source = new BitmapImage(new Uri(appContext.SelectedEventType.Icon, UriKind.RelativeOrAbsolute));
+
+            }
+        }
+
+        private void undoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Undo");
+        }
+
+        private void TabItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+        }
+    }
 
 }
