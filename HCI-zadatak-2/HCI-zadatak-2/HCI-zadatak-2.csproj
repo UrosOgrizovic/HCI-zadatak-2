@@ -202,6 +202,7 @@
     <Resource Include="images\marker.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\exclam.png" />
     <Content Include="images\icon.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

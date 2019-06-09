@@ -84,6 +84,20 @@ namespace HCI_zadatak_2
 			}
 		}
 
+		public string _exclamPath = @"\images\exclam.png";
+		public string ExclamPath
+		{
+			get
+			{
+				return _exclamPath;
+			}
+			set
+			{
+				_exclamPath = value;
+				OnPropertyChanged("ExclamPath");
+			}
+		}
+
 		public void TestData()
         {
             List<Event> e = new List<Event>();
