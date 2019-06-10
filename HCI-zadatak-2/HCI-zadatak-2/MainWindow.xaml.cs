@@ -32,8 +32,9 @@ namespace HCI_zadatak_2
 
         public ApplicationContext appContext { get; set; }
 
+		private string helpToShow = "index";
 
-        protected void OnPropertyChanged(string info)
+		protected void OnPropertyChanged(string info)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
         }
@@ -249,6 +250,51 @@ namespace HCI_zadatak_2
         private void EventsTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Event selectedEvent = (Event)controlEventsView.eventsView.SelectedItem;
+			TabItem ti = tabControl.SelectedItem as TabItem;
+			if (ti != null)
+			{
+				if (ti.Header.Equals("Events"))
+				{
+					ti = eventsTabControl.SelectedItem as TabItem;
+					if (ti != null)
+					{
+						if (ti.Header.Equals("View"))
+							helpToShow = "ViewEvents";
+						else if (ti.Header.Equals("Edit"))
+							helpToShow = "EditEvent";
+					}
+					
+				}
+				else if (ti.Header.Equals("Tags"))
+				{
+					ti = TagsTabControl.SelectedItem as TabItem;
+					if (ti != null)
+					{
+						if (ti.Header.Equals("View"))
+							helpToShow = "ViewTags";
+						else if (ti.Header.Equals("Add"))
+							helpToShow = "AddTag";
+						else if (ti.Header.Equals("Edit"))
+							helpToShow = "EditTag";
+					}
+					
+				}
+				else if (ti.Header.Equals("Types"))
+				{
+					ti = EventTypesTabControl.SelectedItem as TabItem;
+					if (ti != null)
+					{
+						if (ti.Header.Equals("View"))
+							helpToShow = "ViewEventTypes";
+						else if (ti.Header.Equals("Add"))
+							helpToShow = "AddEventType";
+						else if (ti.Header.Equals("Edit"))
+							helpToShow = "EditEventType";
+					}
+					
+				}
+			}
+			
             if (selectedEvent != null)
             {
                 appContext.TagsOfSelectedEvent = new ObservableCollection<Tag>(selectedEvent.Tags);
@@ -266,7 +312,7 @@ namespace HCI_zadatak_2
             }
         }
 
-        private void EventTypesTagControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void EventTypesTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             EventType selectedEventType = (EventType)controlEventTypesView.eventTypesView.SelectedItem;
             if (selectedEventType != null)
@@ -310,6 +356,11 @@ namespace HCI_zadatak_2
 				string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
 				HelpProvider.ShowHelp(str);
 			}
+		}
+
+		private void helpBtn_Click(object sender, RoutedEventArgs e)
+		{			
+			HelpProvider.ShowHelp(helpToShow);
 		}
 	}
 

@@ -79,6 +79,11 @@ namespace HCI_zadatak_2.userControls
 			return true;
 		}
 
+		private void HelpBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			HelpProvider.ShowHelp("AddEventType");
+		}
+
 		private void CreateEventTypeBtn_Click(object sender, RoutedEventArgs e)
         {
 			if (ValidateAddEventType())

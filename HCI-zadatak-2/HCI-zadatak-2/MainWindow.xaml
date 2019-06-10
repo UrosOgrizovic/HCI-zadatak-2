@@ -29,7 +29,7 @@
             <TabControl x:Name="tabControl" Grid.Row="0" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch"
 						SelectionChanged="EventsTabControl_SelectionChanged">
 				<TabItem Header="Events">
-                    <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
+                    <TabControl x:Name="eventsTabControl" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
 						<TabItem Header="View">
 							<Controls:ViewEvents x:Name="controlEventsView"></Controls:ViewEvents>
 						</TabItem>
@@ -63,7 +63,7 @@
                     </TabControl>
                 </TabItem>
 				<TabItem Header="Types">
-                    <TabControl x:Name="EventTypesTagControl" SelectionChanged="EventTypesTagControl_SelectionChanged" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
+                    <TabControl x:Name="EventTypesTabControl" SelectionChanged="EventTypesTabControl_SelectionChanged" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
 						<TabItem Header="View">
 							<Controls:ViewEventTypes x:Name="controlEventTypesView"></Controls:ViewEventTypes>
                         </TabItem>
@@ -90,12 +90,15 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
 					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-				<Button x:Name="undoBtn" Grid.Column="0" Grid.ColumnSpan="2" MaxWidth="100" Margin="5,5,10,5" Click="undoBtn_Click"
-						ToolTip="Undo last completed action">Undo</Button>
+				<Button x:Name="undoBtn" Grid.Column="0" Grid.ColumnSpan="2" MaxWidth="100" Margin="5,5,10,5" Click="undoBtn_Click" ToolTip="Undo last completed action">Undo</Button>
 				<Button x:Name="deleteBtn" Margin="5,5,10,5" Grid.Column="2" Grid.ColumnSpan="2" MaxWidth="100" Click="DeleteBtn_Click"
 						ToolTip="Remove element corresponding to selected row in table">Remove</Button>
+				<Button x:Name="helpBtn" Margin="5,5,10,5" Grid.Column="4" Grid.ColumnSpan="2" MaxWidth="100" Click="helpBtn_Click"
+						ToolTip="View help">Help</Button>
 				
             </Grid>
             

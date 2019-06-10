@@ -13,12 +13,16 @@
 	<UserControl.Resources>
 		<Style x:Key="FocusTextBox" TargetType="Grid">
 			<Style.Triggers>
-				<DataTrigger Binding="{Binding ElementName=EventIdTextBox, Path=IsVisible}" Value="True">
-					<Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=EventIdTextBox}"/>
+				<DataTrigger Binding="{Binding ElementName=EventNameTextBox, Path=IsVisible}" Value="True">
+					<Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=EventNameTextBox}"/>
 				</DataTrigger>
 			</Style.Triggers>
 		</Style>
 	</UserControl.Resources>
+
+	<UserControl.CommandBindings>
+		<CommandBinding Command="ApplicationCommands.Help" Executed="HelpBinding_Executed"></CommandBinding>
+	</UserControl.CommandBindings>
 
 
 	<ScrollViewer VerticalScrollBarVisibility="Auto">

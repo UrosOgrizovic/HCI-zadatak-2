@@ -182,6 +182,10 @@ namespace HCI_zadatak_2.popups
 			e.Handled = _regex.IsMatch(e.Text);
 		}
 
+		private void HelpBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			HelpProvider.ShowHelp("AddEvent");
+		}
 
 		private void EventIconBrowseBtn_Click(object sender, RoutedEventArgs e)
         {
