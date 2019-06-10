@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace HCI_zadatak_2
 {
+	[Serializable]
     public class Event : INotifyPropertyChanged
 	{
+		[field: NonSerialized]
 		public event PropertyChangedEventHandler PropertyChanged;
 		protected virtual void OnPropertyChanged(string name)
 		{
@@ -32,8 +34,8 @@ namespace HCI_zadatak_2
 		private double _offsetX;
 		private double _offsetY;
         private string _iconPath;
-        private AppImage _image;
-
+		[NonSerialized]
+		private AppImage _image;
 
         public AppImage ImageIcon
         {
