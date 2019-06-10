@@ -219,7 +219,7 @@ namespace HCI_zadatak_2
 
         public ObservableCollection<Event> Filter(ObservableCollection<Event> events)
         {
-            return null;
+            
         }
 
     }

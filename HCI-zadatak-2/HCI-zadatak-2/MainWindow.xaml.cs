@@ -389,11 +389,14 @@ namespace HCI_zadatak_2
             {
                 i.Opacity = 1;
             }
+
+            filter = new EventFilter();
         }
 
         private void FilterBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            ConfigureFilter cf = new ConfigureFilter(filter);
+            cf.ShowDialog();
         }
     
 
