@@ -29,33 +29,58 @@ namespace HCI_zadatak_2.popups
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(typeBox.Text))
+            if (!string.IsNullOrEmpty(typeBox.Text))
             {
                 filter.useType = true;
                 filter.type = typeBox.Text;
             }
+			if (!string.IsNullOrWhiteSpace(tagName.Text))
+			{
+				filter.useTag = true;
+				filter.tag = tagName.Text;
+			}
+			if (!string.IsNullOrWhiteSpace(lowAudiance.Text))
+			{
+				filter.useAudiLow = true;
+				filter.expectedAudianceLow = System.Convert.ToInt32(lowAudiance.Text);
+			}
+			if (!string.IsNullOrWhiteSpace(highAudiance.Text))
+			{
+				filter.useAudiHigh = true;
+				filter.expectedAudianceHigh = System.Convert.ToInt32(highAudiance.Text);
+			}
+			if (!alcoholComboBox.SelectedValue.ToString().Equals("None"))
+			{
+				filter.alcohol = (AlcoholServingCategory)Enum.Parse(typeof(AlcoholServingCategory), alcoholComboBox.SelectedValue.ToString(), true);
+				filter.useAlcohol = true;
+			}
+			if (!priceCategoryComboBox.SelectedValue.ToString().Equals("None"))
+			{
+				filter.priceCategory = (PriceCategory)Enum.Parse(typeof(PriceCategory), priceCategoryComboBox.SelectedValue.ToString(), true);
+				filter.usePriceCat = true;
+			}
 
-            filter.alcohol = (AlcoholServingCategory)Enum.Parse(typeof(AlcoholServingCategory), alcoholComboBox.SelectedValue.ToString(), true);
+			
             filter.isForHandicapped = (bool)handicaped.IsChecked;
+			filter.useHandi = true;
             filter.isSmokingAllowed = (bool)smoking.IsChecked;
+			filter.useSmoke = true;
             filter.isOutdoors = (bool)outdoors.IsChecked;
-            filter.priceCategory = (PriceCategory)Enum.Parse(typeof(PriceCategory), priceCategoryComboBox.SelectedValue.ToString(), true);
+			filter.useOut = true;
 
             if (fromDate.SelectedDate != null)
-                filter.dateFrom = (DateTime)fromDate.SelectedDate;
+			{
+				filter.dateFrom = (DateTime)fromDate.SelectedDate;
+				filter.useDateFrom = true;
+			}	
 
-            if (fromDate.SelectedDate != null)
-                filter.dateTo = (DateTime)toDate.SelectedDate;
-
-            var x = lowAudiance.Text.Trim();
-            if (!string.IsNullOrEmpty(x))
-                filter.expectedAudianceLow = Int32.Parse(x);
-
-            x = highAudiance.Text.Trim();
-            if (!string.IsNullOrEmpty(x))
-                filter.expectedAudianceHigh = Int32.Parse(x);
-
-            filter.tag = tagName.Text;
+            if (toDate.SelectedDate != null)
+			{
+				filter.dateTo = (DateTime)toDate.SelectedDate;
+				filter.useDateTo = true;
+			}
+                
+			
             this.Close();
         }
     }
