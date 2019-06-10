@@ -136,15 +136,15 @@ namespace HCI_zadatak_2
 				Path = @"\images\3.jpg"
 			};
 
-			e.Add(new Event { Id = "E1", ImageIcon = ai1, Name = "Crazy Aerosmith concert", Description = "A concert by the legends of rock. Steven Tyler is living proof that one can still rock out at the tender age of 71!", Type = let[1], Alcohol = AlcoholServingCategory.BUY, IsForHandicapped = true, IsSmokingAllowed = true, IsOutdoors = true, PriceCategory = PriceCategory.MID, ExpectedAudience = 10000, Date = dt2, Tags = lt.GetRange(1, 1), IsActive = true, OffsetX = 10, OffsetY = 10, IconPath= @"\images\1.jpg" });
+			//e.Add(new Event { Id = "E1", ImageIcon = ai1, Name = "Crazy Aerosmith concert", Description = "A concert by the legends of rock. Steven Tyler is living proof that one can still rock out at the tender age of 71!", Type = let[1], Alcohol = AlcoholServingCategory.BUY, IsForHandicapped = true, IsSmokingAllowed = true, IsOutdoors = true, PriceCategory = PriceCategory.MID, ExpectedAudience = 10000, Date = dt2, Tags = lt.GetRange(1, 1), IsActive = true, OffsetX = 10, OffsetY = 10, IconPath= @"\images\1.jpg" });
 
-            e.Add(new Event { Id = "E2", ImageIcon = ai2, Name = "Football game U19", Description = "Everyone who's under the age of 19 is invited to this exhibition game! Great fun is guaranteed!", Type = let[0], Alcohol = AlcoholServingCategory.NONE, IsForHandicapped = false, IsSmokingAllowed = false, IsOutdoors = true, PriceCategory = PriceCategory.FREE, ExpectedAudience = 20, Date = dt1, Tags = lt.GetRange(0, 1), IsActive = true, OffsetX = 100, OffsetY = 200, IconPath = @"\images\2.jpg" });
+            //e.Add(new Event { Id = "E2", ImageIcon = ai2, Name = "Football game U19", Description = "Everyone who's under the age of 19 is invited to this exhibition game! Great fun is guaranteed!", Type = let[0], Alcohol = AlcoholServingCategory.NONE, IsForHandicapped = false, IsSmokingAllowed = false, IsOutdoors = true, PriceCategory = PriceCategory.FREE, ExpectedAudience = 20, Date = dt1, Tags = lt.GetRange(0, 1), IsActive = true, OffsetX = 100, OffsetY = 200, IconPath = @"\images\2.jpg" });
 
-            e.Add(new Event { Id = "E3", ImageIcon = ai3, Name = "Picasso's Rose Period", Description = "A look at some of Picasso's pre-cubism works, such as 'Boy Leading a Horse'.", Type = let[2], Alcohol = AlcoholServingCategory.NONE, IsForHandicapped = true, IsSmokingAllowed = false, IsOutdoors = false, PriceCategory = PriceCategory.HIGH, ExpectedAudience = 200, Date = dt3, Tags = lt.GetRange(2, 1), IsActive = true, OffsetX = 250, OffsetY = 50, IconPath = @"\images\3.jpg" });
+            //e.Add(new Event { Id = "E3", ImageIcon = ai3, Name = "Picasso's Rose Period", Description = "A look at some of Picasso's pre-cubism works, such as 'Boy Leading a Horse'.", Type = let[2], Alcohol = AlcoholServingCategory.NONE, IsForHandicapped = true, IsSmokingAllowed = false, IsOutdoors = false, PriceCategory = PriceCategory.HIGH, ExpectedAudience = 200, Date = dt3, Tags = lt.GetRange(2, 1), IsActive = true, OffsetX = 250, OffsetY = 50, IconPath = @"\images\3.jpg" });
 
-			ai1.Event = e.ElementAt(0);
-			ai2.Event = e.ElementAt(1);
-			ai3.Event = e.ElementAt(2);
+			//ai1.Event = e.ElementAt(0);
+			//ai2.Event = e.ElementAt(1);
+			//ai3.Event = e.ElementAt(2);
 
 
 			Events = new ObservableCollection<Event>(e);

@@ -92,6 +92,8 @@
 					<ColumnDefinition></ColumnDefinition>
 					<ColumnDefinition></ColumnDefinition>
 					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
 				<Button x:Name="undoBtn" Grid.Column="0" Grid.ColumnSpan="2" MaxWidth="100" Margin="5,5,10,5" Click="undoBtn_Click" ToolTip="Undo last completed action">Undo</Button>
@@ -99,8 +101,11 @@
 						ToolTip="Remove element corresponding to selected row in table">Remove</Button>
 				<Button x:Name="helpBtn" Margin="5,5,10,5" Grid.Column="4" Grid.ColumnSpan="2" MaxWidth="100" Click="helpBtn_Click"
 						ToolTip="View help">Help</Button>
-				
-            </Grid>
+				<Button x:Name="demoBtn" Margin="5,5,10,5" Grid.Column="6" Grid.ColumnSpan="2" MaxWidth="100" Click="demoBtn_Click"
+						ToolTip="View demo">Demo</Button>
+
+
+			</Grid>
             
         </Grid>
 

@@ -122,7 +122,7 @@ namespace HCI_zadatak_2.popups
 
 				this.Close();
 
-				MessageBox.Show("Changes saved successfully");
+				MessageBox.Show("Event created successfully");
 			}
 		}
 
@@ -137,7 +137,7 @@ namespace HCI_zadatak_2.popups
 
 		private void EventDescriptionTextBox_LostFocus(object sender, RoutedEventArgs e)
 		{
-			if (EventDescriptionTextBox.Text == "")
+			if (string.IsNullOrWhiteSpace(EventDescriptionTextBox.Text))
 			{
 				descriptionExclamIcon.Visibility = Visibility.Visible;
 				descriptionEntered = false;
@@ -152,7 +152,7 @@ namespace HCI_zadatak_2.popups
 
 		private void EventExpectedAudienceTextBox_LostFocus(object sender, RoutedEventArgs e)
 		{
-			if (EventExpectedAudienceTextBox.Text == "")
+			if (string.IsNullOrWhiteSpace(EventExpectedAudienceTextBox.Text))
 			{
 				expectedAudienceExclamIcon.Visibility = Visibility.Visible;
 				expectedAudienceEntered = false;
@@ -166,7 +166,7 @@ namespace HCI_zadatak_2.popups
 
 		private void EventDate_LostFocus(object sender, RoutedEventArgs e)
 		{
-			if (EventDate.Text == "")
+			if (string.IsNullOrWhiteSpace(EventDate.Text) && !EventDate.IsDropDownOpen)
 			{
 				dateExclamIcon.Visibility = Visibility.Visible;
 				dateEntered = false;
@@ -208,7 +208,7 @@ namespace HCI_zadatak_2.popups
 
 		private void EventIdTextBox_LostFocus(object sender, RoutedEventArgs e)
 		{
-			if (EventIdTextBox.Text == "")
+			if (string.IsNullOrWhiteSpace(EventIdTextBox.Text))
 			{
 				idExclamIcon.Visibility = Visibility.Visible;
 				idEntered = false;
@@ -223,7 +223,7 @@ namespace HCI_zadatak_2.popups
 
 		private void EventNameTextBox_LostFocus(object sender, RoutedEventArgs e)
 		{
-			if (EventNameTextBox.Text == "")
+			if (string.IsNullOrWhiteSpace(EventNameTextBox.Text))
 			{
 				nameExclamIcon.Visibility = Visibility.Visible;
 				nameEntered = false;
