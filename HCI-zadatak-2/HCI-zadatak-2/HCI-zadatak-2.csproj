@@ -80,6 +80,7 @@
     <Compile Include="Demo.xaml.cs">
       <DependentUpon>Demo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EventFilter.cs" />
     <Compile Include="FileIO.cs" />
     <Compile Include="HelpProvider.cs" />
     <Compile Include="HelpView.xaml.cs">

@@ -10,7 +10,7 @@ namespace HCI_zadatak_2
     public class EventFilter
     {
         private string type { get; set; }
-        
+
         private AlcoholServingCategory alcohol { get; set; }
 
         private bool isForHandicapped { get; set; }
@@ -24,7 +24,7 @@ namespace HCI_zadatak_2
         private DateTime dateFrom { get; set; }
 
         private DateTime dateTo { get; set; }
-     
+
         private int expectedAudianceLow { get; set; }
 
         private int expectedAudianceHigh { get; set; }
