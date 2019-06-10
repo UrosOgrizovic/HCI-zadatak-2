@@ -208,7 +208,7 @@ namespace HCI_zadatak_2
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
-            controlEventsView.eventsView.ItemsSource = appContext.Search(searchTxt.Text);
+            controlEventsView.eventsView.ItemsSource = appContext.Search(searchTxt.Text, filter);
         }
 
         private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

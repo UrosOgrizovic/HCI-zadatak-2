@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Color = System.Windows.Media.Color;
@@ -157,7 +158,7 @@ namespace HCI_zadatak_2
         }
 
 
-        public ObservableCollection<Event> Search(String query)
+        public ObservableCollection<Event> Search(String query, EventFilter f)
         {
             double score = 0;
 
@@ -194,7 +195,7 @@ namespace HCI_zadatak_2
                     events[i].ImageIcon.Opacity = scores[i] / maxscore;
             }
             SortEvents(scores, events);
-            return new ObservableCollection<Event>(events);
+            return filterEvents(f, events);
         }
 
         private void SortEvents(List<double> scores, List<Event> events)
@@ -217,9 +218,54 @@ namespace HCI_zadatak_2
             }
         }
 
-        public ObservableCollection<Event> Filter(ObservableCollection<Event> events)
+        public ObservableCollection<Event> filterEvents(EventFilter f, List<Event> events)
         {
-            
+
+            ObservableCollection<Event> filteredEvents = new ObservableCollection<Event>();
+
+            bool flag;
+            foreach (Event e in events)
+            {
+                flag = true;
+                if (f.useType && !e.Type.Type.Equals(f.type))
+                    flag = false;
+
+                if (f.useAlcohol && f.alcohol != e.Alcohol)
+                    flag = false;
+
+                if (f.useDateFrom && (DateTime.Compare(f.dateFrom, e.Date) > 0))
+                    flag = false;
+
+                if (f.useDateTo && (DateTime.Compare(e.Date, f.dateTo) > 0))
+                    flag = false;
+
+                if (f.useAudiLow && (f.expectedAudianceLow > e.ExpectedAudience))
+                    flag = false;
+
+                if (f.useAudiHigh && (f.expectedAudianceHigh < e.ExpectedAudience))
+                    flag = false;
+
+                if (f.useHandi && (f.isForHandicapped != e.IsForHandicapped))
+                    flag = false;
+
+                if (f.useSmoke && (f.isSmokingAllowed != e.IsSmokingAllowed))
+                    flag = false;
+
+                if (f.useOut && (f.isOutdoors != e.IsOutdoors))
+                    flag = false;
+
+                if (f.usePriceCat && (f.priceCategory == e.PriceCategory))
+                    flag = false;
+
+                if (flag)
+                {
+                    filteredEvents.Add(e);
+                } else
+                {
+                    e.ImageIcon.Opacity = 0;
+                }
+            }
+            return filteredEvents;   
         }
 
     }
