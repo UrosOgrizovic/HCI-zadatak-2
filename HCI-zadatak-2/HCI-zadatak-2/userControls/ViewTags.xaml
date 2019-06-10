@@ -6,10 +6,15 @@
              xmlns:local="clr-namespace:HCI_zadatak_2.userControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-		<DataGrid x:Name="tagsView" SelectionMode="Single" ItemsSource="{Binding Path=appContext.Tags}" IsReadOnly="True" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False">
+
+	<UserControl.CommandBindings>
+		<CommandBinding Command="ApplicationCommands.Help" Executed="HelpBinding_Executed"></CommandBinding>
+	</UserControl.CommandBindings>
+	
+	<Grid Margin="5,5,5,5">
+		<DataGrid x:Name="tagsView" SelectionMode="Single" ItemsSource="{Binding Path=appContext.Tags}" IsReadOnly="True" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False" SelectedIndex="0" Loaded="DataGrid_Loaded">
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="Id" Width="SizeToCells" Binding="{Binding Id}"></DataGridTextColumn>
+				<DataGridTextColumn x:Name="idColumn" Header="Id" Width="SizeToCells" Binding="{Binding Id}"></DataGridTextColumn>
 				<DataGridTextColumn Header="Color" Width="SizeToCells" Binding="{Binding Color}"></DataGridTextColumn>
 				<DataGridTextColumn Header="Description" Width="SizeToCells" Binding="{Binding Description}"></DataGridTextColumn>
 			</DataGrid.Columns>

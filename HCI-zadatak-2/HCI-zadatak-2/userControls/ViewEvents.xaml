@@ -6,7 +6,12 @@
              xmlns:local="clr-namespace:HCI_zadatak_2.userControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+
+	<UserControl.CommandBindings>
+		<CommandBinding Command="ApplicationCommands.Help" Executed="HelpBinding_Executed"></CommandBinding>
+	</UserControl.CommandBindings>
+
+	<Grid Margin="5,5,5,5">
 		<DataGrid x:Name="eventsView" SelectionMode="Single" ItemsSource="{Binding Path=appContext.Events}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name}"></DataGridTextColumn>

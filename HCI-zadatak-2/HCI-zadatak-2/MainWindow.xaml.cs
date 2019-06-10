@@ -234,7 +234,8 @@ namespace HCI_zadatak_2
             {
                 AddEvent ad = new AddEvent(this, null);
                 AppImage img = e.Source as AppImage;
-                MessageBox.Show(img.Event.Type.Type.ToString());
+				if (img != null)
+					MessageBox.Show(img.Event.Type.Type.ToString());
             }
         }
 
@@ -301,6 +302,16 @@ namespace HCI_zadatak_2
 			}
 
 			canvas.LayoutTransform = new MatrixTransform(matrix);
+		}
+
+		private void HelpBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			IInputElement focusedControl = Mouse.DirectlyOver;
+			if (focusedControl is DependencyObject)
+			{
+				string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+				HelpProvider.ShowHelp(str);
+			}
 		}
 	}
 

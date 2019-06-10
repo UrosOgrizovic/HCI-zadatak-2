@@ -58,5 +58,10 @@ namespace HCI_zadatak_2.userControls
 				descriptionEntered = true;
 			}
 		}
+
+		private void HelpBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			HelpProvider.ShowHelp("EditTag");
+		}
 	}
 }

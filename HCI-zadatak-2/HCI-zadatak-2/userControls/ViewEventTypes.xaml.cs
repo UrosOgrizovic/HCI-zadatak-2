@@ -70,5 +70,16 @@ namespace HCI_zadatak_2.userControls
 			while (current != null);
 			return null;
 		}
+
+		private void HelpBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			HelpProvider.ShowHelp("ViewEventTypes");
+		}
+
+		private void DataGrid_Loaded(object sender, RoutedEventArgs e)
+		{
+			DataGrid dataGrid = sender as DataGrid;
+			dataGrid.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+		}
 	}
 }

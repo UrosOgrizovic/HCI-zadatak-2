@@ -7,7 +7,21 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-	<Grid Margin="5,5,5,5">
+	<UserControl.Resources>
+		<Style x:Key="FocusTextBox" TargetType="Grid">
+			<Style.Triggers>
+				<DataTrigger Binding="{Binding ElementName=TagIdTextBox, Path=IsVisible}" Value="True">
+					<Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=TagIdTextBox}"/>
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+	</UserControl.Resources>
+	
+	<UserControl.CommandBindings>
+		<CommandBinding Command="ApplicationCommands.Help" Executed="HelpBinding_Executed"></CommandBinding>
+	</UserControl.CommandBindings>
+	
+	<Grid Margin="5,5,5,5" Style="{StaticResource FocusTextBox}">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="0.3*"></ColumnDefinition>
 			<ColumnDefinition Width="0.3*"></ColumnDefinition>
@@ -22,7 +36,7 @@
 		</Grid.RowDefinitions>
 
 		<Label Grid.Column="0" Grid.Row="0" Margin="5,5,5,5">Id:</Label>
-		<TextBox x:Name="TagIdTextBox" Width ="180" Grid.Column="1" Grid.Row="0" Margin="5,5,5,5" LostFocus="TagIdTextBox_LostFocus"></TextBox>
+		<TextBox x:Name="TagIdTextBox" Width ="180" Grid.Column="1" Grid.Row="0" Margin="5,5,5,5" LostFocus="TagIdTextBox_LostFocus" FocusManager.FocusedElement="{Binding ElementName=TagIdTextBox}"></TextBox>
 		<Image x:Name="idExclamIcon" Grid.Row="0" Grid.Column="2"  Margin="4.8,5,0,4" Width="40" Source="{Binding Path=parent.appContext.ExclamPath}" HorizontalAlignment="Left" Visibility="Hidden">
 			<Image.ToolTip>
 				<ToolTip Content="Id cannot be empty" />

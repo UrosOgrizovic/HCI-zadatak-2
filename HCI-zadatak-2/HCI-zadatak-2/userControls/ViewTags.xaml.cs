@@ -24,5 +24,16 @@ namespace HCI_zadatak_2.userControls
         {
             InitializeComponent();
         }
-    }
+
+		private void HelpBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			HelpProvider.ShowHelp("ViewTags");
+		}
+
+		private void DataGrid_Loaded(object sender, RoutedEventArgs e)
+		{
+			DataGrid dataGrid = sender as DataGrid;
+			dataGrid.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+		}
+	}
 }

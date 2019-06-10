@@ -87,6 +87,11 @@ namespace HCI_zadatak_2.userControls
 			}
 		}
 
+		private void HelpBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			HelpProvider.ShowHelp("AddTag");
+		}
+
 		private void TagDescriptionTextBox_LostFocus(object sender, RoutedEventArgs e)
 		{
 			if (string.IsNullOrWhiteSpace(TagDescriptionTextBox.Text))

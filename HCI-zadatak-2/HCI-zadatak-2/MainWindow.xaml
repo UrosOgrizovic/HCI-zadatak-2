@@ -7,6 +7,10 @@
         xmlns:Controls="clr-namespace:HCI_zadatak_2.userControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" MinHeight="450" MinWidth="800">
+	<Window.CommandBindings>
+		<CommandBinding Command="ApplicationCommands.Help" Executed="HelpBinding_Executed"></CommandBinding>
+	</Window.CommandBindings>
+	
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.35*"></ColumnDefinition>
@@ -24,7 +28,7 @@
             <TextBox HorizontalAlignment="Left" Height="0" Margin="144,118,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="104"/>
             <TabControl x:Name="tabControl" Grid.Row="0" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch"
 						SelectionChanged="EventsTabControl_SelectionChanged">
-                <TabItem Header="Events">
+				<TabItem Header="Events">
                     <TabControl HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
 						<TabItem Header="View">
 							<Controls:ViewEvents x:Name="controlEventsView"></Controls:ViewEvents>
@@ -58,7 +62,7 @@
                         
                     </TabControl>
                 </TabItem>
-                <TabItem Header="Types">
+				<TabItem Header="Types">
                     <TabControl x:Name="EventTypesTagControl" SelectionChanged="EventTypesTagControl_SelectionChanged" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,9.6,0" VerticalAlignment="Stretch">
 						<TabItem Header="View">
 							<Controls:ViewEventTypes x:Name="controlEventTypesView"></Controls:ViewEventTypes>
@@ -78,7 +82,7 @@
                 </TabItem>
             </TabControl>
 
-			
+
 
 			<Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -88,8 +92,10 @@
 					<ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-				<Button x:Name="undoBtn" Grid.Column="0" Grid.ColumnSpan="2" MaxWidth="100" Margin="5,5,10,5" Click="undoBtn_Click">Undo</Button>
-				<Button x:Name="deleteBtn" Margin="5,5,10,5" Grid.Column="2" Grid.ColumnSpan="2" MaxWidth="100" Click="DeleteBtn_Click">Remove</Button>
+				<Button x:Name="undoBtn" Grid.Column="0" Grid.ColumnSpan="2" MaxWidth="100" Margin="5,5,10,5" Click="undoBtn_Click"
+						ToolTip="Undo last completed action">Undo</Button>
+				<Button x:Name="deleteBtn" Margin="5,5,10,5" Grid.Column="2" Grid.ColumnSpan="2" MaxWidth="100" Click="DeleteBtn_Click"
+						ToolTip="Remove element corresponding to selected row in table">Remove</Button>
 				
             </Grid>
             
@@ -105,7 +111,7 @@
                 <RowDefinition Height="0.9*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Margin="0,10,10,0">
+			<Grid Grid.Row="0" Margin="0,10,10,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.3*"></ColumnDefinition>
                     <ColumnDefinition Width="0.1*"></ColumnDefinition>
@@ -122,9 +128,8 @@
             </Grid>
 
             <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <Canvas x:Name="canvas" 
-                    Width="{Binding ActualWidth, ElementName = cityMap}" Height="{Binding ActualHeight, ElementName = cityMap}"
-                        DragEnter="Canvas_DragEnter" Drop="Canvas_Drop" AllowDrop="True"
+				<Canvas x:Name="canvas" local:HelpProvider.HelpKey="Map" Width="{Binding ActualWidth, ElementName = cityMap}"
+						Height="{Binding ActualHeight, ElementName = cityMap}" DragEnter="Canvas_DragEnter" Drop="Canvas_Drop" AllowDrop="True"
                         MouseLeftButtonDown="CanvasMouseLeftButtonDown"
                     MouseLeftButtonUp="CanvasMouseLeftButtonUp" MouseMove="CanvasMouseMove" PreviewMouseLeftButtonDown="Canvas_PreviewMouseLeftButtonDown" MouseWheel="UIElement_OnMouseWheel">
                     <Canvas.Background>

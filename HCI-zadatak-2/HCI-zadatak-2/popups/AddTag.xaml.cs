@@ -14,14 +14,14 @@ using System.Windows.Shapes;
 
 namespace HCI_zadatak_2.popups
 {
-    /// <summary>
-    /// Interaction logic for AddTag.xaml
-    /// </summary>
-    public partial class AddTag : Window
-    {
-        public AddTag()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Interaction logic for AddTag.xaml
+	/// </summary>
+	public partial class AddTag : Window
+	{
+		public AddTag()
+		{
+			InitializeComponent();
+		}
+	}
 }
