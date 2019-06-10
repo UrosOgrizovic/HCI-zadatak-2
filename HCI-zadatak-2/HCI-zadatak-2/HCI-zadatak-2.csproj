@@ -91,6 +91,9 @@
     <Compile Include="popups\AddTag.xaml.cs">
       <DependentUpon>AddTag.xaml</DependentUpon>
     </Compile>
+    <Compile Include="popups\Filter.xaml.cs">
+      <DependentUpon>Filter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="popups\ViewEvent.xaml.cs">
       <DependentUpon>ViewEvent.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="popups\AddTag.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="popups\Filter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

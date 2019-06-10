@@ -104,7 +104,6 @@ namespace HCI_zadatak_2.popups
 					this.e.Tags.Add(t);
 				}
 
-
 				this.parent.appContext.Events.Add(this.e);
 
 				AppImage icon = new AppImage

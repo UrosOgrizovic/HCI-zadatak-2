@@ -82,26 +82,22 @@
                 </TabItem>
             </TabControl>
 
-
-
-			<Grid Grid.Row="1">
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
-					<ColumnDefinition></ColumnDefinition>
-					<ColumnDefinition></ColumnDefinition>
-					<ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-				<Button x:Name="undoBtn" Grid.Column="0" Grid.ColumnSpan="2" MaxWidth="100" Margin="5,5,10,5" Click="undoBtn_Click" ToolTip="Undo last completed action">Undo</Button>
-				<Button x:Name="deleteBtn" Margin="5,5,10,5" Grid.Column="2" Grid.ColumnSpan="2" MaxWidth="100" Click="DeleteBtn_Click"
+                <Button x:Name="undoBtn" Grid.Column="0" Grid.ColumnSpan="2" MaxWidth="100" Margin="5,5,10,5" Click="undoBtn_Click" ToolTip="Undo last completed action">Undo</Button>
+                <Button x:Name="deleteBtn" Margin="5,5,10,5" Grid.Column="2" Grid.ColumnSpan="2" MaxWidth="100" Click="DeleteBtn_Click"
 						ToolTip="Remove element corresponding to selected row in table">Remove</Button>
-				<Button x:Name="helpBtn" Margin="5,5,10,5" Grid.Column="4" Grid.ColumnSpan="2" MaxWidth="100" Click="helpBtn_Click"
+                <Button x:Name="helpBtn" Margin="5,5,10,5" Grid.Column="4" Grid.ColumnSpan="2" MaxWidth="100" Click="helpBtn_Click"
 						ToolTip="View help">Help</Button>
-				
             </Grid>
-            
         </Grid>
 
 		
@@ -125,9 +121,8 @@
 
                 <TextBox x:Name="searchTxt" Grid.Column="0" Margin="0,3,0,3" ></TextBox>
                 <Button x:Name="searchBtn" Grid.Column="1" Margin="3,3,0,3" Click="SearchBtn_Click" IsDefault="{Binding ElementName=searchTxt, Path=IsKeyboardFocused}">Search</Button>
-                <Button Grid.Column="2" Margin="3,3,0,3">Filter</Button>
-                <Button Grid.Column="3" Margin="3,3,0,3">Reset</Button>
-                
+                <Button x:Name="filterBtn" Grid.Column="2" Margin="3,3,0,3" Click="FilterBtn_Click">Filter</Button>
+                <Button x:Name="resetBtn" Grid.Column="3" Margin="3,3,0,3" Click="ResetBtn_Click_1">Reset</Button>
             </Grid>
 
             <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">

@@ -71,8 +71,7 @@ namespace HCI_zadatak_2
 
             EditEvent.Window = this;
             EditTag.Window = this;
-            EditEventType.Window = this;
-			
+            EditEventType.Window = this;	
 
             ViewEvents.Window = this;
             addIconsToMap();
@@ -186,9 +185,7 @@ namespace HCI_zadatak_2
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
             controlEventsView.eventsView.ItemsSource = appContext.Search(searchTxt.Text);
-
         }
-
 
         private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -362,6 +359,19 @@ namespace HCI_zadatak_2
 		{			
 			HelpProvider.ShowHelp(helpToShow);
 		}
-	}
+
+        private void ResetBtn_Click_1(object sender, RoutedEventArgs e)
+        {
+            foreach (Image i in canvas.Children)
+            {
+                i.Opacity = 1;
+            }
+        }
+
+        private void FilterBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
 
 }

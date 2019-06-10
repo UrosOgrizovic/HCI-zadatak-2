@@ -20,15 +20,13 @@
 		</Style>
 	</UserControl.Resources>
 
-	<UserControl.CommandBindings>
-		<CommandBinding Command="ApplicationCommands.Help" Executed="HelpBinding_Executed"></CommandBinding>
-	</UserControl.CommandBindings>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="HelpBinding_Executed"></CommandBinding>
+    </UserControl.CommandBindings>
 
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-	<ScrollViewer VerticalScrollBarVisibility="Auto">
-
-
-		<Grid Margin="5,5,5,5" Style="{StaticResource FocusTextBox}">
+        <Grid Margin="5,5,5,5" Style="{StaticResource FocusTextBox}">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="232*"></ColumnDefinition>
 				<ColumnDefinition Width="193*"></ColumnDefinition>
@@ -92,7 +90,7 @@
 
 			<Label Grid.Column="0" Grid.Row="5" Margin="5,4.8,8,5.2">Alcohol serving category:</Label>
 			<!-- TODO: FIX -->
-			<ComboBox x:Name="EventAlcoholServingCategory" Margin="2,10.8,0,11.2" Grid.Column="1" Grid.Row="5" Width="180" HorizontalAlignment="Left">
+			<ComboBox x:Name="EventAlcoholServingCategory" SelectedValuePath="Content" Margin="2,10.8,0,11.2" Grid.Column="1" Grid.Row="5" Width="180" HorizontalAlignment="Left">
 				<ComboBoxItem IsSelected="True">None</ComboBoxItem>
 				<ComboBoxItem>Bring</ComboBoxItem>
 				<ComboBoxItem>Buy</ComboBoxItem>
@@ -110,35 +108,33 @@
 
 				<Label Grid.Column="0" Margin="5,5,5,5">Icon:</Label>
 				<Image x:Name="previewIcon" Grid.Column="2" Margin="5,5,5,5" Width="40" Height="40" Source="{Binding Path=Window.appContext.SelectedEvent.IconPath}" HorizontalAlignment="Center"></Image>
-				<Button x:Name="browseBtn" HorizontalAlignment="Left" Grid.Column="3" Grid.ColumnSpan="2"  Margin="5,5,5,5" Height="30" Width="100" Click="BrowseBtn_Click_1">Choose picture</Button>
-
-
-			</Grid>
+                <Button x:Name="browseBtn" HorizontalAlignment="Left" Grid.Column="3" Grid.ColumnSpan="2"  Margin="5,5,5,5" Height="30" Width="100" Click="BrowseBtn_Click_1">Choose picture</Button>
+            </Grid>
 
 			<Label Grid.Column="0" Grid.Row="7" Margin="5,5.4,8,5.4">Suitable for handicapped:</Label>
 			<!-- TODO: FIX -->
-			<ComboBox x:Name="EventIsSutiableForHandicapped" Margin="2,5.4,0,5.4" Grid.Column="1" Grid.Row="7" Width="180" HorizontalAlignment="Left">
+            <ComboBox x:Name="EventIsSutiableForHandicapped" Margin="2,5.4,0,5.4" SelectedValuePath="Content" Grid.Column="1" Grid.Row="7" Width="180" HorizontalAlignment="Left">
 				<ComboBoxItem IsSelected="True">True</ComboBoxItem>
 				<ComboBoxItem>False</ComboBoxItem>
 			</ComboBox>
 
 			<Label Grid.Column="0" Grid.Row="8" Margin="5,3.6,8,5.6">Smoking allowed:</Label>
 			<!-- TODO: FIX -->
-			<ComboBox x:Name="EventIsSmokingAllowed" Margin="2,3.6,0,5.6" Grid.Column="1" Grid.Row="8" Width="180" HorizontalAlignment="Left">
+            <ComboBox x:Name="EventIsSmokingAllowed" Margin="2,3.6,0,5.6" SelectedValuePath="Content" Grid.Column="1" Grid.Row="8" Width="180" HorizontalAlignment="Left">
 				<ComboBoxItem IsSelected="True">True</ComboBoxItem>
 				<ComboBoxItem>False</ComboBoxItem>
 			</ComboBox>
 
 			<Label Grid.Column="0" Grid.Row="9" Margin="5,4.4,8,4.8">Outdoors:</Label>
 			<!-- TODO: FIX -->
-			<ComboBox x:Name="EventIsOutdoors" Margin="2,4.4,0,4.8" Grid.Column="1" Grid.Row="9" Width="180" HorizontalAlignment="Left">
+            <ComboBox x:Name="EventIsOutdoors" Margin="2,4.4,0,4.8" SelectedValuePath="Content" Grid.Column="1" Grid.Row="9" Width="180" HorizontalAlignment="Left">
 				<ComboBoxItem IsSelected="True">True</ComboBoxItem>
 				<ComboBoxItem>False</ComboBoxItem>
 			</ComboBox>
 
 			<Label Grid.Column="0" Grid.Row="10" Margin="5,5.2,8,5.6">Price category:</Label>
 			<!-- TODO: FIX -->
-			<ComboBox x:Name="EventPriceCategory" Margin="2,5.2,0,5.6" Grid.Column="1" Grid.Row="10" Width="180" HorizontalAlignment="Left">
+			<ComboBox x:Name="EventPriceCategory" Margin="2,5.2,0,5.6" SelectedValuePath="Content" Grid.Column="1" Grid.Row="10" Width="180" HorizontalAlignment="Left">
 				<ComboBoxItem IsSelected="True">Free</ComboBoxItem>
 				<ComboBoxItem>Low</ComboBoxItem>
 				<ComboBoxItem>Mid</ComboBoxItem>

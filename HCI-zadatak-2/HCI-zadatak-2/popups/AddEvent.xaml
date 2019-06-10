@@ -101,7 +101,7 @@
 			<Button x:Name="eventIconBrowseBtn" HorizontalAlignment="Right" Grid.Row="6" Grid.Column="1"  Margin="5,5,5,5" Height="30" Width="100" Click="EventIconBrowseBtn_Click">Choose icon</Button>
 
 			<Label Grid.Column="0" Grid.Row="7" Margin="5,5,5,5">Suitable for handicapped:</Label>
-			<ComboBox x:Name="EventIsSutiableForHandicapped" Margin="5,5,5,5" Grid.Column="1" Grid.Row="7" Width="180" HorizontalAlignment="Left">
+            <ComboBox x:Name="EventIsSutiableForHandicapped" SelectedValuePath="Content" Margin="5,5,5,5" Grid.Column="1" Grid.Row="7" Width="180" HorizontalAlignment="Left">
 				<ComboBoxItem IsSelected="True">True</ComboBoxItem>
 				<ComboBoxItem>False</ComboBoxItem>
 			</ComboBox>

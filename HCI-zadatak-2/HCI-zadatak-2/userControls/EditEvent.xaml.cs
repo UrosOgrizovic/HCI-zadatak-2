@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using HCI_zadatak_2.images;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -79,9 +80,27 @@ namespace HCI_zadatak_2.userControls
                 ee.PriceCategory = (PriceCategory)Enum.Parse(typeof(PriceCategory), EventPriceCategory.SelectedValue.ToString(), true);
                 ee.ExpectedAudience = Int32.Parse(EventExpectedAudienceTextBox.Text);
                 ee.Date = (DateTime)EventDate.SelectedDate;
+                if (IconPath != null)
+                {
+                    Window.canvas.Children.Remove(ee.ImageIcon);
 
+                    ee.IconPath = IconPath;
+                    AppImage icon = new AppImage
+                    {
+                        Width = 30,
+                        Height = 30,
+                        Name = "marker",
+                        Source = new BitmapImage(new Uri(IconPath, UriKind.RelativeOrAbsolute)),
+                        Path = IconPath
+                    };
+                    ee.ImageIcon = icon;
+                    icon.Event = ee;
+
+                    Window.canvas.Children.Add(ee.ImageIcon);
+                    Canvas.SetTop(ee.ImageIcon, ee.OffsetY);
+                    Canvas.SetLeft(ee.ImageIcon, ee.OffsetX);
+                }
             }
-			
 		}
 
 		private bool ValidateEditEvent()
