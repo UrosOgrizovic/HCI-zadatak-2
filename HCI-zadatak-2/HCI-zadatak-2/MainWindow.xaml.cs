@@ -59,7 +59,6 @@ namespace HCI_zadatak_2
         private AppImage draggedImage;
         private Point mousePosition;
 
-        public EventFilter eventFilter = new EventFilter();
 
         public MainWindow()
         {
@@ -93,7 +92,11 @@ namespace HCI_zadatak_2
 				{
 					e.ImageIcon = new AppImage
 					{
-						Event = e,
+                        Width = 30,
+                        Height = 30,
+                        Name = "marker",
+                        Source = new BitmapImage(new Uri(e.IconPath, UriKind.RelativeOrAbsolute)),
+                        Event = e,
 						Path = e.IconPath
 					};
 				}
