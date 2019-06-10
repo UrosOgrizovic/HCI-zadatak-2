@@ -66,12 +66,13 @@ namespace HCI_zadatak_2
             InitializeComponent();
             DataContext = this;
 
-			appContext = new ApplicationContext();
+			//appContext = new ApplicationContext();
 
 			
 			appContext = (ApplicationContext)FileIO.ReadAppContext("appContext.bin");
 			if (appContext == null) appContext = new ApplicationContext();
 			
+
 			cityMap.Source = new BitmapImage(new Uri(@"/images/MapNS.png", UriKind.Relative));
             AddEventType.parent = this;
             userControls.AddTag.parent = this;

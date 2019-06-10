@@ -31,11 +31,17 @@ namespace HCI_zadatak_2.userControls
             if (VerifyInputs())
             {
                 Tag t = Window.appContext.SelectedTag;
+				if (colorPicker.SelectedColor == null)
+				{
+					MessageBox.Show("Color is required");
+					return;
+				}
                 t.Color = (Color)colorPicker.SelectedColor;
                 t.Description = TagDescriptionTextBox.Text;
                 t.IsActive = true;
                 MessageBox.Show("Changes saved successfully!");
-            } else
+				FileIO.WriteToFile("appContext.bin", Window.appContext);
+			} else
 			{
 				MessageBox.Show("All fields must be filled");
 			}

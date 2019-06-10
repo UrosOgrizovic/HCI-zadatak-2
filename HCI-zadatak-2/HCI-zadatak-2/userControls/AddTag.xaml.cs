@@ -36,6 +36,19 @@ namespace HCI_zadatak_2.userControls
             {
                 Tag tag = new Tag();
                 tag.Id = TagIdTextBox.Text;
+				foreach (Tag t in parent.appContext.Tags)
+				{
+					if (t.Id.Equals(tag.Id))
+					{
+						MessageBox.Show("Tag with entered id already exists.");
+						return;
+					}
+				}
+				if (colorPicker.SelectedColor == null)
+				{
+					MessageBox.Show("Color is required.");
+					return;
+				}
                 tag.Color = (Color)colorPicker.SelectedColor;
                 tag.Description = TagDescriptionTextBox.Text;
                 tag.IsActive = true;
@@ -43,7 +56,8 @@ namespace HCI_zadatak_2.userControls
                 {
                     parent.appContext.Tags.Add(tag);
                     MessageBox.Show("Tag is successfully added.");
-                }
+					FileIO.WriteToFile("appContext.bin", parent.appContext);
+				}
                 else
                 {
                     MessageBox.Show("Tag with selected ID already exists.");

@@ -94,7 +94,8 @@ namespace HCI_zadatak_2.userControls
 
 
                 MessageBox.Show("Changes successfully saved.");
-            }
+				FileIO.WriteToFile("appContext.bin", Window.appContext);
+			}
             else
             {
                 MessageBox.Show("All fields must be filled");
