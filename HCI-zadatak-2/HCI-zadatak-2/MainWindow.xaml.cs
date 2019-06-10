@@ -391,6 +391,7 @@ namespace HCI_zadatak_2
                 i.Opacity = 1;
             }
 
+            controlEventsView.eventsView.ItemsSource = appContext.Events;
             filter = new EventFilter();
         }
 

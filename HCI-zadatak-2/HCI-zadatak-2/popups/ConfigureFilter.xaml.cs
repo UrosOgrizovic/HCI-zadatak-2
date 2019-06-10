@@ -60,14 +60,7 @@ namespace HCI_zadatak_2.popups
 				filter.usePriceCat = true;
 			}
 
-			
-            filter.isForHandicapped = (bool)handicaped.IsChecked;
-			filter.useHandi = true;
-            filter.isSmokingAllowed = (bool)smoking.IsChecked;
-			filter.useSmoke = true;
-            filter.isOutdoors = (bool)outdoors.IsChecked;
-			filter.useOut = true;
-
+		
             if (fromDate.SelectedDate != null)
 			{
 				filter.dateFrom = (DateTime)fromDate.SelectedDate;

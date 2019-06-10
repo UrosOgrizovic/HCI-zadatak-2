@@ -245,15 +245,6 @@ namespace HCI_zadatak_2
                 if (f.useAudiHigh && (f.expectedAudianceHigh < e.ExpectedAudience))
                     flag = false;
 
-                if (f.useHandi && (f.isForHandicapped != e.IsForHandicapped))
-                    flag = false;
-
-                if (f.useSmoke && (f.isSmokingAllowed != e.IsSmokingAllowed))
-                    flag = false;
-
-                if (f.useOut && (f.isOutdoors != e.IsOutdoors))
-                    flag = false;
-
                 if (f.usePriceCat && (f.priceCategory == e.PriceCategory))
                     flag = false;
 
