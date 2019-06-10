@@ -24,6 +24,7 @@ namespace HCI_zadatak_2.popups
         public ConfigureFilter(EventFilter filter)
         {
             InitializeComponent();
+            DataContext = this;
             this.filter = filter;
         }
 
@@ -75,6 +76,11 @@ namespace HCI_zadatak_2.popups
                 
 			
             this.Close();
+        }
+
+        private void HelpBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("SearchFilterReset");
         }
     }
 }

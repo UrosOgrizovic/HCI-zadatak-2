@@ -7,7 +7,22 @@
         xmlns:userControls="clr-namespace:HCI_zadatak_2.userControls" x:Class="HCI_zadatak_2.popups.ConfigureFilter"
         mc:Ignorable="d"
         Title="ConfigureFilter" Height="424.56" Width="282.818" ResizeMode="NoResize">
-    <Grid Margin="0,0,424,0">
+
+    <Window.Resources>
+        <Style x:Key="FocusTextBox" TargetType="Grid">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=typeBox, Path=IsVisible}" Value="True">
+                    <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=typeBox}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="HelpBinding_Executed"></CommandBinding>
+    </Window.CommandBindings>
+
+    <Grid Margin="0,0,424,0" Style="{StaticResource FocusTextBox}">
         <Label Content="Type:" HorizontalAlignment="Left" Margin="25,21,-125,0" VerticalAlignment="Top" Width="100"/>
         <TextBox x:Name="typeBox" HorizontalAlignment="Left" Height="23" Margin="113,24,-241,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128"/>
         <Label Content="Date from:" HorizontalAlignment="Left" Margin="25,75,-125,0" VerticalAlignment="Top" Width="100"/>
