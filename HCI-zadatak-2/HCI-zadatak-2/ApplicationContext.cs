@@ -3,10 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Color = System.Windows.Media.Color;
 
 namespace HCI_zadatak_2
 {
@@ -110,9 +113,9 @@ namespace HCI_zadatak_2
             let.Add(new EventType { Type = "Music", Name = "Concert", Icon = @"\images\5.jpg", Description = "Event type that can be used for any concert" });
             let.Add(new EventType { Type = "Art", Name = "Exhibition", Icon = @"\images\6.jpg", Description = "Event type that can be used for any art exhibition." });
 
-            lt.Add(new Tag { Id = "T1", Description = "Involves physical activity", IsActive = true });
-            lt.Add(new Tag { Id = "T2", Description = "Involves music", IsActive = true });
-            lt.Add(new Tag { Id = "T3", Description = "Group discount", IsActive = true });
+            lt.Add(new Tag { Id = "T1", Description = "Involves physical activity", IsActive = true, Color = new Color() });
+            lt.Add(new Tag { Id = "T2", Description = "Involves music", IsActive = true, Color = new Color() });
+            lt.Add(new Tag { Id = "T3", Description = "Group discount", IsActive = true, Color = new Color() });
 
             DateTime dt1 = new DateTime(2019, 8, 10, 16, 30, 0);
             DateTime dt2 = new DateTime(2019, 10, 5, 20, 0, 0);
@@ -136,16 +139,13 @@ namespace HCI_zadatak_2
 				Path = @"\images\3.jpg"
 			};
 
-			e.Add(new Event { Id = "E1", ImageIcon = ai1, Name = "Crazy Aerosmith concert", Description = "A concert by the legends of rock. Steven Tyler is living proof that one can still rock out at the tender age of 71!", Type = let[1], Alcohol = AlcoholServingCategory.BUY, IsForHandicapped = true, IsSmokingAllowed = true, IsOutdoors = true, PriceCategory = PriceCategory.MID, ExpectedAudience = 10000, Date = dt2, Tags = lt.GetRange(1, 1), IsActive = true, OffsetX = 10, OffsetY = 10, IconPath= @"\images\1.jpg" });
+			//e.Add(new Event { Id = "E1", ImageIcon = ai1, Name = "Crazy Aerosmith concert", Description = "A concert by the legends of rock. Steven Tyler is living proof that one can still rock out at the tender age of 71!", Type = let[1], Alcohol = AlcoholServingCategory.BUY, IsForHandicapped = true, IsSmokingAllowed = true, IsOutdoors = true, PriceCategory = PriceCategory.MID, ExpectedAudience = 10000, Date = dt2, Tags = lt.GetRange(1, 1), IsActive = true, OffsetX = 10, OffsetY = 10, IconPath= @"\images\1.jpg" });
+            //e.Add(new Event { Id = "E2", ImageIcon = ai2, Name = "Football game U19", Description = "Everyone who's under the age of 19 is invited to this exhibition game! Great fun is guaranteed!", Type = let[0], Alcohol = AlcoholServingCategory.NONE, IsForHandicapped = false, IsSmokingAllowed = false, IsOutdoors = true, PriceCategory = PriceCategory.FREE, ExpectedAudience = 20, Date = dt1, Tags = lt.GetRange(0, 1), IsActive = true, OffsetX = 100, OffsetY = 200, IconPath = @"\images\2.jpg" });
+            //e.Add(new Event { Id = "E3", ImageIcon = ai3, Name = "Picasso's Rose Period", Description = "A look at some of Picasso's pre-cubism works, such as 'Boy Leading a Horse'.", Type = let[2], Alcohol = AlcoholServingCategory.NONE, IsForHandicapped = true, IsSmokingAllowed = false, IsOutdoors = false, PriceCategory = PriceCategory.HIGH, ExpectedAudience = 200, Date = dt3, Tags = lt.GetRange(2, 1), IsActive = true, OffsetX = 250, OffsetY = 50, IconPath = @"\images\3.jpg" });
 
-            e.Add(new Event { Id = "E2", ImageIcon = ai2, Name = "Football game U19", Description = "Everyone who's under the age of 19 is invited to this exhibition game! Great fun is guaranteed!", Type = let[0], Alcohol = AlcoholServingCategory.NONE, IsForHandicapped = false, IsSmokingAllowed = false, IsOutdoors = true, PriceCategory = PriceCategory.FREE, ExpectedAudience = 20, Date = dt1, Tags = lt.GetRange(0, 1), IsActive = true, OffsetX = 100, OffsetY = 200, IconPath = @"\images\2.jpg" });
-
-            e.Add(new Event { Id = "E3", ImageIcon = ai3, Name = "Picasso's Rose Period", Description = "A look at some of Picasso's pre-cubism works, such as 'Boy Leading a Horse'.", Type = let[2], Alcohol = AlcoholServingCategory.NONE, IsForHandicapped = true, IsSmokingAllowed = false, IsOutdoors = false, PriceCategory = PriceCategory.HIGH, ExpectedAudience = 200, Date = dt3, Tags = lt.GetRange(2, 1), IsActive = true, OffsetX = 250, OffsetY = 50, IconPath = @"\images\3.jpg" });
-
-			ai1.Event = e.ElementAt(0);
-			ai2.Event = e.ElementAt(1);
-			ai3.Event = e.ElementAt(2);
-
+			//ai1.Event = e.ElementAt(0);
+		    //ai2.Event = e.ElementAt(1);
+			//ai3.Event = e.ElementAt(2);
 
 			Events = new ObservableCollection<Event>(e);
             EventTypes = new ObservableCollection<EventType>(let);
@@ -155,11 +155,11 @@ namespace HCI_zadatak_2
 
         public ObservableCollection<Event> Search(String query)
         {
-            int score = 0;
+            double score = 0;
 
             List<Tag> tags = new List<Tag>();
 
-            List<int> scores = new List<int>();
+            List<double> scores = new List<double>();
             List<Event> events = new List<Event>();
             query = query.ToLower();
             foreach (Event e in Events) {
@@ -167,9 +167,9 @@ namespace HCI_zadatak_2
                 if (e.Name.ToLower().Contains(query))
                     score += 10;
                 if (e.Date.ToString().Contains(query))
-                    score += 3;
-                if (e.Type.Name.ToLower().Contains(query))
                     score += 5;
+                if (e.Type.Name.ToLower().Contains(query) || e.Type.Type.ToLower().Contains(query))
+                    score += 7;
                 tags = e.Tags;
 
                 foreach (Tag t in tags)
@@ -179,15 +179,21 @@ namespace HCI_zadatak_2
                 }
 
                 scores.Add(score);
-                events.Add(e);
-                
+                events.Add(e);     
             }
 
+            double maxscore = scores.Max();
+            for(int i = 0; i < scores.Count; i++) {
+                if (scores[i] == 0)
+                    events[i].ImageIcon.Opacity = 0.3;
+                else
+                    events[i].ImageIcon.Opacity = scores[i] / maxscore;
+            }
             SortEvents(scores, events);
             return new ObservableCollection<Event>(events);
         }
 
-        private void SortEvents(List<int> scores, List<Event> events)
+        private void SortEvents(List<double> scores, List<Event> events)
         {
             for (int i = 0; i < scores.Count; i++)
             {
@@ -207,7 +213,6 @@ namespace HCI_zadatak_2
             }
         }
 
-        //todo add filter class as param
         public ObservableCollection<Event> Filter(ObservableCollection<Event> events)
         {
             return null;

@@ -20,15 +20,15 @@ namespace HCI_zadatak_2.userControls
     /// </summary>
     public partial class AddTag : UserControl
     {
+        public static MainWindow parent { get; set; }
+
+        private bool idEntered = false, descriptionEntered = false;
+
         public AddTag()
         {
             InitializeComponent();
 			DataContext = this;
         }
-
-        public static MainWindow parent { get; set; }
-
-		private bool idEntered = false, descriptionEntered = false;
 
         private void CreateTagBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -36,7 +36,7 @@ namespace HCI_zadatak_2.userControls
             {
                 Tag tag = new Tag();
                 tag.Id = TagIdTextBox.Text;
-                //tag.Color
+                tag.Color = (Color)colorPicker.SelectedColor;
                 tag.Description = TagDescriptionTextBox.Text;
                 tag.IsActive = true;
                 if (VerifyTag(tag))

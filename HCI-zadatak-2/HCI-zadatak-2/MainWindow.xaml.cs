@@ -75,7 +75,7 @@ namespace HCI_zadatak_2
 
             ViewEvents.Window = this;
             addIconsToMap();
-        }
+        }  
 
 
         private void addIconsToMap()
@@ -185,6 +185,7 @@ namespace HCI_zadatak_2
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
             controlEventsView.eventsView.ItemsSource = appContext.Search(searchTxt.Text);
+
         }
 
 
@@ -278,9 +279,6 @@ namespace HCI_zadatak_2
 
         private void undoBtn_Click(object sender, RoutedEventArgs e)
         {
-            foreach (Image x in canvas.Children)
-                x.Opacity = 0.1;
-
             MessageBox.Show("Undo");
         }
 

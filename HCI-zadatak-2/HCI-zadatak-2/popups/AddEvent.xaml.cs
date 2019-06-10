@@ -115,14 +115,13 @@ namespace HCI_zadatak_2.popups
 					Source = new BitmapImage(new Uri(this.e.IconPath, UriKind.RelativeOrAbsolute))
 				};
 				icon.Event = this.e;
+                this.e.ImageIcon = icon;
 
 				this.parent.canvas.Children.Add(icon);
 				Canvas.SetTop(icon, this.e.OffsetY);
 				Canvas.SetLeft(icon, this.e.OffsetX);
 
 				this.Close();
-
-				MessageBox.Show("Changes saved successfully");
 			}
 		}
 

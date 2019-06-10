@@ -23,6 +23,9 @@ namespace HCI_zadatak_2.userControls
         public ViewTags()
         {
             InitializeComponent();
+            
+
+
         }
 
 		private void HelpBinding_Executed(object sender, ExecutedRoutedEventArgs e)

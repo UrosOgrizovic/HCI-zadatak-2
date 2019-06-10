@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Drawing;
+using System.Windows.Media;
 
 namespace HCI_zadatak_2
 {
@@ -18,8 +18,24 @@ namespace HCI_zadatak_2
 		public Color _color;
 		public string _description;
 		public bool _isActive;
+        public string _textColor;
 	    
-        
+
+        public String TextColor
+        {
+            get
+            {
+                return _textColor;
+            }
+            set
+            {
+                if (value != _textColor)
+                {
+                    _textColor = value;
+                    OnPropertyChanged("TextColor");
+                }
+            }
+        }
 
 		public string Id
 		{
@@ -36,6 +52,7 @@ namespace HCI_zadatak_2
 				}
 			}
 		}
+
 		public Color Color
 		{
 			get

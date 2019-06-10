@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -68,9 +69,18 @@ namespace HCI_zadatak_2.userControls
 				MessageBox.Show("All fields must be filled");
 			} else
 			{
-				//TODO: save changes
-				MessageBox.Show("Djole, odradi save: 71. linija u EditEvent.xaml.cs");
-			}
+                //TODO: save changes
+                Event ee = Window.appContext.SelectedEvent;
+                ee.Name = EventNameTextBox.Text;
+                ee.Description = EventDescriptionTextBox.Text;
+                ee.Alcohol = (AlcoholServingCategory)Enum.Parse(typeof(AlcoholServingCategory), EventAlcoholServingCategory.SelectedValue.ToString(), true);
+                ee.IsSmokingAllowed = EventIsSmokingAllowed.SelectedItem.ToString().Equals("True") ? true : false;
+                ee.IsOutdoors = EventIsOutdoors.SelectedItem.ToString().Equals("True") ? true : false;
+                ee.PriceCategory = (PriceCategory)Enum.Parse(typeof(PriceCategory), EventPriceCategory.SelectedValue.ToString(), true);
+                ee.ExpectedAudience = Int32.Parse(EventExpectedAudienceTextBox.Text);
+                ee.Date = (DateTime)EventDate.SelectedDate;
+
+            }
 			
 		}
 
@@ -90,7 +100,7 @@ namespace HCI_zadatak_2.userControls
 
 		private void AddTagToTagsOfEventBtn_Click(object sender, RoutedEventArgs e)
 		{
-
+            
 		}
 
 		private void EventNameTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -154,10 +164,20 @@ namespace HCI_zadatak_2.userControls
 			e.Handled = _regex.IsMatch(e.Text);
 		}
 
+        string IconPath;
+
 		private void BrowseBtn_Click_1(object sender, RoutedEventArgs e)
 		{
-
-		}
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Select picture";
+            ofd.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+                        "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+                        "Portable Network Graphic (*.png)|*.png";
+            if (ofd.ShowDialog() == true)
+            {
+                IconPath = ofd.FileName;
+            }
+        }
 
 		private void EventTypesView_MouseMove(object sender, MouseEventArgs e)
 		{

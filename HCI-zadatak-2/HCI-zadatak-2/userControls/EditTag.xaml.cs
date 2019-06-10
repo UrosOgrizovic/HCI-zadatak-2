@@ -31,9 +31,10 @@ namespace HCI_zadatak_2.userControls
             if (VerifyInputs())
             {
                 Tag t = Window.appContext.SelectedTag;
-                // COLOR PICKER
+                t.Color = (Color)colorPicker.SelectedColor;
                 t.Description = TagDescriptionTextBox.Text;
                 t.IsActive = true;
+                MessageBox.Show("Changes saved successfully!");
             } else
 			{
 				MessageBox.Show("All fields must be filled");

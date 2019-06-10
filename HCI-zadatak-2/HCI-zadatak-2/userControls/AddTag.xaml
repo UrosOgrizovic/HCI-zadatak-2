@@ -44,10 +44,9 @@
 		</Image>
 
 		<Label Grid.Column="0" Grid.Row="1" Margin="5,5,5,5">Color:</Label>
-        <!--<xctk:ColorPicker Name="ClrPcker_Background" SelectedColorChanged="ClrPcker_Background_SelectedColorChanged"></xctk:ColorPicker>
-        -->
-		
-		<Label Grid.Column="0" Grid.Row="2" Margin="5,5,5,5">Description:</Label>
+        <xctk:ColorPicker ShowTabHeaders="False" Margin="5,5,5,5" Grid.Column="1" Grid.Row="1" Name="colorPicker"></xctk:ColorPicker>
+
+        <Label Grid.Column="0" Grid.Row="2" Margin="5,5,5,5">Description:</Label>
 		<TextBox x:Name="TagDescriptionTextBox" Width ="180" Grid.Column="1" Grid.Row="2" Margin="5,5,5,5" TextWrapping="Wrap" AcceptsReturn="True" LostFocus="TagDescriptionTextBox_LostFocus"></TextBox>
 		<Image x:Name="descriptionExclamIcon" Grid.Row="2" Grid.Column="2"  Margin="4.8,5,0,4" Width="40" Source="{Binding Path=parent.appContext.ExclamPath}" HorizontalAlignment="Left" Visibility="Hidden">
 			<Image.ToolTip>
