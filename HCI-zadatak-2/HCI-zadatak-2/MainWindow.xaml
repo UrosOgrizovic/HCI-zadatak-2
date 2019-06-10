@@ -92,8 +92,7 @@
 					<ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-				<Button x:Name="undoBtn" Grid.Column="0" Grid.ColumnSpan="2" MaxWidth="100" Margin="5,5,10,5" Click="undoBtn_Click"
-						ToolTip="Undo last completed action">Undo</Button>
+				<Button x:Name="undoBtn" Grid.Column="0" Grid.ColumnSpan="2" MaxWidth="100" Margin="5,5,10,5" Click="undoBtn_Click" ToolTip="Undo last completed action">Undo</Button>
 				<Button x:Name="deleteBtn" Margin="5,5,10,5" Grid.Column="2" Grid.ColumnSpan="2" MaxWidth="100" Click="DeleteBtn_Click"
 						ToolTip="Remove element corresponding to selected row in table">Remove</Button>
 				

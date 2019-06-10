@@ -154,6 +154,11 @@ namespace HCI_zadatak_2.userControls
 			e.Handled = _regex.IsMatch(e.Text);
 		}
 
+		private void HelpBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			HelpProvider.ShowHelp("EditEvent");
+		}
+
 		private void BrowseBtn_Click_1(object sender, RoutedEventArgs e)
 		{
 

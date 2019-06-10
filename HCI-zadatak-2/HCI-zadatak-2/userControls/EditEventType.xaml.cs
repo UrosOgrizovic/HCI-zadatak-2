@@ -121,6 +121,11 @@ namespace HCI_zadatak_2.userControls
 			}
 		}
 
+		private void HelpBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			HelpProvider.ShowHelp("EditEventType");
+		}
+
 		private void DescTextBox_LostFocus(object sender, RoutedEventArgs e)
 		{
 			if (string.IsNullOrWhiteSpace(DescTextBox.Text))

@@ -18,6 +18,10 @@
 		</Style>
 	</Window.Resources>
 
+	<Window.CommandBindings>
+		<CommandBinding Command="ApplicationCommands.Help" Executed="HelpBinding_Executed"></CommandBinding>
+	</Window.CommandBindings>
+	
 	<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 		<Grid Margin="5,5,5,5" Style="{StaticResource FocusTextBox}">
 			<Grid.ColumnDefinitions>

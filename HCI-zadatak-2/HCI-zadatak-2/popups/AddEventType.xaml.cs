@@ -94,6 +94,11 @@ namespace HCI_zadatak_2.popups
 			
 		}
 
+		private void HelpBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			HelpProvider.ShowHelp("AddEventType");
+		}
+
 		private void NameTextBox_LostFocus(object sender, RoutedEventArgs e)
 		{
 			if (string.IsNullOrWhiteSpace(NameTextBox.Text))
