@@ -4,8 +4,10 @@ using System.Windows.Media;
 
 namespace HCI_zadatak_2
 {
+	[Serializable]
 	public class EventType : INotifyPropertyChanged
 	{
+		[field:NonSerialized]
 		public event PropertyChangedEventHandler PropertyChanged;
 		protected virtual void OnPropertyChanged(string name)
 		{

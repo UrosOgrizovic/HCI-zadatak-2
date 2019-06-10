@@ -4,10 +4,10 @@ using System.Windows.Media;
 
 namespace HCI_zadatak_2
 {
-
-    
+	[Serializable]
 	public class Tag : INotifyPropertyChanged
 	{
+		[field:NonSerialized]
 		public event PropertyChangedEventHandler PropertyChanged;
 		protected virtual void OnPropertyChanged(string name)
 		{
@@ -15,6 +15,7 @@ namespace HCI_zadatak_2
 		}
 
 		public string _id;
+		[field:NonSerialized]
 		public Color _color;
 		public string _description;
 		public bool _isActive;

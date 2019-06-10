@@ -65,8 +65,14 @@ namespace HCI_zadatak_2
         {
             InitializeComponent();
             DataContext = this;
-            appContext = new ApplicationContext();
-            cityMap.Source = new BitmapImage(new Uri(@"/images/MapNS.png", UriKind.Relative));
+
+			appContext = new ApplicationContext();
+
+			
+			appContext = (ApplicationContext)FileIO.ReadAppContext("appContext.bin");
+			if (appContext == null) appContext = new ApplicationContext();
+			
+			cityMap.Source = new BitmapImage(new Uri(@"/images/MapNS.png", UriKind.Relative));
             AddEventType.parent = this;
             userControls.AddTag.parent = this;
 
@@ -83,10 +89,20 @@ namespace HCI_zadatak_2
         {
             foreach (Event e in appContext.Events)
             {
-                canvas.Children.Add(e.ImageIcon);
+				if (e.ImageIcon == null)
+				{
+					e.ImageIcon = new AppImage
+					{
+						Event = e,
+						Path = e.IconPath
+					};
+				}
+                
                 Canvas.SetTop(e.ImageIcon, e.OffsetY);
                 Canvas.SetLeft(e.ImageIcon, e.OffsetX);
-            }
+				canvas.Children.Add(e.ImageIcon);
+
+			}
         }
 
 
@@ -180,7 +196,9 @@ namespace HCI_zadatak_2
                 AddEvent addEvent = new AddEvent(this, ev);
 
                 addEvent.ShowDialog();
-            }
+
+				FileIO.WriteToFile("appContext.bin", appContext);
+			}
         }
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
