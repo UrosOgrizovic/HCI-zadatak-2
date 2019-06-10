@@ -27,6 +27,7 @@ namespace HCI_zadatak_2.userControls
 	{
 
 		public static MainWindow Window { get; set; }
+		public static AppImage icon = null;
 
 		private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
 
@@ -70,7 +71,6 @@ namespace HCI_zadatak_2.userControls
 				MessageBox.Show("All fields must be filled");
 			} else
 			{
-                //TODO: save changes
                 Event ee = Window.appContext.SelectedEvent;
                 ee.Name = EventNameTextBox.Text;
                 ee.Description = EventDescriptionTextBox.Text;
@@ -80,18 +80,18 @@ namespace HCI_zadatak_2.userControls
                 ee.PriceCategory = (PriceCategory)Enum.Parse(typeof(PriceCategory), EventPriceCategory.SelectedValue.ToString(), true);
                 ee.ExpectedAudience = Int32.Parse(EventExpectedAudienceTextBox.Text);
                 ee.Date = (DateTime)EventDate.SelectedDate;
-                if (IconPath != null)
+                if (iconPath != null)
                 {
                     Window.canvas.Children.Remove(ee.ImageIcon);
 
-                    ee.IconPath = IconPath;
+                    ee.IconPath = iconPath;
                     AppImage icon = new AppImage
                     {
                         Width = 30,
                         Height = 30,
                         Name = "marker",
-                        Source = new BitmapImage(new Uri(IconPath, UriKind.RelativeOrAbsolute)),
-                        Path = IconPath
+                        Source = new BitmapImage(new Uri(iconPath, UriKind.RelativeOrAbsolute)),
+                        Path = iconPath
                     };
                     ee.ImageIcon = icon;
                     icon.Event = ee;
@@ -100,6 +100,7 @@ namespace HCI_zadatak_2.userControls
                     Canvas.SetTop(ee.ImageIcon, ee.OffsetY);
                     Canvas.SetLeft(ee.ImageIcon, ee.OffsetX);
                 }
+				FileIO.WriteToFile("appContext.bin", Window.appContext);
             }
 		}
 
@@ -184,7 +185,7 @@ namespace HCI_zadatak_2.userControls
 		}
 
 
-        string IconPath;
+        string iconPath;
 
 		private void HelpBinding_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
@@ -201,8 +202,19 @@ namespace HCI_zadatak_2.userControls
                         "Portable Network Graphic (*.png)|*.png";
             if (ofd.ShowDialog() == true)
             {
-                IconPath = ofd.FileName;
-            }
+                iconPath = ofd.FileName;
+				icon = new AppImage
+				{
+					Width = 30,
+					Height = 30,
+					Name = "marker",
+					Source = new BitmapImage(new Uri(iconPath, UriKind.RelativeOrAbsolute)),
+					Path = iconPath
+				};
+				previewIcon.Source = icon.Source;
+			}
+
+
         }
 
 		private void EventTypesView_MouseMove(object sender, MouseEventArgs e)

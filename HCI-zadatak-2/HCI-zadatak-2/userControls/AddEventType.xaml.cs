@@ -89,8 +89,20 @@ namespace HCI_zadatak_2.userControls
 			if (ValidateAddEventType())
 			{
 				var type = HRMarkTextBox.Text;
+				foreach (EventType et in parent.appContext.EventTypes) {
+					if (et.Type.Equals(type))
+					{
+						MessageBox.Show("Event type with entered type already exists.");
+						return;
+					}
+				}
 				var name = NameTextBox.Text;
 				var iconPath = this.iconPath;
+				if (string.IsNullOrWhiteSpace(iconPath))
+				{
+					MessageBox.Show("Icon is required");
+					return;
+				}
 				var desc = DescTextBox.Text;
 
 
@@ -103,6 +115,7 @@ namespace HCI_zadatak_2.userControls
 				//this.parent.saveTypes();
 
 				MessageBox.Show("Event type is successfully created and saved.", "Notification", MessageBoxButton.OK);
+				FileIO.WriteToFile("appContext.bin", parent.appContext);
 			}
 			else
 			{

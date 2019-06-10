@@ -124,6 +124,7 @@ namespace HCI_zadatak_2.popups
 				this.Close();
 
 				MessageBox.Show("Event created successfully");
+				FileIO.WriteToFile("appContext.bin", parent.appContext);
 			}
 		}
 

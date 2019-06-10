@@ -59,6 +59,11 @@ namespace HCI_zadatak_2.popups
 				var type = HRMarkTextBox.Text;
 				var name = NameTextBox.Text;
 				var iconPath = this.iconPath;
+				if (string.IsNullOrWhiteSpace(iconPath))
+				{
+					MessageBox.Show("Icon is required");
+					return;
+				}
 				var desc = DescTextBox.Text;
 
 
@@ -72,6 +77,7 @@ namespace HCI_zadatak_2.popups
 				this.Close();
 
 				MessageBox.Show("Event type is successfully created and saved.", "Notification", MessageBoxButton.OK);
+				FileIO.WriteToFile("appContext.bin", parent.appContext);
 			}
 			else
 			{
