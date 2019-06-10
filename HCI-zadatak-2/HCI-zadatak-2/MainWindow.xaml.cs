@@ -59,7 +59,7 @@ namespace HCI_zadatak_2
         private AppImage draggedImage;
         private Point mousePosition;
 
-
+        public EventFilter eventFilter = new EventFilter();
 
         public MainWindow()
         {

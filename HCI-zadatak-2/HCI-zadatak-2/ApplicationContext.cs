@@ -22,6 +22,7 @@ namespace HCI_zadatak_2
         public ApplicationContext()
         {
             TestData();
+            
         }
 
 		public event PropertyChangedEventHandler PropertyChanged;
