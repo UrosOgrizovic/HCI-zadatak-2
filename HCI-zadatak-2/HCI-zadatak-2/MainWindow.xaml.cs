@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -372,6 +373,13 @@ namespace HCI_zadatak_2
         {
 
         }
-    }
+    
+
+		private void demoBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Demo de = new Demo();
+			de.ShowDialog();
+		}
+	}
 
 }

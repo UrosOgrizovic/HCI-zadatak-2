@@ -167,7 +167,7 @@ namespace HCI_zadatak_2.userControls
 
 		private void EventDate_LostFocus(object sender, RoutedEventArgs e)
 		{
-			if (string.IsNullOrWhiteSpace(EventDate.Text))
+			if (string.IsNullOrWhiteSpace(EventDate.Text) && !EventDate.IsDropDownOpen)
 			{
 				dateExclamIcon.Visibility = Visibility.Visible;
 				dateEntered = false;

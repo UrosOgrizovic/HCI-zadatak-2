@@ -77,6 +77,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationContext.cs" />
+    <Compile Include="Demo.xaml.cs">
+      <DependentUpon>Demo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HelpProvider.cs" />
     <Compile Include="HelpView.xaml.cs">
       <DependentUpon>HelpView.xaml</DependentUpon>
@@ -119,6 +122,10 @@
     <Compile Include="userControls\ViewTags.xaml.cs">
       <DependentUpon>ViewTags.xaml</DependentUpon>
     </Compile>
+    <Page Include="Demo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HelpView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -233,6 +240,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\exclam.png" />
+    <Content Include="Data\Demo\Add event.mp4" />
     <Content Include="Data\Help\AddEvent.htm" />
     <Content Include="Data\Help\AddEventType.htm" />
     <Content Include="Data\Help\AddTag.htm" />
