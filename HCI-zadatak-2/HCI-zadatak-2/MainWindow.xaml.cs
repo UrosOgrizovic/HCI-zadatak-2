@@ -83,7 +83,16 @@ namespace HCI_zadatak_2
 
             ViewEvents.Window = this;
             addIconsToMap();
+            Closing += new CancelEventHandler(OnWindowClosing);
         }  
+
+
+        public void OnWindowClosing(object sender, CancelEventArgs e)
+        {
+            
+            FileIO.WriteToFile("appContext.bin", appContext);
+
+        }
 
 
         private void addIconsToMap()
@@ -174,6 +183,7 @@ namespace HCI_zadatak_2
                     }
                     appContext.Tags.RemoveAt(controlTagsView.tagsView.SelectedIndex);
                 }
+                FileIO.WriteToFile("appContext.bin", appContext);
             }
         }
 
@@ -346,7 +356,7 @@ namespace HCI_zadatak_2
 
         private void undoBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Undo");
+            FileIO.WriteToFile("appContext.bin", appContext);
         }
 
         private void TabItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
