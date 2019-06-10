@@ -52,18 +52,34 @@ namespace HCI_zadatak_2.popups
 			if (!alcoholComboBox.SelectedValue.ToString().Equals("None"))
 			{
 				filter.alcohol = (AlcoholServingCategory)Enum.Parse(typeof(AlcoholServingCategory), alcoholComboBox.SelectedValue.ToString(), true);
+				filter.useAlcohol = true;
 			}
+			if (!priceCategoryComboBox.SelectedValue.ToString().Equals("None"))
+			{
+				filter.priceCategory = (PriceCategory)Enum.Parse(typeof(PriceCategory), priceCategoryComboBox.SelectedValue.ToString(), true);
+				filter.usePriceCat = true;
+			}
+
 			
             filter.isForHandicapped = (bool)handicaped.IsChecked;
+			filter.useHandi = true;
             filter.isSmokingAllowed = (bool)smoking.IsChecked;
+			filter.useSmoke = true;
             filter.isOutdoors = (bool)outdoors.IsChecked;
-            filter.priceCategory = (PriceCategory)Enum.Parse(typeof(PriceCategory), priceCategoryComboBox.SelectedValue.ToString(), true);
+			filter.useOut = true;
 
             if (fromDate.SelectedDate != null)
-                filter.dateFrom = (DateTime)fromDate.SelectedDate;
+			{
+				filter.dateFrom = (DateTime)fromDate.SelectedDate;
+				filter.useDateFrom = true;
+			}	
 
             if (toDate.SelectedDate != null)
-                filter.dateTo = (DateTime)toDate.SelectedDate;
+			{
+				filter.dateTo = (DateTime)toDate.SelectedDate;
+				filter.useDateTo = true;
+			}
+                
 			
             this.Close();
         }

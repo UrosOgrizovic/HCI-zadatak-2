@@ -26,7 +26,8 @@
         </ComboBox>
         <Label Content="Price category:" HorizontalAlignment="Left" Margin="25,316,-125,0" VerticalAlignment="Top" Width="100"/>
         <ComboBox SelectedValuePath="Content" x:Name="priceCategoryComboBox" HorizontalAlignment="Left" Margin="150,316,-246,0" VerticalAlignment="Top" Width="96">
-            <ComboBoxItem IsSelected="True" Content="Free"/>
+			<ComboBoxItem IsSelected="True" Content="None"/>
+            <ComboBoxItem Content="Free"/>
             <ComboBoxItem Content="Low"/>
             <ComboBoxItem Content="Mid"/>
             <ComboBoxItem Content="High"/>
